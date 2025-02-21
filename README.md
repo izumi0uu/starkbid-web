@@ -1,36 +1,89 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Starkbid
 
-## Getting Started
+## Overview
 
-First, run the development server:
+Starkbid is the first auction and collectible marketplace on the **Starknet Chain**, enabling users to trade NFT artworks, crypto collectibles, music, lyrics, and other digital assets. It offers public and exclusive invite-only auctions, ensuring low fees, fast transactions, and transparent bidding through Starknet’s scalability and security.
+
+Digital creators often face challenges like limited audience reach, high platform fees, and payment issues, resulting in minimal earnings. Starkbid addresses these hurdles, empowering creators with better visibility, lower fees, and a user-friendly platform to maximize their revenue and sustain their craft.
+
+## 💡 Why Starkbid?
+
+- **Empower Creators:** A fair and efficient marketplace for artists and creators to auction and sell digital assets.
+- **Accessible & User-Friendly:** Easy discovery and bidding with intuitive navigation and real-time notifications.
+- **Secure & Transparent:** Starknet’s blockchain ensures secure transactions, authenticity, and transparent bidding history.
+- **Maximized Earnings:** Low fees, flexible auction models, and improved visibility for higher creator revenue.
+- **Flexible Auction Options:** Public, private, and invite-only auctions tailored to creators' needs.
+- **Exclusive Features:** Portfolio tracking, private bidding, direct asset offers, and seamless asset transfers.
+
+## ⚙️ Core Features
+
+- **NFT Management:** List, bid, manage, and import NFTs, including digital collectibles and assets from other accounts.
+- **Curated Projects:** Organize assets into themed auctions for enhanced visibility.
+- **Real-Time Engagement:** Receive instant alerts for auction events and asset updates.
+- **Dynamic Marketplace:** Explore NFTs, curated projects, and user portfolios with full bidding histories.
+- **Flexible Trading:** Swap collectibles with minimal fees and leverage direct offers for instant wins.
+
+## 🎯 Target Audience
+
+- **Digital Artists & Creators:** Fair marketplace for their NFTs.
+- **Collectors & Investors:** Rare assets and investment opportunities.
+- **Musicians & Writers:** Monetize music, lyrics, and written content.
+- **Crypto Enthusiasts:** Explore new ways to trade blockchain-based assets.
+
+## 🏗 Project Structure
+
+- **Frontend:** React, Next.js (Web), Flutter (Mobile).
+- **Backend:** Node.js, FastAPI, GraphQL.
+- **Smart Contracts:** Cairo (StarkNet).
+- **Storage:** IPFS/Filecoin for decentralized content storage.
+
+## 🔧 Installation & Setup
 
 ```bash
+# Clone the repository
+git clone https://github.com/StarkBid/starkbid-web.git
+cd starkbid
+
+# Install dependencies
+npm install
+
+# Start the development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+If you encounter installation issues, try these steps:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm cache clean --force
+rm -rf node_modules
+rm package-lock.json
+npm install
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🛠 Branch Naming Convention
 
-## Learn More
+We follow a structured branch naming format:
 
-To learn more about Next.js, take a look at the following resources:
+```
+[fix|feat|chore|refactor]-[issue-number]-[short-description]
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Example:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```
+feat-23-auction-timer
+fix-45-bidding-bug
+```
 
-## Deploy on Vercel
+## 🤝 Contributing
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+We welcome developers and contributors to help shape Starkbid’s future. Check out our [📜 Contribution Guide](https://github.com/StarkBid/starkbid-web/blob/main/CONTRIBUTING.md) for detailed instructions.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 💬 Community & Support
+
+- Join our [Telegram](https://t.me/+qTCIjBObZvpmNmY0) for discussions and support.
+
+## 📜 License
+
+This project is licensed under the MIT License.
+
