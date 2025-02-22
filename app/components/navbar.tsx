@@ -29,7 +29,7 @@ export default function Navbar({ onConnect }: NavbarProps) {
 
   return (
     <>
-      <nav className="flex items-center justify-between px-4 md:px-10 xl:px-20 py-4 lg:py-6 bg-[#1a1727] w-full lg:px-6">
+      <nav className="flex items-center justify-between px-4 md:px-10 xl:px-20 py-4 lg:py-6 bg-[#0D1216] w-full lg:px-6">
         <div className="flex flow-row gap-5">
           <div className="flex">
             <Link href="/" className="flex items-center gap-2">
