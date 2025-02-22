@@ -1,4 +1,5 @@
 import Image from "next/image";
+import TrendingSection from "./components/trending-section/TrendingSection";
 
 export default function Home() {
   return (
