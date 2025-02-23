@@ -1,9 +1,9 @@
 import type { NextPage } from 'next';
 import NFTSalesSlider from "@/components/nftC/NFTSalesSlider";
-import Frame1 from "@/public/Frame1.png";
-import Frame2 from "@/public/Frame2.png";
-import Frame3 from "@/public/Frame3.png";
-import Frame4 from "@/public/Frame4.png"
+import Frame1 from "@/public/Frame5.png";
+import Frame2 from "@/public/Frame6.png";
+import Frame3 from "@/public/Frame7.png";
+import Frame4 from "@/public/Frame8.png"
 
 const sampleData = [
   {

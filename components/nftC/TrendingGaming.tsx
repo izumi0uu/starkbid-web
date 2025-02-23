@@ -4,7 +4,8 @@ import React, { useState } from "react";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Eth from "@/public/Eth.png";
-export interface NFTSale {
+
+export interface TrendGam {
   id: string;
   title: string;
   image: string | StaticImageData;
@@ -12,11 +13,11 @@ export interface NFTSale {
   totalVolume: string;
 }
 
-interface NFTSalesSliderProps {
-  sales: NFTSale[];
+interface TrendingGamingProps {
+  sales: TrendGam[];
 }
 
-const NFTSalesSlider: React.FC<NFTSalesSliderProps> = ({ sales }) => {
+const TrendingGaming: React.FC<TrendingGamingProps> = ({ sales }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const handlePrevious = () => {
@@ -37,7 +38,7 @@ const NFTSalesSlider: React.FC<NFTSalesSliderProps> = ({ sales }) => {
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="flex justify-between items-center mb-8">
-          <h1 className="text-white text-2xl font-medium">Trending in Gaming</h1>
+          <h1 className="text-white text-2xl font-medium">Biggest NFT Sales</h1>
           <div className="flex gap-2">
             <button
               onClick={handlePrevious}
@@ -113,6 +114,4 @@ const NFTSalesSlider: React.FC<NFTSalesSliderProps> = ({ sales }) => {
   );
 };
 
-export default NFTSalesSlider;
-
-
+export default TrendingGaming;
