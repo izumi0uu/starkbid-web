@@ -1,3 +1,2 @@
-import StarkLogo from "./stark-logo.svg";
-
-export { StarkLogo };
+import StarkBidLogo from "./starkbid-logo.svg";
+export { StarkBidLogo };
