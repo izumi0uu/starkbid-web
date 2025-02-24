@@ -1,10 +1,7 @@
-import Image from "next/image";
-import Navbar from "./components/navbar";
-
 export default function Home() {
   return (
-   <>
-   <Navbar/>
-   </>
+    <div className="min-h-screen">
+      {/*Import and render the LandingPage component here */}
+    </div>
   );
 }
