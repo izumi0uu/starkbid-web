@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { FC } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { NextIcon, PrevIcon } from "./icons/icons";
+import { NextIcon, PrevIcon } from "../public/icons/icons";
 
 // each slide for the carousel animation
 const slides = [
@@ -94,7 +94,7 @@ const Hero: FC = () => {
   };
 
   return (
-    <div className="text-white min-h-screen flex items-center">
+    <div className="text-white min-h-screen flex items-center bg-[radial-gradient(ellipse_at_top_center,_#7F56D9_2%,_black_90%)] px-5">
       <div className="">
         <div className="flex items-center gap-2">
           <button
@@ -138,6 +138,8 @@ const Hero: FC = () => {
                   <p className="font-semibold text-base mt-5 leading-6">
                     {slides[activeSlide].description}
                   </p>
+
+                  {/* bidding button */}
                   <motion.button
                     className="bg-[#FAFAFA] lg:py-3 lg:px-5 px-[14px] py-2 rounded-lg text-black mt-7"
                     whileHover={{ scale: 1.05 }}
@@ -174,7 +176,7 @@ const Hero: FC = () => {
                   key={index}
                   className={`h-1 rounded transition-all lg:mt-14 ${
                     index === activeSlide
-                      ? "bg-white lg:w-48 w-16"
+                      ? "bg-white lg:w-[200px] w-[50px]"
                       : "bg-white/20 lg:w-14 w-5"
                   }`}
                   role="button"
