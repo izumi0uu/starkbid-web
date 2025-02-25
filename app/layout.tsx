@@ -5,6 +5,7 @@ import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 
 
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -33,7 +34,7 @@ export default function RootLayout({
         <div className="flex flex-col">
           <Navbar />
           <main className="flex-grow">{children}</main>
-          <Footer/>
+          <Footer />
         </div>
       </body>
     </html>
