@@ -1,24 +1,65 @@
 "use client";
 import { StaticImageData } from "next/image";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Eth from "@/public/Eth.png";
+import Image6 from "@/public/Frame5.png"
+import Image7 from "@/public/Frame6.png"
+import Image8 from "@/public/Frame7.png"
+import Image9 from "@/public/Frame8.png"
+
 
 export interface TrendGam {
   id: string;
   title: string;
+  floorPrice: number | string;
+  totalVolume: number | string;
   image: string | StaticImageData;
-  floorPrice: string;
-  totalVolume: string;
 }
 
-interface TrendingGamingProps {
-  sales: TrendGam[];
-}
+// Removed the props interface since we're no longer passing sales as props
 
-const TrendingGaming: React.FC<TrendingGamingProps> = ({ sales }) => {
+const TrendingGaming: React.FC = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [sales, setSales] = useState<TrendGam[]>([]);
+
+  useEffect(() => {
+    // Use the setCollections function to initialize the sales data
+    const collections = [
+      {
+        id: '1',
+        title: 'Daki Da',
+        floorPrice: 0.12,
+        totalVolume: 207,
+        image: Image6
+      },
+      {
+        id: '2',
+        title: 'Birds of Damascus',
+        floorPrice: 0.12,
+        totalVolume: 207,
+        image: Image7
+      },
+      {
+        id: '3',
+        title: 'Birds of Damascus',
+        floorPrice: 0.12,
+        totalVolume: 207,
+        image: Image8
+      },
+      {
+        id: '4',
+        title: 'Birds of Damascus',
+        floorPrice: 0.12,
+        totalVolume: 207,
+        image: Image9
+      },
+      
+    ];
+    
+    setSales(collections);
+  }, []);
 
   const handlePrevious = () => {
     setCurrentIndex((prev) => (prev - 4 + sales.length) % sales.length);
@@ -33,12 +74,13 @@ const TrendingGaming: React.FC<TrendingGamingProps> = ({ sales }) => {
       ? [...sales, ...sales].slice(currentIndex, currentIndex + 4)
       : sales;
   };
+  
   return (
     <div className="w-full bg-[#111111] min-h-screen p-8">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="flex justify-between items-center mb-8">
-          <h1 className="text-white text-2xl font-medium">Biggest NFT Sales</h1>
+          <h1 className="text-white text-2xl font-medium">Trending in Gaming</h1>
           <div className="flex gap-2">
             <button
               onClick={handlePrevious}
