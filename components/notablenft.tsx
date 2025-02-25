@@ -1,43 +1,68 @@
+"use client";
+
 import { useRef } from "react";
 import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import  nft1 from "../public/nft1.png"
 
 const collections = [
     {
         name: "Daki Da",
-        image: nft1,
+        image: "/nft1.png",
         floorPrice: "0.12 ETH",
         totalVolume: "207 ETH",
     },
     {
         name: "Birds of Damascus",
-        image: "/path-to-image1.jpg",
+        image: "/nft2.png",
         floorPrice: "0.12 ETH",
         totalVolume: "207 ETH",
     },
     {
         name: "Birds of Damascus",
-        image: "/path-to-image1.jpg",
+        image: "/nft3.png",
         floorPrice: "0.12 ETH",
         totalVolume: "207 ETH",
     },
     {
         name: "Birds of Damascus",
-        image: "/path-to-image1.jpg",
+        image: "/nft4.png",
         floorPrice: "0.12 ETH",
         totalVolume: "207 ETH",
     },
     {
         name: "Birds of Damascus",
-        image: "/path-to-image1.jpg",
+        image: "/nft5.jpeg",
+        floorPrice: "0.12 ETH",
+        totalVolume: "207 ETH",
+    },
+    {
+        name: "Birds of Damascus",
+        image: "/nft5.jpeg",
+        floorPrice: "0.12 ETH",
+        totalVolume: "207 ETH",
+    },
+    {
+        name: "Birds of Damascus",
+        image: "/nft5.jpeg",
+        floorPrice: "0.12 ETH",
+        totalVolume: "207 ETH",
+    },
+    {
+        name: "Birds of Damascus",
+        image: "/nft5.jpeg",
+        floorPrice: "0.12 ETH",
+        totalVolume: "207 ETH",
+    },
+    {
+        name: "Birds of Damascus",
+        image: "/nft5.jpeg",
         floorPrice: "0.12 ETH",
         totalVolume: "207 ETH",
     },
 ];
 
 export default function NotableCollections() {
-    const scrollRef = useRef(null);
+    const scrollRef = useRef<HTMLDivElement | null>(null);
 
     const scroll = (direction: string) => {
         if (scrollRef.current) {
@@ -73,8 +98,22 @@ export default function NotableCollections() {
                                 className="w-full h-40 object-cover rounded-md mb-2"
                             />
                             <h3 className="font-semibold">{collection.name}</h3>
-                            <p className="text-sm text-gray-400">Floor Price: {collection.floorPrice}</p>
-                            <p className="text-sm text-gray-400">Total Volume: {collection.totalVolume}</p>
+                            <div className="grid grid-cols-2 gap-2 text-gray-400 text-sm">
+                                {/* Headings */}
+                                <div>Floor Price</div>
+                                <div>Total Volume</div>
+
+                                {/* Values with ETH logo */}
+                                <div className="flex items-center gap-1">
+                                    <img src="/eth_l.png" alt="ETH" className="w-4 h-4" />
+                                    {collection.floorPrice}
+                                </div>
+                                <div className="flex items-center gap-1">
+                                    <img src="/eth_l.png" alt="ETH" className="w-4 h-4" />
+                                    {collection.totalVolume}
+                                </div>
+                            </div>
+
                         </motion.div>
                     ))}
                 </motion.div>
