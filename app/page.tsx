@@ -1,3 +1,4 @@
+
 import BiggestGaming from "@/components/BiggestGaming";
 import Hero from "@/components/Hero";
 
@@ -9,7 +10,7 @@ export default function Home() {
         <Hero />
         <BiggestGaming/>
       </main>
-
+ 
     </div>
   );
 }
