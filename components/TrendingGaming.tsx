@@ -1,23 +1,67 @@
+
+
 "use client";
 import { StaticImageData } from "next/image";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Eth from "@/public/Eth.png";
-export interface NFTSale {
+import Image1 from "@/public/Frame1.png"
+import Image2 from "@/public/Frame2.png"
+import Image3 from "@/public/Frame3.png"
+import Image4 from "@/public/Frame4.png"
+
+
+export interface TrendGam {
   id: string;
   title: string;
+  floorPrice: number | string;
+  totalVolume: number | string;
   image: string | StaticImageData;
-  floorPrice: string;
-  totalVolume: string;
 }
 
-interface NFTSalesSliderProps {
-  sales: NFTSale[];
-}
+// Removed the props interface since we're no longer passing sales as props
 
-const NFTSalesSlider: React.FC<NFTSalesSliderProps> = ({ sales }) => {
+const BiggestGaming: React.FC = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [sales, setSales] = useState<TrendGam[]>([]);
+
+  useEffect(() => {
+    // Use the setCollections function to initialize the sales data
+    const collections = [
+      {
+        id: '1',
+        title: 'Daki Da',
+        floorPrice: 0.12,
+        totalVolume: 207,
+        image: Image1
+      },
+      {
+        id: '2',
+        title: 'Birds of Damascus',
+        floorPrice: 0.12,
+        totalVolume: 207,
+        image: Image2
+      },
+      {
+        id: '3',
+        title: 'Birds of Damascus',
+        floorPrice: 0.12,
+        totalVolume: 207,
+        image: Image3
+      },
+      {
+        id: '4',
+        title: 'Birds of Damascus',
+        floorPrice: 0.12,
+        totalVolume: 207,
+        image: Image4
+      },
+      
+    ];
+    
+    setSales(collections);
+  }, []);
 
   const handlePrevious = () => {
     setCurrentIndex((prev) => (prev - 4 + sales.length) % sales.length);
@@ -32,6 +76,7 @@ const NFTSalesSlider: React.FC<NFTSalesSliderProps> = ({ sales }) => {
       ? [...sales, ...sales].slice(currentIndex, currentIndex + 4)
       : sales;
   };
+  
   return (
     <div className="w-full bg-[#111111] min-h-screen p-8">
       <div className="max-w-7xl mx-auto">
@@ -113,6 +158,5 @@ const NFTSalesSlider: React.FC<NFTSalesSliderProps> = ({ sales }) => {
   );
 };
 
-export default NFTSalesSlider;
-
+export default BiggestGaming ;
 
