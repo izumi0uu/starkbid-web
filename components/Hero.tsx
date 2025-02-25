@@ -71,7 +71,7 @@ const Hero: FC = () => {
 
     const interval = setInterval(() => {
       handleNext();
-    }, 5000);
+    }, 3000);
 
     return () => clearInterval(interval); 
   }, [activeSlide, isPaused]);
@@ -94,7 +94,7 @@ const Hero: FC = () => {
   };
 
   return (
-    <div className="text-white min-h-screen flex items-center bg-[radial-gradient(ellipse_at_top_center,_#7F56D9_2%,_black_90%)] px-5">
+    <div className="text-white pt-4 flex items-center px-5">
       <div className="">
         <div className="flex items-center gap-2">
           <button
