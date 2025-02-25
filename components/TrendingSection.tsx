@@ -105,20 +105,24 @@ const TrendingSection: FC = () => {
 
   useEffect(() => {
     const carousel = carouselRef.current;
-    if (carousel) {
-      carousel.addEventListener("touchstart", startDragging as any);
-      carousel.addEventListener("touchend", stopDragging);
-      carousel.addEventListener("touchmove", onDrag as any);
-    }
+    if (!carousel) return;
+
+    
+    const handleTouchStart = (e: TouchEvent | Event) =>
+      startDragging(e as TouchEvent<HTMLDivElement>);
+    const handleTouchMove = (e: TouchEvent | Event) =>
+      onDrag(e as TouchEvent<HTMLDivElement>);
+
+    carousel.addEventListener("touchstart", handleTouchStart as EventListener);
+    carousel.addEventListener("touchend", stopDragging);
+    carousel.addEventListener("touchmove", handleTouchMove as EventListener);
+
     return () => {
-      if (carousel) {
-        carousel.removeEventListener("touchstart", startDragging as any);
-        carousel.removeEventListener("touchend", stopDragging);
-        carousel.removeEventListener("touchmove", onDrag as any);
-      }
+      carousel.removeEventListener("touchstart", handleTouchStart as EventListener);
+      carousel.removeEventListener("touchend", stopDragging);
+      carousel.removeEventListener("touchmove", handleTouchMove as EventListener);
     };
   }, [startDragging, stopDragging, onDrag]);
-
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
