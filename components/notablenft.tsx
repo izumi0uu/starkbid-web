@@ -16,30 +16,29 @@ const collections = [
 
 export default function NotableCollections() {
     const scrollRef = useRef<HTMLDivElement | null>(null);
-    // Store auto-scroll interval ID and manual scroll timeout
+    
     const autoScrollInterval = useRef<ReturnType<typeof setInterval> | null>(null);
     const manualScrollTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-    // Duplicate the collections for an infinite scroll effect
+
     const doubledCollections = [...collections, ...collections];
 
-    // Start auto-scrolling continuously
+    
     const startAutoScroll = () => {
-        if (autoScrollInterval.current) return; // avoid multiple intervals
+        if (autoScrollInterval.current) return; 
         autoScrollInterval.current = setInterval(() => {
             if (scrollRef.current) {
                 const { scrollLeft, scrollWidth } = scrollRef.current;
-                // Reset when scrollLeft reaches the width of the first set (half the total width)
+                
                 if (scrollLeft >= scrollWidth / 2) {
                     scrollRef.current.scrollLeft = 0;
                 } else {
-                    scrollRef.current.scrollLeft += 1; // increment by 1px without smooth behavior
+                    scrollRef.current.scrollLeft += 1;
                 }
             }
         }, 20);
     };
 
-    // Stop auto-scrolling and clear any manual scroll timeout
     const stopAutoScroll = () => {
         if (autoScrollInterval.current) {
             clearInterval(autoScrollInterval.current);
@@ -51,7 +50,6 @@ export default function NotableCollections() {
         }
     };
 
-    // Manual scroll function: pause auto scroll, perform smooth scroll, then resume auto scroll after delay
     const scroll = (direction: "left" | "right") => {
         stopAutoScroll();
         if (scrollRef.current) {
@@ -60,13 +58,13 @@ export default function NotableCollections() {
                 behavior: "smooth",
             });
         }
-        // Restart auto-scroll after a delay (3 seconds)
+        
         manualScrollTimeout.current = setTimeout(() => {
             startAutoScroll();
         }, 3000);
     };
 
-    // Start auto-scroll when component mounts
+    
     useEffect(() => {
         startAutoScroll();
         return () => stopAutoScroll();
