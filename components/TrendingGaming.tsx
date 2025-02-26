@@ -17,7 +17,7 @@ export interface TrendGam {
   image: string | StaticImageData;
 }
 
-const BiggestGaming: React.FC = () => {
+const TrendingGaming: React.FC = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [sales, setSales] = useState<TrendGam[]>([]);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
@@ -26,16 +26,12 @@ const BiggestGaming: React.FC = () => {
   const autoPlayTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const carouselRef = useRef<HTMLDivElement>(null);
 
- 
   useEffect(() => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 768);
     };
 
-    
     checkMobile();
-
-   
     window.addEventListener("resize", checkMobile);
 
     return () => {
@@ -44,35 +40,34 @@ const BiggestGaming: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    
     const originalCollections = [
       {
         id: "1",
         title: "Daki Da",
         floorPrice: 0.12,
         totalVolume: 207,
-        image: Image1,
+        image: Image3,
       },
       {
         id: "2",
         title: "Birds of Damascus",
         floorPrice: 0.12,
         totalVolume: 207,
-        image: Image2,
+        image: Image1,
       },
       {
         id: "3",
         title: "Birds of Damascus",
         floorPrice: 0.12,
         totalVolume: 207,
-        image: Image3,
+        image: Image2,
       },
       {
         id: "4",
         title: "Birds of Damascus",
         floorPrice: 0.12,
         totalVolume: 207,
-        image: Image4,
+        image: Image3,
       },
       {
         id: "5",
@@ -86,57 +81,41 @@ const BiggestGaming: React.FC = () => {
         title: "Birds of Damascus",
         floorPrice: 0.12,
         totalVolume: 207,
-        image: Image3,
+        image: Image2,
       },
     ];
 
-    
-    setSales([...originalCollections, ...originalCollections, ...originalCollections]);
-
-    
+    setSales([
+      ...originalCollections,
+      ...originalCollections,
+      ...originalCollections,
+    ]);
     setCurrentIndex(originalCollections.length);
   }, []);
 
-  
   useEffect(() => {
     if (!carouselRef.current || sales.length === 0) return;
 
     const originalLength = sales.length / 3;
 
-    
     if (currentIndex >= originalLength * 2) {
-      
       setTimeout(() => {
-        
         if (carouselRef.current) {
           carouselRef.current.style.transition = "none";
-          
           setCurrentIndex(currentIndex - originalLength);
-
-          
           void carouselRef.current.offsetWidth;
-
-          
           carouselRef.current.style.transition = "transform 500ms ease-in-out";
         }
       }, 500);
-    }
-
-    
-    else if (currentIndex < originalLength && currentIndex !== 0) {
-      
+    } else if (currentIndex < originalLength && currentIndex !== 0) {
       setTimeout(() => {
-        
         if (carouselRef.current) {
           carouselRef.current.style.transition = "none";
-         
           setCurrentIndex(currentIndex + originalLength);
-
-          
           void carouselRef.current.offsetWidth;
           carouselRef.current.style.transition = "transform 500ms ease-in-out";
         }
-      }, 500); 
+      }, 500);
     }
   }, [currentIndex, sales.length]);
 
@@ -155,7 +134,7 @@ const BiggestGaming: React.FC = () => {
         }, 500);
       }
       startAutoPlay();
-    }, 3000);
+    }, 5000);
   };
 
   useEffect(() => {
@@ -173,7 +152,6 @@ const BiggestGaming: React.FC = () => {
 
     setIsAutoPlaying(false);
     setTransitioning(true);
-
     setCurrentIndex((prev) => prev - 1);
 
     setTimeout(() => {
@@ -187,7 +165,6 @@ const BiggestGaming: React.FC = () => {
 
     setIsAutoPlaying(false);
     setTransitioning(true);
-
     setCurrentIndex((prev) => prev + 1);
 
     setTimeout(() => {
@@ -196,20 +173,28 @@ const BiggestGaming: React.FC = () => {
     }, 500);
   };
 
- 
   const getCardWidth = () => {
-    return isMobile ? "100%" : "25%";
-  };
+    const width = window.innerWidth;
 
+    if (width < 768) {
+      return "100%";
+    } else if (width >= 768 && width < 1024) {
+      return "33.33%";
+    } else {
+      return "25%";
+    }
+  };
 
   const getTransformPercentage = () => {
-    return isMobile ? 100 : 25;
-  };
+    const width = window.innerWidth;
 
-  const getCardStyle = (cardIndex: number) => {
-    if (isMobile) return ""; 
-    const relativeIndex = (cardIndex - currentIndex + sales.length) % sales.length;
-    return "";
+    if (width < 768) {
+      return 100;
+    } else if (width >= 768 && width < 1024) {
+      return 33.33;
+    } else {
+      return 25;
+    }
   };
 
   return (
@@ -217,7 +202,9 @@ const BiggestGaming: React.FC = () => {
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="flex justify-between items-center mb-8">
-          <h1 className="text-white text-2xl font-medium">Trending in Gaming</h1>
+          <h1 className="text-white text-2xl font-medium">
+            Trending in Gaming
+          </h1>
           <div className="flex gap-2">
             <button
               onClick={handlePrevious}
@@ -242,7 +229,9 @@ const BiggestGaming: React.FC = () => {
             ref={carouselRef}
             className="flex transition-transform duration-500 ease-in-out"
             style={{
-              transform: `translateX(-${currentIndex * getTransformPercentage()}%)`,
+              transform: `translateX(-${
+                currentIndex * getTransformPercentage()
+              }%)`,
             }}
           >
             {sales.map((sale, index) => (
@@ -253,9 +242,7 @@ const BiggestGaming: React.FC = () => {
                   width: getCardWidth(),
                 }}
               >
-                <div
-                  className={`bg-[#1A1A1A] rounded-xl overflow-hidden transition-all duration-500 ${getCardStyle(index)}`}
-                >
+                <div className="bg-[#1A1A1A] rounded-xl overflow-hidden transition-all duration-500">
                   <div className="aspect-square w-full overflow-hidden">
                     <Image
                       width={500}
@@ -269,7 +256,9 @@ const BiggestGaming: React.FC = () => {
                     <h3 className="text-white text-lg mb-4">{sale.title}</h3>
                     <div className="grid grid-cols-2 gap-4">
                       <div>
-                        <p className="text-gray-400 text-sm mb-1">Floor Price</p>
+                        <p className="text-gray-400 text-sm mb-1">
+                          Floor Price
+                        </p>
                         <div className="flex items-center text-white">
                           <span className="w-4 h-7 mr-3">
                             <Image
@@ -284,7 +273,9 @@ const BiggestGaming: React.FC = () => {
                         </div>
                       </div>
                       <div>
-                        <p className="text-gray-400 text-sm mb-1">Total Volume</p>
+                        <p className="text-gray-400 text-sm mb-1">
+                          Total Volume
+                        </p>
                         <div className="flex items-center text-white">
                           <span className="w-4 h-7 mr-3">
                             <Image
@@ -310,4 +301,4 @@ const BiggestGaming: React.FC = () => {
   );
 };
 
-export default BiggestGaming;
+export default TrendingGaming;
