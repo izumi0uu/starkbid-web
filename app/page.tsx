@@ -1,6 +1,7 @@
 
 import BiggestGaming from "@/components/BiggestGaming";
 import Hero from "@/components/Hero";
+import Newsletter from "@/components/Newsletter";
 
 
 export default function Home() {
@@ -9,6 +10,7 @@ export default function Home() {
       <main className="">
         <Hero />
         <BiggestGaming/>
+        <Newsletter />
       </main>
  
     </div>
