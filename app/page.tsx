@@ -1,6 +1,7 @@
 
 import TrendingGaming from "@/components/TrendingGaming";
 import Hero from "@/components/Hero";
+import Newsletter from "@/components/Newsletter";
 
 export default function Home() {
   return (
@@ -8,6 +9,7 @@ export default function Home() {
       <main className="">
         <Hero />
         <TrendingGaming/>
+        <Newsletter />
       </main>
     </div>
   );
