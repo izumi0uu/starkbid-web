@@ -4,10 +4,10 @@ import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Eth from "@/public/Eth.png";
-import Image1 from "@/public/Frame1.png";
-import Image2 from "@/public/Frame2.png";
-import Image3 from "@/public/Frame3.png";
-import Image4 from "@/public/Frame4.png";
+import Image1 from "@/public/Frame5.png";
+import Image2 from "@/public/Frame6.png";
+import Image3 from "@/public/Frame7.png";
+import Image4 from "@/public/Frame8.png";
 
 export interface TrendGam {
   id: string;
@@ -32,7 +32,10 @@ const BiggestGaming: React.FC = () => {
       setIsMobile(window.innerWidth < 768);
     };
 
+    
     checkMobile();
+
+   
     window.addEventListener("resize", checkMobile);
 
     return () => {
@@ -41,47 +44,101 @@ const BiggestGaming: React.FC = () => {
   }, []);
 
   useEffect(() => {
+    
     const originalCollections = [
-      { id: "1", title: "Daki Da", floorPrice: 0.12, totalVolume: 207, image:Image3 },
-      { id: "2", title: "Birds of Damascus", floorPrice: 0.12, totalVolume: 207, image:Image1 },
-      { id: "3", title: "Birds of Damascus", floorPrice: 0.12, totalVolume: 207, image:Image2 },
-      { id: "4", title: "Birds of Damascus", floorPrice: 0.12, totalVolume: 207, image:Image3 },
-      { id: "5", title: "Birds of Damascus", floorPrice: 0.12, totalVolume: 207, image:Image4 },
-      { id: "6", title: "Birds of Damascus", floorPrice: 0.12, totalVolume: 207, image:Image2 },
+      {
+        id: "1",
+        title: "Daki Da",
+        floorPrice: 0.12,
+        totalVolume: 207,
+        image: Image1,
+      },
+      {
+        id: "2",
+        title: "Birds of Damascus",
+        floorPrice: 0.12,
+        totalVolume: 207,
+        image: Image2,
+      },
+      {
+        id: "3",
+        title: "Birds of Damascus",
+        floorPrice: 0.12,
+        totalVolume: 207,
+        image: Image3,
+      },
+      {
+        id: "4",
+        title: "Birds of Damascus",
+        floorPrice: 0.12,
+        totalVolume: 207,
+        image: Image4,
+      },
+      {
+        id: "5",
+        title: "Birds of Damascus",
+        floorPrice: 0.12,
+        totalVolume: 207,
+        image: Image4,
+      },
+      {
+        id: "6",
+        title: "Birds of Damascus",
+        floorPrice: 0.12,
+        totalVolume: 207,
+        image: Image3,
+      },
     ];
 
-   
+    
     setSales([...originalCollections, ...originalCollections, ...originalCollections]);
-    setCurrentIndex(originalCollections.length); 
+
+    
+    setCurrentIndex(originalCollections.length);
   }, []);
 
-
+  
   useEffect(() => {
     if (!carouselRef.current || sales.length === 0) return;
 
     const originalLength = sales.length / 3;
 
+    
     if (currentIndex >= originalLength * 2) {
+      
       setTimeout(() => {
+        
         if (carouselRef.current) {
           carouselRef.current.style.transition = "none";
+          
           setCurrentIndex(currentIndex - originalLength);
-          void carouselRef.current.offsetWidth; 
-          carouselRef.current.style.transition = "transform 500ms ease-in-out";
-        }
-      }, 500);
-    } else if (currentIndex < originalLength && currentIndex !== 0) {
-      setTimeout(() => {
-        if (carouselRef.current) {
-          carouselRef.current.style.transition = "none";
-          setCurrentIndex(currentIndex + originalLength);
-          void carouselRef.current.offsetWidth; 
+
+          
+          void carouselRef.current.offsetWidth;
+
+          
           carouselRef.current.style.transition = "transform 500ms ease-in-out";
         }
       }, 500);
     }
-  }, [currentIndex, sales.length]);
 
+    
+    else if (currentIndex < originalLength && currentIndex !== 0) {
+      
+      setTimeout(() => {
+        
+        if (carouselRef.current) {
+          carouselRef.current.style.transition = "none";
+         
+          setCurrentIndex(currentIndex + originalLength);
+
+          
+          void carouselRef.current.offsetWidth;
+          carouselRef.current.style.transition = "transform 500ms ease-in-out";
+        }
+      }, 500); 
+    }
+  }, [currentIndex, sales.length]);
 
   const startAutoPlay = () => {
     if (autoPlayTimeoutRef.current) {
@@ -98,7 +155,7 @@ const BiggestGaming: React.FC = () => {
         }, 500);
       }
       startAutoPlay();
-    }, 5000);
+    }, 3000);
   };
 
   useEffect(() => {
@@ -111,12 +168,12 @@ const BiggestGaming: React.FC = () => {
     };
   }, [isAutoPlaying, transitioning, sales.length]);
 
-
   const handlePrevious = () => {
     if (transitioning) return;
 
     setIsAutoPlaying(false);
     setTransitioning(true);
+
     setCurrentIndex((prev) => prev - 1);
 
     setTimeout(() => {
@@ -125,12 +182,12 @@ const BiggestGaming: React.FC = () => {
     }, 500);
   };
 
- 
   const handleNext = () => {
     if (transitioning) return;
 
     setIsAutoPlaying(false);
     setTransitioning(true);
+
     setCurrentIndex((prev) => prev + 1);
 
     setTimeout(() => {
@@ -141,28 +198,18 @@ const BiggestGaming: React.FC = () => {
 
  
   const getCardWidth = () => {
-    const width = window.innerWidth;
-
-    if (width < 768) {
-      return "100%"; 
-    } else if (width >= 768 && width < 1024) {
-      return "33.33%"; 
-    } else {
-      return "25%"; 
-    }
+    return isMobile ? "100%" : "25%";
   };
 
-  
-  const getTransformPercentage = () => {
-    const width = window.innerWidth;
 
-    if (width < 768) {
-      return 100; 
-    } else if (width >= 768 && width < 1024) {
-      return 33.33; 
-    } else {
-      return 25; 
-    }
+  const getTransformPercentage = () => {
+    return isMobile ? 100 : 25;
+  };
+
+  const getCardStyle = (cardIndex: number) => {
+    if (isMobile) return ""; 
+    const relativeIndex = (cardIndex - currentIndex + sales.length) % sales.length;
+    return "";
   };
 
   return (
@@ -206,7 +253,9 @@ const BiggestGaming: React.FC = () => {
                   width: getCardWidth(),
                 }}
               >
-                <div className="bg-[#1A1A1A] rounded-xl overflow-hidden transition-all duration-500">
+                <div
+                  className={`bg-[#1A1A1A] rounded-xl overflow-hidden transition-all duration-500 ${getCardStyle(index)}`}
+                >
                   <div className="aspect-square w-full overflow-hidden">
                     <Image
                       width={500}
