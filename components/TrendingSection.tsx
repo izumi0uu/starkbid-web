@@ -192,9 +192,19 @@ const TrendingSection: FC = () => {
                         <p className="text-[#FFFFFF99] text-xs md:text-sm font-medium mb-1">
                           Floor Price
                         </p>
-                        <p className="text-white text-xs md:text-sm font-medium">
+                      
+                        <div  className="flex flex-row items-center gap-2">
+                        <Image
+                            src={ethIcon}
+                            alt="ethereum"
+                            width={17}
+                            height={17}
+                            className="object-contain"
+                          />
+                            <p className="text-white text-xs md:text-sm font-medium">
                           {collection.floorPrice}
                         </p>
+                        </div>
                       </div>
                       <div>
                         <p className="text-[#FFFFFF99] text-xs md:text-sm font-medium mb-1">
