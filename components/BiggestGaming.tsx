@@ -2,7 +2,7 @@
 import { StaticImageData } from "next/image";
 import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 import Eth from "@/public/Eth.png";
 import Image1 from "@/public/Frame1.png";
 import Image2 from "@/public/Frame2.png";
@@ -170,21 +170,21 @@ const BiggestGaming: React.FC = () => {
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="flex justify-between items-center mb-8">
-          <h1 className="text-white text-2xl font-medium">Trending in Gaming</h1>
+          <h1 className="text-white text-2xl font-medium">Biggest NFT Sales</h1>
           <div className="flex gap-2">
             <button
               onClick={handlePrevious}
               disabled={transitioning}
               className="p-3 bg-gray-800 rounded-lg hover:bg-gray-700 transition-colors disabled:opacity-50"
             >
-              <ChevronLeft className="w-6 h-6 text-white" />
+              <ArrowLeft className="w-6 h-6 text-white" />
             </button>
             <button
               onClick={handleNext}
               disabled={transitioning}
               className="p-3 bg-gray-800 rounded-lg hover:bg-gray-700 transition-colors disabled:opacity-50"
             >
-              <ChevronRight className="w-6 h-6 text-white" />
+              <ArrowRight className="w-6 h-6 text-white" />
             </button>
           </div>
         </div>
