@@ -213,7 +213,7 @@ const BiggestGaming: React.FC = () => {
   };
 
   return (
-    <div className="w-full min-h-screen p-8">
+    <div className="w-full min-h-screen p-8 bg-transparent">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="flex justify-between items-center mb-8">
