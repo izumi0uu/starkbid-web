@@ -18,26 +18,12 @@ const NotableCollections: React.FC = () => {
   const [sales, setSales] = useState<TrendGam[]>([]);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
   const [transitioning, setTransitioning] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
+  
   const autoPlayTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const carouselRef = useRef<HTMLDivElement>(null);
 
-  // Refs for touch start and end positions
   const touchStartX = useRef<number | null>(null);
   const touchEndX = useRef<number | null>(null);
-
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
-
-    return () => {
-      window.removeEventListener("resize", checkMobile);
-    };
-  }, []);
 
   useEffect(() => {
     const originalCollections = [
