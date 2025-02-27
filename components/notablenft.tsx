@@ -219,7 +219,7 @@ const NotableCollections: React.FC = () => {
        
         <div className="flex justify-between items-center mb-8">
           <h1 className="text-white text-2xl font-medium">
-            Trending in Gaming
+            Notable Collections
           </h1>
           <div className="flex gap-2">
             <button
