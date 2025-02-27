@@ -18,7 +18,7 @@ const NotableCollections: React.FC = () => {
   const [sales, setSales] = useState<TrendGam[]>([]);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
   const [transitioning, setTransitioning] = useState(false);
-  
+
   const autoPlayTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const carouselRef = useRef<HTMLDivElement>(null);
 
@@ -194,7 +194,7 @@ const NotableCollections: React.FC = () => {
         handlePrevious();
       }
     }
-   
+
     touchStartX.current = null;
     touchEndX.current = null;
   };
@@ -202,7 +202,7 @@ const NotableCollections: React.FC = () => {
   return (
     <div className="w-full min-h-screen p-8 bg-transparent">
       <div className="max-w-7xl mx-auto">
-       
+
         <div className="flex justify-between items-center mb-8">
           <h1 className="text-white text-2xl font-medium">
             Notable Collections
@@ -211,26 +211,27 @@ const NotableCollections: React.FC = () => {
             <button
               onClick={handlePrevious}
               disabled={transitioning}
-              className="p-3 bg-gray-800 rounded-lg hover:bg-gray-700 transition-colors disabled:opacity-50"
+              className="hidden sm:flex p-3 bg-gray-800 rounded-lg hover:bg-gray-700 transition-colors disabled:opacity-50"
             >
               <ArrowLeft className="w-6 h-6 text-white" />
             </button>
             <button
               onClick={handleNext}
               disabled={transitioning}
-              className="p-3 bg-gray-800 rounded-lg hover:bg-gray-700 transition-colors disabled:opacity-50"
+              className="hidden sm:flex p-3 bg-gray-800 rounded-lg hover:bg-gray-700 transition-colors disabled:opacity-50"
             >
               <ArrowRight className="w-6 h-6 text-white" />
             </button>
+            
           </div>
         </div>
 
-       
+
         <div
           className="relative overflow-hidden"
           onTouchStart={handleTouchStart}
-          onTouchMove={handleTouchMove} 
-          onTouchEnd={handleTouchEnd} 
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
         >
           <div
             ref={carouselRef}
