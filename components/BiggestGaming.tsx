@@ -3,18 +3,24 @@ import { StaticImageData } from "next/image";
 import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { ArrowLeft, ArrowRight } from "lucide-react";
+import { useSwipeable } from "react-swipeable";
 import Eth from "@/public/Eth.png";
 import Image1 from "@/public/Frame1.png";
 import Image2 from "@/public/Frame2.png";
 import Image3 from "@/public/Frame3.png";
 import Image4 from "@/public/Frame4.png";
 
-export interface TrendGam {
+
+
+
+
+
+interface TrendGam {
   id: string;
   title: string;
-  floorPrice: number | string;
-  totalVolume: number | string;
-  image: string | StaticImageData;
+  floorPrice: number;
+  totalVolume: number;
+  image: StaticImageData;
 }
 
 const BiggestGaming: React.FC = () => {
@@ -25,36 +31,22 @@ const BiggestGaming: React.FC = () => {
   const autoPlayTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const carouselRef = useRef<HTMLDivElement>(null);
 
- 
-  // useEffect(() => {
-  //   // const checkMobile = () => {
-  //   //   setIsMobile(window.innerWidth < 768);
-  //   // };
-
-  //   checkMobile();
-  //   window.addEventListener("resize", checkMobile);
-
-  //   return () => {
-  //     window.removeEventListener("resize", checkMobile);
-  //   };
-  // }, []);
-
+  // Initialize sales data
   useEffect(() => {
     const originalCollections = [
-      { id: "1", title: "Daki Da", floorPrice: 0.12, totalVolume: 207, image:Image3 },
-      { id: "2", title: "Birds of Damascus", floorPrice: 0.12, totalVolume: 207, image:Image1 },
-      { id: "3", title: "Birds of Damascus", floorPrice: 0.12, totalVolume: 207, image:Image2 },
-      { id: "4", title: "Birds of Damascus", floorPrice: 0.12, totalVolume: 207, image:Image3 },
-      { id: "5", title: "Birds of Damascus", floorPrice: 0.12, totalVolume: 207, image:Image4 },
-      { id: "6", title: "Birds of Damascus", floorPrice: 0.12, totalVolume: 207, image:Image2 },
+      { id: "1", title: "Daki Da", floorPrice: 0.12, totalVolume: 207, image:Image1 },
+      { id: "2", title: "Birds of Damascus", floorPrice: 0.12, totalVolume: 207, image: Image2 },
+      { id: "3", title: "Birds of Damascus", floorPrice: 0.12, totalVolume: 207, image: Image3 },
+      { id: "4", title: "Birds of Damascus", floorPrice: 0.12, totalVolume: 207, image: Image4 },
+      { id: "5", title: "Birds of Damascus", floorPrice: 0.12, totalVolume: 207, image: Image2 },
+      { id: "6", title: "Birds of Damascus", floorPrice: 0.12, totalVolume: 207, image: Image4 },
     ];
 
-   
     setSales([...originalCollections, ...originalCollections, ...originalCollections]);
-    setCurrentIndex(originalCollections.length); 
+    setCurrentIndex(originalCollections.length);
   }, []);
 
-
+  // Handle carousel infinite loop
   useEffect(() => {
     if (!carouselRef.current || sales.length === 0) return;
 
@@ -65,7 +57,7 @@ const BiggestGaming: React.FC = () => {
         if (carouselRef.current) {
           carouselRef.current.style.transition = "none";
           setCurrentIndex(currentIndex - originalLength);
-          void carouselRef.current.offsetWidth; 
+          void carouselRef.current.offsetWidth;
           carouselRef.current.style.transition = "transform 500ms ease-in-out";
         }
       }, 500);
@@ -74,14 +66,14 @@ const BiggestGaming: React.FC = () => {
         if (carouselRef.current) {
           carouselRef.current.style.transition = "none";
           setCurrentIndex(currentIndex + originalLength);
-          void carouselRef.current.offsetWidth; 
+          void carouselRef.current.offsetWidth;
           carouselRef.current.style.transition = "transform 500ms ease-in-out";
         }
       }, 500);
     }
   }, [currentIndex, sales.length]);
 
-
+  // Auto-play functionality
   const startAutoPlay = () => {
     if (autoPlayTimeoutRef.current) {
       clearTimeout(autoPlayTimeoutRef.current);
@@ -110,7 +102,7 @@ const BiggestGaming: React.FC = () => {
     };
   }, [isAutoPlaying, transitioning, sales.length]);
 
-
+  // Handle previous button click
   const handlePrevious = () => {
     if (transitioning) return;
 
@@ -124,7 +116,7 @@ const BiggestGaming: React.FC = () => {
     }, 500);
   };
 
- 
+  // Handle next button click
   const handleNext = () => {
     if (transitioning) return;
 
@@ -138,14 +130,15 @@ const BiggestGaming: React.FC = () => {
     }, 500);
   };
 
- 
+  
   const getCardWidth = () => {
+    if (typeof window === "undefined") return 25;
     const width = window.innerWidth;
 
     if (width < 768) {
-      return "100%"; 
+      return "100%";
     } else if (width >= 768 && width < 1024) {
-      return "33.33%"; 
+      return "33.33%";
     } else {
       return "25%"; 
     }
@@ -161,9 +154,16 @@ const BiggestGaming: React.FC = () => {
     } else if (width >= 768 && width < 1024) {
       return 33.33; 
     } else {
-      return 25; 
+      return 25;
     }
   };
+
+  // Swipe handlers
+  const swipeHandlers = useSwipeable({
+    onSwipedLeft: () => handleNext(), 
+    onSwipedRight: () => handlePrevious(), 
+    trackMouse: true, 
+  });
 
   return (
     <div className="w-full min-h-screen p-8 bg-transparent">
@@ -171,11 +171,12 @@ const BiggestGaming: React.FC = () => {
         {/* Header */}
         <div className="flex justify-between items-center mb-8">
           <h1 className="text-white text-2xl font-medium">Biggest NFT Sales</h1>
-          <div className="flex gap-2">
+          {/* Hide buttons on mobile */}
+          <div className="hidden md:flex gap-2">
             <button
               onClick={handlePrevious}
               disabled={transitioning}
-              className="p-3 bg-gray-800 rounded-lg hover:bg-gray-700 "
+              className="p-3 bg-gray-800 rounded-lg hover:bg-gray-700"
             >
               <ArrowLeft className="w-6 h-6 text-white" />
             </button>
@@ -190,7 +191,7 @@ const BiggestGaming: React.FC = () => {
         </div>
 
         {/* Carousel Container */}
-        <div className="relative overflow-hidden">
+        <div className="relative overflow-hidden" {...swipeHandlers}>
           <div
             ref={carouselRef}
             className="flex transition-transform duration-500 ease-in-out"
@@ -260,5 +261,6 @@ const BiggestGaming: React.FC = () => {
     </div>
   );
 };
+
 
 export default BiggestGaming;
