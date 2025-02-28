@@ -13,7 +13,6 @@ import { motion } from "framer-motion";
 import TrendingCard from "./TrendingCard";
 import { NextIcon, PrevIcon } from "@/public/icons/icons";
 
-
 const collections = [
   {
     id: 1,
@@ -95,7 +94,7 @@ const TrendingSection: FC = () => {
     if (direction === "start" || (direction === "right" && isAtEnd)) {
       scrollToStart();
     } else {
-      const scrollAmount = direction === "left" ? -300 : 300;
+      const scrollAmount = direction === "left" ? -315 : 315;
 
       const adjustedScrollAmount =
         window.innerWidth <= 640 ? scrollAmount * 0.81 : scrollAmount;
@@ -116,6 +115,22 @@ const TrendingSection: FC = () => {
     if (carouselRef.current) {
       carouselRef.current.scrollTo({ left: 0, behavior: "smooth" });
     }
+  }, []);
+
+  const setupAutoScroll = useCallback(() => {
+    if (autoScrollTimeoutRef.current) {
+      clearInterval(autoScrollTimeoutRef.current);
+    }
+
+    autoScrollTimeoutRef.current = setInterval(() => {
+      if (carouselRef.current) {
+        const scrollAmount = window.innerWidth <= 640 ? 243 : 315;
+        carouselRef.current.scrollBy({
+          left: scrollAmount,
+          behavior: "smooth",
+        });
+      }
+    }, 4000);
   }, []);
 
   const checkIfEndReached = useCallback(() => {
@@ -141,23 +156,7 @@ const TrendingSection: FC = () => {
         setupAutoScroll();
       }, 3000);
     }
-  }, [scrollToStart]);
-
-  const setupAutoScroll = useCallback(() => {
-    if (autoScrollTimeoutRef.current) {
-      clearInterval(autoScrollTimeoutRef.current);
-    }
-
-    autoScrollTimeoutRef.current = setInterval(() => {
-      if (carouselRef.current) {
-        const scrollAmount = window.innerWidth <= 640 ? 243 : 300;
-        carouselRef.current.scrollBy({
-          left: scrollAmount,
-          behavior: "smooth",
-        });
-      }
-    }, 4000);
-  }, []);
+  }, [scrollToStart, setupAutoScroll]); // setupAutoScroll is now defined before this function
 
   useEffect(() => {
     setupAutoScroll();
@@ -181,8 +180,8 @@ const TrendingSection: FC = () => {
   }, [checkIfEndReached, setupAutoScroll]);
 
   return (
-    <div className="relative py-8 px-8">
-      <div className="w-full flex items-center justify-between flex-row mb-9">
+    <div className="relative py-8 px-8 w-full mx-auto max-w-[1300px] ">
+      <div className="w-full flex items-center justify-between flex-row mb-5">
         <h1 className="text-[22px] font-bold leading-6 text-white mb-6">
           Trending in Gaming
         </h1>
