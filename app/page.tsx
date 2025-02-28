@@ -3,7 +3,7 @@ import NFTCollectionsTable from "@/components/Collections";
 
 import BiggestGaming from "@/components/BiggestGaming";
 
-import TrendingGaming from "@/components/TrendingGaming";
+import TrendingCard from "@/components/TrendingCard";
 import Hero from "@/components/Hero";
 import NotableCollections from "@/components/notablenft";
 import NFTCategory from "@/components/nft-category";
@@ -19,11 +19,12 @@ export default function Home() {
         <BiggestGaming/>
 
         <NotableCollections />
-        <NFTCollectionsTable />
-
-        <NFTCategory />
-        <TrendingGaming />
         <TrendingSection />
+        <NFTCollectionsTable />
+        
+        <NFTCategory />
+       
+        
 
 
         <Newsletter />
