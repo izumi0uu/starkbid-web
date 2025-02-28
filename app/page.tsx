@@ -1,9 +1,11 @@
+
 import NFTCollectionsTable from "@/components/Collections";
 
 
 import BiggestGaming from "@/components/BiggestGaming";
 
 import TrendingCard from "@/components/TrendingCard";
+
 import Hero from "@/components/Hero";
 import NotableCollections from "@/components/notablenft";
 import NFTCategory from "@/components/nft-category";
@@ -16,17 +18,13 @@ export default function Home() {
     <div className="min-h-screen bg-[#0D1216]">
       <main className="md:space-y-[100px]">
         <Hero />
-        <BiggestGaming/>
 
+         <BiggestGaming/>
         <NotableCollections />
         <TrendingSection />
         <NFTCollectionsTable />
         
         <NFTCategory />
-       
-        
-
-
         <Newsletter />
       </main>
  
