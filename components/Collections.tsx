@@ -70,7 +70,7 @@ export default function NFTCollectionsTable() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   return (
-    <div className="w-full max-w-[1200px] px-4 md:px-10 xl:px-20  px-3">
+    <div className="w-full  px-4 md:px-10 xl:px-20  px-3">
       <div className="flex flex-col lg:flex-row lg:items-center gap-6 lg:gap-0 justify-between mb-6">
         <h2 className="text-2xl font-bold">Top NFT Collections</h2>
         <div className="flex flex-wrap items-center gap-4">

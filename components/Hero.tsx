@@ -94,7 +94,7 @@ const Hero: FC = () => {
   };
 
   return (
-    <div className="text-white pt-4 flex items-center px-5">
+    <div className="text-white pt-4 flex items-center px-5 w-full">
       <div className="">
         <div className="flex items-center gap-2">
           <button

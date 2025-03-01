@@ -200,7 +200,7 @@ const NotableCollections: React.FC = () => {
   };
 
   return (
-    <div className="w-full min-h-screen p-8 bg-transparent">
+    <div className="w-full px-8 bg-transparent">
       <div className="max-w-7xl mx-auto">
 
         <div className="flex justify-between items-center mb-8">
