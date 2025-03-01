@@ -180,7 +180,7 @@ const TrendingSection: FC = () => {
   }, [checkIfEndReached, setupAutoScroll]);
 
   return (
-    <div className="relative py-8 px-8 w-full mx-auto max-w-[1300px] ">
+    <div className="relative py-8 px-4 w-full mx-auto max-w-[1300px] ">
       <div className="w-full flex items-center justify-between flex-row mb-5">
         <h1 className="text-[22px] font-bold leading-6 text-white mb-6">
           Trending in Gaming
@@ -204,7 +204,7 @@ const TrendingSection: FC = () => {
       </div>
       <motion.div
         ref={carouselRef}
-        className="overflow-x-scroll scrollbar-hide flex gap-2 md:gap-4 py-4 px-4"
+        className="overflow-x-scroll scrollbar-hide flex gap-2 md:gap-4 py-4 px-"
         onMouseDown={startDragging}
         onMouseLeave={stopDragging}
         onMouseUp={stopDragging}
