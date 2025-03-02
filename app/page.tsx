@@ -5,6 +5,7 @@ import NotableCollections from "@/components/notablenft";
 import NFTCategory from "@/components/nft-category";
 import Newsletter from "@/components/Newsletter";
 import TrendingSection from "@/components/TrendingSection";
+import { NFTLatestList } from "@/components/NFTLatestList";
 
 export default function Home() {
   return (
@@ -12,6 +13,7 @@ export default function Home() {
       <main className="md:space-y-[100px]">
         <Hero />
 
+        <NFTLatestList />
         <NFTCategory />
 
         <NFTCollectionsTable />
