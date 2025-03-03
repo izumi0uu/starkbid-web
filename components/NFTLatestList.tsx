@@ -59,13 +59,13 @@ export const NFTLatestList = () => {
 
   return (
     <div className="pl-[16px] lg:pl-[80px]">
-      <div className='flex items-center justify-between mb-2'>
-        <h4 className="text-white font-bold text-[14px] sm:text-[16px]">Latest NFT Drops</h4>
+      <div className='flex items-center justify-between sm:mb-2 mb-0 mt-4 sm:mt-0'>
+        <h4 className="text-white font-bold text-[18px] sm:text-[22px]">Latest NFT Drops</h4>
         <button
         aria-label="View All" 
-        className="bg-[#1A1A1A] text-white rounded-lg cursor-pointer py-[8px] sm:py-[10px] px-[14px] sm:px-[20px] font-bold flex items-center text-xs sm:text-sm">
+        className="bg-[#1A1A1A] text-white rounded-[8px] cursor-pointer py-[8px] px-[14px] sm:py-[12px] sm:px-[20px] font-semibold flex items-center text-xs sm:text-sm sm:mr-12 mr-[16px] text-center">
           View All
-          <RightTailArrow className='w-5 h-5 ml-2' />
+          <RightTailArrow className='w-[11.67px] h-[11.67px] ml-2' />
         </button>
       </div>
       <div 
@@ -85,7 +85,7 @@ export const NFTLatestList = () => {
         x: dragX,
         }}
         transition={SPRING_OPTIONS}
-        className="flex gap-4 cursor-grab items-center active:cursor-grabbing"
+        className="flex sm:gap-2 gap cursor-grab items-center active:cursor-grabbing"
         >
           <NFTs nftIndex={nftIndex} setNftIndex={setNftIndex} />
         </motion.div>
