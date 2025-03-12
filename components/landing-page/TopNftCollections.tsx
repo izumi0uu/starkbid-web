@@ -5,64 +5,10 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
 import { ChevronDown, ArrowRight, Check } from "lucide-react";
+import { mockData } from "@/data/data";
 
 const timeRanges = ["1h", "6h", "24h", "3d", "7d"];
 const blockchains = ["Ethereum", "Bitcoin", "Tron"];
-
-const mockData = [
-  {
-    id: 1,
-    name: "Xenos",
-    image: "/images/nft1.svg",
-    verified: true,
-    floorPrice: "35 ETH",
-    volume: "200 ETH",
-    topOffer: "31 ETH",
-    floorChange: "+20.40%",
-    sales: "150",
-    holdersPercent: "45%",
-    holdersTotal: "2054/4501",
-  },
-  {
-    id: 2,
-    name: "Bored Apes",
-    image: "/images/nft2.svg",
-    verified: true,
-    floorPrice: "35 ETH",
-    volume: "200 ETH",
-    topOffer: "31 ETH",
-    floorChange: "-20.40%",
-    sales: "150",
-    holdersPercent: "45%",
-    holdersTotal: "2054/4501",
-  },
-  {
-    id: 3,
-    name: "Monalissa",
-    image: "/images/nft3.svg",
-    verified: true,
-    floorPrice: "35 ETH",
-    volume: "200 ETH",
-    topOffer: "31 ETH",
-    floorChange: "-20.40%",
-    sales: "150",
-    holdersPercent: "45%",
-    holdersTotal: "2054/4501",
-  },
-  {
-    id: 4,
-    name: "Bad BUNNIEZ",
-    image: "/images/nft4.svg",
-    verified: true,
-    floorPrice: "35 ETH",
-    volume: "200 ETH",
-    topOffer: "31 ETH",
-    floorChange: "-20.40%",
-    sales: "150",
-    holdersPercent: "45%",
-    holdersTotal: "2054/4501",
-  },
-];
 
 export default function NFTCollectionsTable() {
   const [selectedTimeRange, setSelectedTimeRange] = useState("1h");
@@ -70,7 +16,7 @@ export default function NFTCollectionsTable() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   return (
-    <div className="w-full  px-4 md:px-10 xl:px-20  px-3">
+    <div className="w-full md:px-10 xl:px-20 ">
       <div className="flex flex-col lg:flex-row lg:items-center gap-6 lg:gap-0 justify-between mb-6">
         <h2 className="text-2xl font-bold">Top NFT Collections</h2>
         <div className="flex flex-wrap items-center gap-4">
@@ -132,7 +78,6 @@ export default function NFTCollectionsTable() {
             <ArrowRight className="w-4 h-4" />
           </Link>
         </div>
-        
       </div>
 
       <div className="w-full">

@@ -1,53 +1,18 @@
 "use client";
 
-import { useState, useEffect } from "react"; 
+import { useState, useEffect } from "react";
 import { FC } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { NextIcon, PrevIcon } from "../public/icons/icons";
+import { NextIcon, PrevIcon } from "../../public/icons/icons";
 
-// each slide for the carousel animation
-const slides = [
-  {
-    id: 1,
-    title: "Rarity Spectrum",
-    description:
-      "A color-coded NFT project where each artwork’s rarity is determined by its unique hue combinations and metadata traits.",
-    image: "/hero-image.png",
-    bid: "0.125ETH",
-  },
-  {
-    id: 2,
-    title: "Unique Artworks",
-    description:
-      "Discover unique artworks with distinct metadata traits in our exclusive collection.",
-    image: "/hero-image.png",
-    bid: "0.15ETH",
-  },
-  {
-    id: 3,
-    title: "Unique Artworks",
-    description:
-      "Discover unique artworks with distinct metadata traits in our exclusive collection.",
-    image: "/hero-image.png",
-    bid: "0.15ETH",
-  },
-  {
-    id: 4,
-    title: "Unique Artworks",
-    description:
-      "Discover unique artworks with distinct metadata traits in our exclusive collection.",
-    image: "/hero-image.png",
-    bid: "0.15ETH",
-  },
-];
+import { slides } from "@/data/data";
 
 const Hero: FC = () => {
-  // active slide index
   const [activeSlide, setActiveSlide] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
+ 
 
-  // handles next slide
   const handleNext = () => {
     setActiveSlide((prev) => (prev + 1) % slides.length);
   };
@@ -67,20 +32,19 @@ const Hero: FC = () => {
 
   // animated slide transitions
   useEffect(() => {
-    if (isPaused) return; 
+    if (isPaused) return;
 
     const interval = setInterval(() => {
       handleNext();
     }, 3000);
 
-    return () => clearInterval(interval); 
+    return () => clearInterval(interval);
   }, [activeSlide, isPaused]);
 
   const pauseAutoSlide = () => {
     setIsPaused(true);
-    setTimeout(() => setIsPaused(false), 20000); 
+    setTimeout(() => setIsPaused(false), 20000);
   };
-
 
   // framer motion variants
   const textVariants = {
@@ -94,8 +58,11 @@ const Hero: FC = () => {
   };
 
   return (
-    <div className="text-white pt-4 flex items-center px-5 w-full">
-      <div className="">
+    <div
+      className="text-white w-full flex items-center sm:pt-10 justify-center min-h-[80vh 2xl:min-h-[90vh px-4 sm:px-6 lg:px-8 max-w-full"
+     
+    >
+      <div className="w-full max-w-[2000px] mx-auto">
         <div className="flex items-center gap-2">
           <button
             onClick={() => {
@@ -106,18 +73,18 @@ const Hero: FC = () => {
             aria-label="Previous slide"
             className="p-[14px] rounded-lg bg-white/10 hover:bg-white/20 transition-colors lg:block hidden"
           >
-           <PrevIcon />
+            <PrevIcon />
           </button>
           <div
-            className="bg-[url('/noise.png')] bg-cover bg-center bg-no-repeat xl:pt-20 xl:px-20 lg:pt-10  lg:px-10 px-4 py-8 rounded-[18px]"
+            className="bg-[url('/images/noise.png')] bg-cover bg-center bg-no-repeat flex-1 xl:pt-24 xl:px-20 lg:pt-16 lg:px-16 md:px-12 md:pt-12 px-6 py-10 rounded-[18px]"
             role="region"
             aria-label="Image carousel"
             tabIndex={0}
             onKeyDown={handleKeyDown}
-            onMouseEnter={() => setIsPaused(true)} 
-            onMouseLeave={() => setIsPaused(false)} 
+            onMouseEnter={() => setIsPaused(true)}
+            onMouseLeave={() => setIsPaused(false)}
           >
-            <div className="lg:grid lg:grid-cols-2 grid-cols-1 xl:gap-10 lg:gap-5 gap-3 flex flex-col-reverse">
+            <div className="lg:grid lg:grid-cols-2 grid-cols-1 xl:gap-16 lg:gap-10 gap-6 flex flex-col-reverse max-w-[2000px] mx-auto">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={slides[activeSlide].id}
@@ -125,23 +92,23 @@ const Hero: FC = () => {
                   initial="initial"
                   animate="animate"
                   exit="initial"
-                  className="self-center lg:text-left text-center"
+                  className="self-center lg:text-left text-center lg:max-w-none max-w-2xl mx-auto"
                   role="group"
                   aria-label={`Slide ${activeSlide + 1} of ${slides.length}`}
                 >
-                  <p className="font-medium text-sm leading-6 text-white/60">
+                  <p className="font-medium text-sm leading-6 text-white/60 xl:text-base">
                     COLLECTIONS
                   </p>
-                  <h1 className="font-bold xl:text-[45px] lg:text-[35px] text-[28px] leading-[63.9px] mt-5">
+                  <h1 className="font-bold xl:text-[55px] 2xl:text-[65px] lg:text-[45px] md:text-[35px] text-[28px] leading-[1.2] mt-5">
                     {slides[activeSlide].title}
                   </h1>
-                  <p className="font-semibold text-base mt-5 leading-6">
+                  <p className="font-semibold text-base xl:text-lg 2xl:text-xl mt-5 leading-relaxed xl:mt-8 max-w-xl">
                     {slides[activeSlide].description}
                   </p>
 
                   {/* bidding button */}
                   <motion.button
-                    className="bg-[#FAFAFA] lg:py-3 lg:px-5 px-[14px] py-2 rounded-lg text-black mt-7"
+                    className="bg-[#FAFAFA] lg:py-4 lg:px-8 px-[14px] py-3 rounded-lg text-black mt-8 xl:mt-10 font-medium xl:text-lg"
                     whileHover={{ scale: 1.05 }}
                     aria-label={`Bid now for ${slides[activeSlide].bid}`}
                   >
@@ -157,27 +124,30 @@ const Hero: FC = () => {
                   animate="animate"
                   exit="initial"
                   role="group"
+                  className="flex items-center justify-center"
                   aria-label={`Slide ${activeSlide + 1} of ${slides.length}`}
                 >
-                  <Image
-                    src={slides[activeSlide].image}
-                    alt={slides[activeSlide].title}
-                    width={619}
-                    height={386}
-                    priority
-                    className="m-auto"
-                  />
+                  <div className="relative w-full aspect-[16/10] max-w-2xl mx-auto">
+                    <Image
+                      src={slides[activeSlide].image}
+                      alt={slides[activeSlide].title}
+                      fill
+                      style={{ objectFit: "contain" }}
+                      priority
+                      className="m-auto"
+                    />
+                  </div>
                 </motion.div>
               </AnimatePresence>
             </div>
-            <div className="flex justify-center mt-5 space-x-2">
+            <div className="flex justify-center mt-8 space-x-3">
               {slides.map((_, index) => (
                 <motion.div
                   key={index}
-                  className={`h-1 rounded transition-all lg:mt-14 ${
+                  className={`h-1 rounded transition-all ${
                     index === activeSlide
-                      ? "bg-white lg:w-[200px] w-[50px]"
-                      : "bg-white/20 lg:w-14 w-5"
+                      ? "bg-white lg:w-[200px] xl:w-[250px] 2xl:w-[300px] w-[50px]"
+                      : "bg-white/20 lg:w-16 xl:w-20 w-6"
                   }`}
                   role="button"
                   tabIndex={0}
@@ -206,7 +176,7 @@ const Hero: FC = () => {
             aria-label="Next slide"
             className="p-[14px] rounded-lg bg-white/10 hover:bg-white/20 transition-colors lg:block hidden"
           >
-           <NextIcon />
+            <NextIcon />
           </button>
         </div>
       </div>

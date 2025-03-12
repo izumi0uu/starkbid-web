@@ -1,39 +1,23 @@
-"use client"
-import { useForm } from "react-hook-form"
-import { zodResolver } from "@hookform/resolvers/zod"
-import * as z from "zod"
-import Link from "next/link"
-import Image from "next/image"
-import { motion } from "framer-motion"
-import { StarkBidLogo } from "@/public/images"
+"use client";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import * as z from "zod";
+import Link from "next/link";
+import Image from "next/image";
+import { motion } from "framer-motion";
+import { StarkBidLogo } from "@/public/images";
+import { links } from "@/data/data";
 
 const formSchema = z.object({
   email: z.string().email("Please enter a valid email address"),
-})
-
-const links = {
-  Marketplace: ["Art", "Gaming", "Membership", "PFPs", "Photography", "Music"],
-  Resources: [
-    "Support",
-    "API",
-    "Blog",
-    "Partners",
-    "Explore",
-    "Sitemap",
-    "Terms of Service",
-    "Privacy Policy",
-    "Copyright",
-  ],
-  Company: ["About", "Careers", "Ventures"],
-  "Follow us": ["X", "Discord", "Instagram", "Youtube"],
-}
+});
 
 const socialLinks: Record<string, string> = {
   X: "https://twitter.com",
   Discord: "https://discord.com",
   Instagram: "https://instagram.com",
   Youtube: "https://youtube.com",
-}
+};
 
 export default function Footer() {
   const {
@@ -43,15 +27,15 @@ export default function Footer() {
     reset,
   } = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
-  })
+  });
 
   const onSubmit = (values: z.infer<typeof formSchema>) => {
-    console.log("Subscribed:", values.email)
-    reset()
-  }
+    console.log("Subscribed:", values.email);
+    reset();
+  };
 
-  const getLinks = (category: keyof typeof links) => links[category] || []
-  const linkKeys = Object.keys(links) as (keyof typeof links)[]
+  const getLinks = (category: keyof typeof links) => links[category] || [];
+  const linkKeys = Object.keys(links) as (keyof typeof links)[];
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -61,7 +45,7 @@ export default function Footer() {
         staggerChildren: 0.1,
       },
     },
-  }
+  };
 
   const itemVariants = {
     hidden: { y: 20, opacity: 0 },
@@ -69,7 +53,7 @@ export default function Footer() {
       y: 0,
       opacity: 1,
     },
-  }
+  };
 
   return (
     <footer className="w-full h-fit bg-[#0D1216] text-white">
@@ -80,16 +64,29 @@ export default function Footer() {
         variants={containerVariants}
       >
         <div className="flex flex-col lg:flex-row justify-between gap-10 md:gap-12">
-          <motion.div className="flex flex-col gap-y-2.5 md:max-w-sm" variants={itemVariants}>
+          <motion.div
+            className="flex flex-col gap-y-2.5 md:max-w-sm"
+            variants={itemVariants}
+          >
             <div className="flex items-center gap-3">
-              <Image src={StarkBidLogo || "/placeholder.svg"} width={32} height={32} alt="StarkBid logo" />
-              <span className="text-2xl md:text-[28px] font-bold text-white">StarkBid</span>
+              <Image
+                src={StarkBidLogo || "/placeholder.svg"}
+                width={32}
+                height={32}
+                alt="StarkBid logo"
+              />
+              <span className="text-2xl md:text-[28px] font-bold text-white">
+                StarkBid
+              </span>
             </div>
             <p className="text-white/90 font-semibold text-xs md:text-base mb-2.5">
-              A hauntingly beautiful NFT series where glitchy, transparent pixels form eerie digital ghosts and lost
-              memories
+              A hauntingly beautiful NFT series where glitchy, transparent
+              pixels form eerie digital ghosts and lost memories
             </p>
-            <form onSubmit={handleSubmit(onSubmit)} className="w-full flex gap-2.5">
+            <form
+              onSubmit={handleSubmit(onSubmit)}
+              className="w-full flex gap-2.5"
+            >
               <div className="flex-grow">
                 <input
                   {...register("email")}
@@ -114,8 +111,14 @@ export default function Footer() {
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-x-5 gap-y-10 xl:gap-x-12">
             {linkKeys.map((category) => (
-              <motion.div key={category} className="space-y-4 md:space-y-5" variants={itemVariants}>
-                <h3 className="text-white/90 font-bold text-base md:text-xl">{category}</h3>
+              <motion.div
+                key={category}
+                className="space-y-4 md:space-y-5"
+                variants={itemVariants}
+              >
+                <h3 className="text-white/90 font-bold text-base md:text-xl">
+                  {category}
+                </h3>
                 <nav className="flex flex-col gap-y-2 text-sm md:text-base md:gap-y-4">
                   {getLinks(category).map((item) => (
                     <Link
@@ -126,7 +129,9 @@ export default function Footer() {
                           : `/${item.toLowerCase().replace(/\s+/g, "-")}`
                       }
                       target={category === "Follow us" ? "_blank" : "_self"}
-                      rel={category === "Follow us" ? "noopener noreferrer" : ""}
+                      rel={
+                        category === "Follow us" ? "noopener noreferrer" : ""
+                      }
                       className="text-white/60 hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-[#7C3AED] rounded"
                     >
                       {item}
@@ -138,11 +143,15 @@ export default function Footer() {
           </div>
         </div>
 
-        <motion.div className="mt-10 pt-[30px] border-t-[0.4px] border-white/60" variants={itemVariants}>
-          <p className="text-center md:text-left text-white/90 text-sm">©2025 StarkBid. All Rights Reserved.</p>
+        <motion.div
+          className="mt-10 pt-[30px] border-t-[0.4px] border-white/60"
+          variants={itemVariants}
+        >
+          <p className="text-center md:text-left text-white/90 text-sm">
+            ©2025 StarkBid. All Rights Reserved.
+          </p>
         </motion.div>
       </motion.div>
     </footer>
-  )
+  );
 }
-

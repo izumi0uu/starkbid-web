@@ -1,13 +1,7 @@
 import Image from "next/image";
 
 const ethIcon = "/logo/ethereum-logo.svg";
-
-interface TrendingCardProps {
-  name: string;
-  image: string;
-  floorPrice: string;
-  totalVolume: string;
-}
+import { TrendingCardProps } from "@/types";
 
 const TrendingCard: React.FC<TrendingCardProps> = ({
   name,

@@ -46,7 +46,7 @@ export default function Newsletter() {
         }
       }
   return (
-    <div className="w-full px-4 md:px-10 xl:px-20 py-6 lg:py-8">
+    <div className="w-full md:px-10 xl:px-20 py-6 lg:py-8">
         <div className="bg-[#6C45C5] rounded-[20px] p-6 sm:p-10 md:p-16 lg:p-20 text-white relative overflow-hidden">
             <div className="absolute top-0 right-0">
                 <Image src={TrNewsletterBg} alt="bottom left background decoration" />
