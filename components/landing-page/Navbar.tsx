@@ -2,7 +2,9 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import WalletModal from "./ConnectModal";
+import WalletModal from "../ConnectModal";
+import Image from "next/image";
+import { ChevronDown, Search } from "lucide-react";
 
 interface NavbarProps {
   onConnect?: () => void;
@@ -24,30 +26,56 @@ export default function Navbar({ onConnect, onConnectWallet }: NavbarProps) {
 
   return (
     <>
-      <nav className="flex items-center justify-between px-4 md:px-10 xl:px-20 py-4 lg:py-6 bg-[#0D1216] w-full lg:px-6">
-        {/* Logo */}
-        <div className="text-white font-bold text-xl">Dapp</div>
+      <nav className="flex items-center justify-between px-4 md:px-10 xl:px-20 py-4 lg:py-6 bg-[#0D1216] w-full lg:px-10">
+        <div className="flex items-center gap-4  rounded-lg w-full">
+          <Image
+            src="/icons/starkbid-logo.svg"
+            alt="StarkBid Logo"
+            width={110}
+            height={32}
+          />
 
-        {/* Desktop Navigation */}
-        <div className="hidden lg:flex items-center gap-8">
+          <div className="flex items-center bg-white/20 px-4 py-2 rounded-lg w-full max-w-[250px] xl:max-w-sm">
+            <Search className="pb-1"/>
+            <input
+              type="text"
+              placeholder="Search for NFTs and Collections"
+              className="bg-transparent text-white placeholder-white/60  outline-none ml-2 w-full"
+            />
+          </div>
+        </div>
+
+        <div className="hidden lg:flex items-center gap-8 w-full">
           <div className="flex gap-7">
             <a
               href="#"
               className="text-gray-400 hover:text-white transition-colors"
             >
-              Features
+              Discover
             </a>
             <a
               href="#"
               className="text-gray-400 hover:text-white transition-colors"
             >
-              About
+              Staking
             </a>
             <a
               href="#"
               className="text-gray-400 hover:text-white transition-colors"
             >
-              Pricing
+              Sell
+            </a>
+            <a
+              href="#"
+              className="text-gray-400 hover:text-white transition-colors"
+            >
+              Mint
+            </a>
+            <a
+              href="#"
+              className="text-gray-400 hover:text-white transition-colors"
+            >
+              Explore
             </a>
           </div>
 
@@ -55,18 +83,17 @@ export default function Navbar({ onConnect, onConnectWallet }: NavbarProps) {
             <motion.button
               onClick={handleWalletClick}
               whileTap={{ scale: 0.98 }}
-              className="px-[18px] !py-1 bg-[#7F56D9] text-white rounded-lg font-semibold text-base 
+              className="px-[18px] !py-1 bg-[#7F56D9] text-white text-nowrap rounded-lg font-semibold text-base 
                        shadow-[0_0_0_3px_#8c6bd533] hover:bg-[#7F56D9]/90 transition-colors"
             >
               Connect Wallet
             </motion.button>
-            <button className="px-4 py-2 bg-transparent border border-white text-white rounded-lg font-medium hover:bg-white hover:text-black transition-colors">
-              Sign Up
+            <button className="px-2 py-2 bg-transparent border border-white text-white rounded-lg font-medium hover:bg-white hover:text-black transition-colors">
+              <ChevronDown />
             </button>
           </div>
         </div>
 
-        {/* Mobile Navigation */}
         <div className="flex lg:hidden items-center gap-3">
           <motion.button
             whileHover={{ scale: 1.05 }}
@@ -99,7 +126,6 @@ export default function Navbar({ onConnect, onConnectWallet }: NavbarProps) {
         </div>
       </nav>
 
-      {/* Mobile Menu Drawer */}
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div
@@ -160,7 +186,6 @@ export default function Navbar({ onConnect, onConnectWallet }: NavbarProps) {
         )}
       </AnimatePresence>
 
-      {/* Wallet Modal */}
       <WalletModal
         isOpen={isWalletOpen}
         onClose={() => setIsWalletOpen(false)}

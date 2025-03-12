@@ -10,46 +10,9 @@ import {
   useCallback,
 } from "react";
 import { motion } from "framer-motion";
-import TrendingCard from "./TrendingCard";
+import TrendingCard from "../TrendingCard";
 import { NextIcon, PrevIcon } from "@/public/icons/icons";
-
-const collections = [
-  {
-    id: 1,
-    name: "Daki Da",
-    image: "/nft-collection/DakiDa.svg",
-    floorPrice: "0.12 ETH",
-    totalVolume: "207 ETH",
-  },
-  {
-    id: 2,
-    name: "Birds of Damascus",
-    image: "/nft-collection/damascus.svg",
-    floorPrice: "0.12 ETH",
-    totalVolume: "207 ETH",
-  },
-  {
-    id: 3,
-    name: "Birds of Damascus",
-    image: "/nft-collection/damascus2.svg",
-    floorPrice: "0.12 ETH",
-    totalVolume: "207 ETH",
-  },
-  {
-    id: 4,
-    name: "Birds of Damascus",
-    image: "/nft-collection/damascus3.svg",
-    floorPrice: "0.12 ETH",
-    totalVolume: "207 ETH",
-  },
-  {
-    id: 5,
-    name: "Birds of Damascus",
-    image: "/nft-collection/damascus4.jpeg",
-    floorPrice: "0.12 ETH",
-    totalVolume: "207 ETH",
-  },
-];
+import { TrendingCollections } from "@/data/data";
 
 const TrendingSection: FC = () => {
   const carouselRef = useRef<HTMLDivElement>(null);
@@ -180,9 +143,9 @@ const TrendingSection: FC = () => {
   }, [checkIfEndReached, setupAutoScroll]);
 
   return (
-    <div className="relative py-8 px-4 w-full mx-auto max-w-[1300px] ">
-      <div className="w-full flex items-center justify-between flex-row mb-5">
-        <h1 className="text-[22px] font-bold leading-6 text-white mb-6">
+    <div className="relative py-8 flex flex-col gap-9  lg:pl-10 xl:pl-20 w-full mx-auto max-w-[1300px] ">
+      <div className="w-full flex items-center justify-between flex-row  lg:pr-10 xl:pr-20">
+        <h1 className="text-[22px] font-bold leading-6 text-white">
           Trending in Gaming
         </h1>
         <div className="flex gap-2">
@@ -204,16 +167,18 @@ const TrendingSection: FC = () => {
       </div>
       <motion.div
         ref={carouselRef}
-        className="overflow-x-scroll scrollbar-hide flex gap-2 md:gap-4 py-4 px-"
+        className="overflow-x-scroll scrollbar-hide flex gap-2 md:gap-4  px-"
         onMouseDown={startDragging}
         onMouseLeave={stopDragging}
         onMouseUp={stopDragging}
         onMouseMove={onDrag}
         style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
       >
-        {collections.concat(collections).map((collection, index) => (
-          <TrendingCard key={index} {...collection} />
-        ))}
+        {TrendingCollections.concat(TrendingCollections).map(
+          (collection, index) => (
+            <TrendingCard key={index} {...collection} />
+          )
+        )}
       </motion.div>
     </div>
   );
