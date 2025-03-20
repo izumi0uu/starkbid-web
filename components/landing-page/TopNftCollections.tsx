@@ -18,7 +18,7 @@ export default function NFTCollectionsTable() {
   return (
     <div className="w-full md:px-10 xl:px-20 ">
       <div className="flex flex-col lg:flex-row lg:items-center gap-6 lg:gap-0 justify-between mb-6">
-        <h2 className="text-2xl font-bold">Top NFT Collections</h2>
+        <h2 className="text-2xl font-bold text-white">Top NFT Collections</h2>
         <div className="flex flex-wrap items-center gap-4">
           <div className="bg-[#3D4145] w-fit rounded-lg p-1 flex items-center">
             {timeRanges.map((range) => (
@@ -114,9 +114,9 @@ export default function NFTCollectionsTable() {
                   </div>
                 )}
               </div>
-              <span className="font-medium ">{collection.name}</span>
+              <span className="font-medium text-white">{collection.name}</span>
             </div>
-            <div className="grid grid-cols-3 sm:grid-cols-5 lg:grid-cols-6 w-3/5 md:w-2/3  items-center">
+            <div className="grid grid-cols-3 text-white sm:grid-cols-5 lg:grid-cols-6 w-3/5 md:w-2/3  items-center">
               <div className="text- w-fit flex">{collection.floorPrice}</div>
               <div className="text- w-fit">{collection.volume}</div>
               <div className="hidden lg:flex w-fit">{collection.topOffer}</div>

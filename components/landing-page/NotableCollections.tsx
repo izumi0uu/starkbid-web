@@ -1,268 +1,185 @@
 "use client";
-import { StaticImageData } from "next/image";
-import React, { useState, useEffect, useRef } from "react";
-import Image from "next/image";
-import { ArrowLeft, ArrowRight } from "lucide-react";
-import Eth from "@/public/eth_l.png";
+
+import {
+  type FC,
+  type MouseEvent,
+  type TouchEvent,
+  useRef,
+  useState,
+  useEffect,
+  useCallback,
+} from "react";
+import { motion } from "framer-motion";
+import TrendingCard from "../TrendingCard";
+import { NextIcon, PrevIcon } from "@/public/icons/icons";
 import { notableCollections } from "@/data/data";
 
-export interface TrendGam {
-  id: string;
-  title: string;
-  floorPrice: number | string;
-  totalVolume: number | string;
-  image: string | StaticImageData;
-}
-
-const NotableCollections: React.FC = () => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [sales, setSales] = useState<TrendGam[]>([]);
-  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
-  const [transitioning, setTransitioning] = useState(false);
-
-  const autoPlayTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+const NotableCollections: FC = () => {
   const carouselRef = useRef<HTMLDivElement>(null);
+  const [isDragging, setIsDragging] = useState(false);
+  const [startX, setStartX] = useState(0);
+  const [scrollLeft, setScrollLeft] = useState(0);
+  const resetTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const autoScrollTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-  const touchStartX = useRef<number | null>(null);
-  const touchEndX = useRef<number | null>(null);
+  const startDragging = useCallback((e: MouseEvent | TouchEvent) => {
+    setIsDragging(true);
+    const pageX = "touches" in e ? e.touches[0].pageX : e.pageX;
+    setStartX(pageX - (carouselRef.current?.offsetLeft || 0));
+    setScrollLeft(carouselRef.current?.scrollLeft || 0);
 
-  useEffect(() => {
-    setSales([
-      ...notableCollections,
-      ...notableCollections,
-      ...notableCollections,
-    ]);
-    setCurrentIndex(notableCollections.length);
+    if (autoScrollTimeoutRef.current) {
+      clearInterval(autoScrollTimeoutRef.current);
+    }
   }, []);
 
-  useEffect(() => {
-    if (!carouselRef.current || sales.length === 0) return;
+  const stopDragging = useCallback(() => setIsDragging(false), []);
 
-    const originalLength = sales.length / 3;
-
-    if (currentIndex >= originalLength * 2) {
-      setTimeout(() => {
-        if (carouselRef.current) {
-          carouselRef.current.style.transition = "none";
-          setCurrentIndex(currentIndex - originalLength);
-          void carouselRef.current.offsetWidth;
-          carouselRef.current.style.transition = "transform 500ms ease-in-out";
-        }
-      }, 500);
-    } else if (currentIndex < originalLength && currentIndex !== 0) {
-      setTimeout(() => {
-        if (carouselRef.current) {
-          carouselRef.current.style.transition = "none";
-          setCurrentIndex(currentIndex + originalLength);
-          void carouselRef.current.offsetWidth;
-          carouselRef.current.style.transition = "transform 500ms ease-in-out";
-        }
-      }, 500);
-    }
-  }, [currentIndex, sales.length]);
-
-  const startAutoPlay = () => {
-    if (autoPlayTimeoutRef.current) {
-      clearTimeout(autoPlayTimeoutRef.current);
-    }
-
-    autoPlayTimeoutRef.current = setTimeout(() => {
-      if (isAutoPlaying && !transitioning && sales.length > 0) {
-        setTransitioning(true);
-        setCurrentIndex((prev) => prev + 1);
-
-        setTimeout(() => {
-          setTransitioning(false);
-        }, 500);
+  const onDrag = useCallback(
+    (e: MouseEvent | TouchEvent) => {
+      if (!isDragging) return;
+      e.preventDefault();
+      const pageX = "touches" in e ? e.touches[0].pageX : e.pageX;
+      const walk = (pageX - startX) * 2;
+      if (carouselRef.current) {
+        carouselRef.current.scrollLeft = scrollLeft - walk;
       }
-      startAutoPlay();
-    }, 5000);
+    },
+    [isDragging, startX, scrollLeft]
+  );
+
+  const scroll = (direction: "left" | "right" | "start") => {
+    if (!carouselRef.current) return;
+
+    const { scrollLeft, scrollWidth, clientWidth } = carouselRef.current;
+    const isAtEnd = Math.abs(scrollWidth - clientWidth - scrollLeft) < 20;
+
+    if (direction === "start" || (direction === "right" && isAtEnd)) {
+      scrollToStart();
+    } else {
+      const scrollAmount = direction === "left" ? -315 : 315;
+
+      const adjustedScrollAmount =
+        window.innerWidth <= 640 ? scrollAmount * 0.81 : scrollAmount;
+
+      carouselRef.current.scrollBy({
+        left: adjustedScrollAmount,
+        behavior: "smooth",
+      });
+    }
+
+    if (autoScrollTimeoutRef.current) {
+      clearInterval(autoScrollTimeoutRef.current);
+    }
+    setupAutoScroll();
   };
 
+  const scrollToStart = useCallback(() => {
+    if (carouselRef.current) {
+      carouselRef.current.scrollTo({ left: 0, behavior: "smooth" });
+    }
+  }, []);
+
+  const setupAutoScroll = useCallback(() => {
+    if (autoScrollTimeoutRef.current) {
+      clearInterval(autoScrollTimeoutRef.current);
+    }
+
+    autoScrollTimeoutRef.current = setInterval(() => {
+      if (carouselRef.current) {
+        const scrollAmount = window.innerWidth <= 640 ? 243 : 315;
+        carouselRef.current.scrollBy({
+          left: scrollAmount,
+          behavior: "smooth",
+        });
+      }
+    }, 4000);
+  }, []);
+
+  const checkIfEndReached = useCallback(() => {
+    if (!carouselRef.current) return false;
+
+    const { scrollLeft, scrollWidth, clientWidth } = carouselRef.current;
+
+    const isAtEnd = Math.abs(scrollWidth - clientWidth - scrollLeft) < 20;
+
+    if (isAtEnd) {
+      if (resetTimeoutRef.current) {
+        clearTimeout(resetTimeoutRef.current);
+      }
+
+      if (autoScrollTimeoutRef.current) {
+        clearInterval(autoScrollTimeoutRef.current);
+        autoScrollTimeoutRef.current = null;
+      }
+
+      resetTimeoutRef.current = setTimeout(() => {
+        scrollToStart();
+
+        setupAutoScroll();
+      }, 3000);
+    }
+  }, [scrollToStart, setupAutoScroll]); // setupAutoScroll is now defined before this function
+
   useEffect(() => {
-    startAutoPlay();
+    setupAutoScroll();
+
+    const carousel = carouselRef.current;
+    if (carousel) {
+      carousel.addEventListener("scroll", checkIfEndReached);
+    }
 
     return () => {
-      if (autoPlayTimeoutRef.current) {
-        clearTimeout(autoPlayTimeoutRef.current);
+      if (resetTimeoutRef.current) {
+        clearTimeout(resetTimeoutRef.current);
+      }
+      if (autoScrollTimeoutRef.current) {
+        clearInterval(autoScrollTimeoutRef.current);
+      }
+      if (carousel) {
+        carousel.removeEventListener("scroll", checkIfEndReached);
       }
     };
-  }, [isAutoPlaying, transitioning, sales.length]);
-
-  const handlePrevious = () => {
-    if (transitioning) return;
-
-    setIsAutoPlaying(false);
-    setTransitioning(true);
-    setCurrentIndex((prev) => prev - 1);
-
-    setTimeout(() => {
-      setTransitioning(false);
-      setIsAutoPlaying(true);
-    }, 500);
-  };
-
-  const handleNext = () => {
-    if (transitioning) return;
-
-    setIsAutoPlaying(false);
-    setTransitioning(true);
-    setCurrentIndex((prev) => prev + 1);
-
-    setTimeout(() => {
-      setTransitioning(false);
-      setIsAutoPlaying(true);
-    }, 500);
-  };
-
-  const getCardWidth = () => {
-    if (typeof window === "undefined") return "25%";
-    const width = window.innerWidth;
-    if (width < 768) {
-      return "100%";
-    } else if (width >= 768 && width < 1024) {
-      return "33.33%";
-    } else {
-      return "25%";
-    }
-  };
-
-  const getTransformPercentage = () => {
-    if (typeof window === "undefined") return 25;
-    const width = window.innerWidth;
-    if (width < 768) {
-      return 100;
-    } else if (width >= 768 && width < 1024) {
-      return 33.33;
-    } else {
-      return 25;
-    }
-  };
-
-  const handleTouchStart = (e: React.TouchEvent) => {
-    touchStartX.current = e.touches[0].clientX;
-  };
-
-  const handleTouchMove = (e: React.TouchEvent) => {
-    touchEndX.current = e.touches[0].clientX;
-  };
-
-  const handleTouchEnd = () => {
-    if (touchStartX.current !== null && touchEndX.current !== null) {
-      const diff = touchStartX.current - touchEndX.current;
-      const threshold = 50;
-      if (diff > threshold) {
-        handleNext();
-      } else if (diff < -threshold) {
-        handlePrevious();
-      }
-    }
-
-    touchStartX.current = null;
-    touchEndX.current = null;
-  };
+  }, [checkIfEndReached, setupAutoScroll]);
 
   return (
-    <div className="w-full  xl:pl-20 lg:pl-10 bg-transparent">
-      <div className="max-w-7xl mx-auto">
-        <div className="flex justify-between items-center mb-9 lg:pr-10 xl:pr-20">
-          <h1 className="text-white text-[22px] font-bold">
-            Notable Collections
-          </h1>
-          <div className="flex gap-2">
+    <div className="relative py-8 flex flex-col gap-9  lg:pl-10 xl:pl-20 w-full mx-auto ">
+      <div className="w-full flex items-center justify-between flex-row  lg:pr-10 xl:pr-20">
+        <h1 className="text-[22px] font-bold leading-6 text-white">
+          Notable Collections
+        </h1>
+        <div className="flex gap-2">
+          <div className="gap-2 hidden md:flex">
             <button
-              onClick={handlePrevious}
-              disabled={transitioning}
-              className="hidden sm:flex p-3 bg-gray-800 rounded-lg hover:bg-gray-700 transition-colors disabled:opacity-50"
+              onClick={() => scroll("left")}
+              className="bg-[#FFFFFF33] p-2 w-12 h-12 rounded-lg flex items-center justify-center text-white hover:bg-[#FFFFFF44]"
             >
-              <ArrowLeft className="w-6 h-6 text-white" />
+              <PrevIcon />
             </button>
             <button
-              onClick={handleNext}
-              disabled={transitioning}
-              className="hidden sm:flex p-3 bg-gray-800 rounded-lg hover:bg-gray-700 transition-colors disabled:opacity-50"
+              onClick={() => scroll("right")}
+              className="bg-[#FFFFFF33] p-2 w-12 h-12 rounded-lg flex items-center justify-center text-white hover:bg-[#FFFFFF44]"
             >
-              <ArrowRight className="w-6 h-6 text-white" />
+              <NextIcon />
             </button>
-          </div>
-        </div>
-
-        <div
-          className="relative overflow-hidden"
-          onTouchStart={handleTouchStart}
-          onTouchMove={handleTouchMove}
-          onTouchEnd={handleTouchEnd}
-        >
-          <div
-            ref={carouselRef}
-            className="flex transition-transform duration-500 ease-in-out"
-            style={{
-              transform: `translateX(-${
-                currentIndex * getTransformPercentage()
-              }%)`,
-            }}
-          >
-            {sales.map((sale, index) => (
-              <div
-                key={`${sale.id}-${index}`}
-                className="flex-shrink-0 sm:p-2 transition-all duration-500"
-                style={{ width: getCardWidth() }}
-              >
-                <div className="bg-[#1A1A1A] rounded-xl overflow-hidden transition-all duration-500">
-                  <div className="aspect-square w-full overflow-hidden">
-                    <Image
-                      width={500}
-                      height={500}
-                      src={sale.image}
-                      alt={sale.title}
-                      className="w-full h-full object-cover transition-transform hover:scale-105 duration-300"
-                    />
-                  </div>
-                  <div className="p-4">
-                    <h3 className="text-white text-lg mb-4">{sale.title}</h3>
-                    <div className="grid grid-cols-2 gap-4">
-                      <div>
-                        <p className="text-gray-400 text-sm mb-1">
-                          Floor Price
-                        </p>
-                        <div className="flex items-center text-white">
-                          <span className="w-4 h-7 mr-3">
-                            <Image
-                              width={500}
-                              height={500}
-                              src={Eth}
-                              alt={sale.title}
-                              className="w-full h-full object-cover"
-                            />
-                          </span>
-                          {sale.floorPrice}
-                        </div>
-                      </div>
-                      <div>
-                        <p className="text-gray-400 text-sm mb-1">
-                          Total Volume
-                        </p>
-                        <div className="flex items-center text-white">
-                          <span className="w-4 h-7 mr-3">
-                            <Image
-                              width={500}
-                              height={500}
-                              src={Eth}
-                              alt={sale.title}
-                              className="w-full h-full object-cover"
-                            />
-                          </span>
-                          {sale.totalVolume}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
           </div>
         </div>
       </div>
+      <motion.div
+        ref={carouselRef}
+        className="overflow-x-scroll scrollbar-hide flex gap-2 md:gap-4  px-"
+        onMouseDown={startDragging}
+        onMouseLeave={stopDragging}
+        onMouseUp={stopDragging}
+        onMouseMove={onDrag}
+        style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+      >
+        {notableCollections
+          .concat(notableCollections)
+          .map((collection, index) => (
+            <TrendingCard key={index} {...collection} />
+          ))}
+      </motion.div>
     </div>
   );
 };

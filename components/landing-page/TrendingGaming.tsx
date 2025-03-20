@@ -143,7 +143,7 @@ const TrendingSection: FC = () => {
   }, [checkIfEndReached, setupAutoScroll]);
 
   return (
-    <div className="relative py-8 flex flex-col gap-9  lg:pl-10 xl:pl-20 w-full mx-auto max-w-[1300px] ">
+    <div className="relative py-8 flex flex-col gap-9  lg:pl-10 xl:pl-20 w-full mx-auto ">
       <div className="w-full flex items-center justify-between flex-row  lg:pr-10 xl:pr-20">
         <h1 className="text-[22px] font-bold leading-6 text-white">
           Trending in Gaming
