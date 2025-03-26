@@ -6,44 +6,13 @@ import { MdSearch } from "react-icons/md";
 import Link from "next/link";
 import { ConnectButton } from "./connect-button";
 import { useAccount } from "@starknet-react/core";
+import { navItems } from "@/constants/navbar";
 
 const Navbar: React.FC = () => {
   const pathname = usePathname();
   const { isConnected } = useAccount();
 
-  // Navigation items with their respective paths and icons
-  const navItems = [
-    {
-      name: "NFTs",
-      path: "/",
-      icon: "/svgs/nft.svg",
-      activeIcon: "/svgs/nft-active.svg",
-    },
-    {
-      name: "Explore",
-      path: "/explore",
-      icon: "/svgs/explore.svg",
-      activeIcon: "/svgs/explore-active.svg",
-    },
-    {
-      name: "Staking",
-      path: "/staking",
-      icon: "/svgs/staking.svg",
-      activeIcon: "/svgs/staking-active.svg",
-    },
-    {
-      name: "Sell",
-      path: "/sell",
-      icon: "/svgs/sell.svg",
-      activeIcon: "/svgs/sell-active.svg",
-    },
-    {
-      name: "Mint",
-      path: "/mint",
-      icon: "/svgs/mint.svg",
-      activeIcon: "/svgs/mint-active.svg",
-    },
-  ];
+
 
   return (
     <nav className="bg-[#101213] text-white flex items-center justify-between px-4 py-2">
