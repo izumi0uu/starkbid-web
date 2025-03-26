@@ -5,42 +5,11 @@ import * as z from "zod";
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { links, socialLinks } from "@/constants/footer";
 
 const formSchema = z.object({
   email: z.string().email("Please enter a valid email address"),
 });
-
-const links = {
-  Marketplace: ["Art", "Gaming", "Membership", "PFPs", "Photography", "Music"],
-  Resources: [
-    "Support",
-    "API",
-    "Blog",
-    "Partners",
-    "Explore",
-    "Sitemap",
-    "Terms of Service",
-    "Privacy Policy",
-    "Copyright",
-  ],
-  Company: ["About", "Careers", "Ventures"],
-};
-
-const socialLinks = [
-  { name: "Telegram", icon: "/icons/telegram.svg", url: "https://t.me" },
-  {
-    name: "Youtube",
-    icon: "/icons/youtube-fill.svg",
-    url: "https://youtube.com",
-  },
-  { name: "Twitter", icon: "/icons/x-twitter.svg", url: "https://twitter.com" },
-  { name: "Discord", icon: "/icons/discord.svg", url: "https://discord.com" },
-  {
-    name: "Instagram",
-    icon: "/icons/instagram.svg",
-    url: "https://instagram.com",
-  },
-];
 
 export default function Footer() {
   const {
@@ -82,7 +51,7 @@ export default function Footer() {
   return (
     <footer className="w-full h-fit text-white bg-black ">
       <motion.div
-        className="w-full px-4 md:px-10 xl:px-[52px] py-8 lg:py-10 max-w-8xl container mx-auto"
+        className="w-full px-4 md:px-6 xl:px-16 py-8 lg:py-10  container mx-auto"
         initial="hidden"
         animate="visible"
         variants={containerVariants}
@@ -207,7 +176,7 @@ export default function Footer() {
                   Privacy Policy
                 </Link>
               </div>
-          
+
               <a
                 href="mailto:support@starkbid.com"
                 className="text-white/90 text-sm hover:text-white transition-colors "
