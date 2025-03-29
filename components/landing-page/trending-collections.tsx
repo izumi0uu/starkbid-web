@@ -4,7 +4,7 @@ import { trendingCollections } from "@/constants/data";
 import { ChevronDownIcon } from "lucide-react";
 import Image from "next/image";
 import React, { useState } from "react";
-import Arrow from "@/public/arrow.png";
+import { ViewAllButton } from "../ui/Button";
 
 // constants
 const TIMEFRAMES = ["1h", "6h", "24h", "3d", "7d"];
@@ -84,53 +84,49 @@ const CollectionTableRow: React.FC<(typeof trendingCollections)[0]> = ({
   holder,
   rate,
 }) => (
-  <tr className="hover:bg-zinc-900 transition-colors duration-300 px-2">
-    <td>{id}</td>
-    <td className="p-2 flex items-center">
-      <div className="relative mr-3">
-        <Image
-          src={icon}
-          width={70}
-          height={70}
-          alt={name}
-          className="w-[70px] h-[70px] rounded-full"
-        />
-        <div className="w-5 h-5 absolute bottom-0 right-5 flex justify-center items-center rounded-full bg-white">
+  <tr className="hover:bg-zinc-900 transition-colors duration-300">
+    <td className="px-4 py-4 text-[#8E9BAE]">{id}</td>
+    <td className="px-4 py-4">
+      <div className="flex items-center ">
+        <div className="relative mr-3 shrink-0">
           <Image
-            src="/collections_icons/eth.svg"
-            width={12}
-            height={12}
-            alt="Ethereum"
-            className="w-full h-full"
+            src={icon}
+            width={70}
+            height={70}
+            alt={name}
+            className="w-[70px] h-[70px] rounded-full"
           />
+          <div className="w-5 h-5 absolute bottom-0 right-0 flex justify-center items-center rounded-full bg-white">
+            <Image
+              src="/collections_icons/eth.svg"
+              width={12}
+              height={12}
+              alt="Ethereum"
+              className="w-full h-full"
+            />
+          </div>
         </div>
+        <span className="whitespace-nowrap">{name}</span>
       </div>
-      {name}
     </td>
-    <td className="text-left p-2">{floorPrice}</td>
-    <td className="text-left p-2">{volume}</td>
-    <td className="text-left p-2">{topOffer}</td>
+    <td className="px-4 py-4 whitespace-nowrap">{floorPrice}</td>
+    <td className="px-4 py-4 whitespace-nowrap">{volume}</td>
+    <td className="px-4 py-4 whitespace-nowrap">{topOffer}</td>
     <td
-      className={`text-left p-2 ${
+      className={`px-4 py-4 whitespace-nowrap ${
         change.startsWith("+") ? "text-green-500" : "text-red-500"
       }`}
     >
       {change}
     </td>
-    <td className="text-left p-2">{sales}</td>
-    <td className="text-left p-2">
-      <span>{holder}%</span>
-      <br />
-      <span className="text-[#A3A3A3]">{rate}</span>
+    <td className="px-4 py-4 whitespace-nowrap">{sales}</td>
+    <td className="px-4 py-4 w-fit">
+      <div className="flex flex-col w-fit">
+        <span>{holder}%</span>
+        <span className="text-[#A3A3A3] text-sm">{rate}</span>
+      </div>
     </td>
   </tr>
-);
-
-const ViewAllButton: React.FC = () => (
-  <button className="bg-zinc-800 hover:bg-zinc-700 text-white font-medium py-3 px-6 rounded-lg flex items-center gap-2 transition-colors">
-    View all
-    <Image src={Arrow} alt="arrow icon" />
-  </button>
 );
 
 const TrendingCollections: React.FC = () => {
@@ -139,61 +135,65 @@ const TrendingCollections: React.FC = () => {
   const [blockchain, setBlockchain] = useState<string>("Ethereum");
 
   return (
-    <div className="bg-black text-white px-10 rounded-lg">
-      {/* Tabs */}
-      <div className="flex gap-[1em] mb-8">
-        <button
-          className={getTabButtonStyles(activeTab === "collections")}
-          onClick={() => setActiveTab("collections")}
-        >
-          Collections
-        </button>
-        <button
-          className={getTabButtonStyles(activeTab === "marketPlaces")}
-          onClick={() => setActiveTab("marketPlaces")}
-        >
-          Marketplaces
-        </button>
-      </div>
+    <div className="bg-black text-white p-6 rounded-lg w-full max-w-[1419] mx-auto">
+      <div className="w-full mx-auto">
+        {/* Tabs */}
+        <div className="flex gap-[1em] mb-8">
+          <button
+            className={getTabButtonStyles(activeTab === "collections")}
+            onClick={() => setActiveTab("collections")}
+          >
+            Collections
+          </button>
+          <button
+            className={getTabButtonStyles(activeTab === "marketPlaces")}
+            onClick={() => setActiveTab("marketPlaces")}
+          >
+            Marketplaces
+          </button>
+        </div>
 
-      {/* Header and Filters */}
-      <div className="flex justify-between mb-5 items-center">
-        <h2 className="text-xl font-bold">Trending Collections</h2>
-        <div className="flex gap-3 items-center justify-center h-12">
-          <TimeframeSelector 
-            timeframe={timeframe} 
-            onTimeframeChange={setTimeframe} 
-          />
-          <BlockchainDropdown 
-            blockchain={blockchain} 
-            onBlockchainChange={setBlockchain} 
-          />
+        {/* Header and Filters */}
+        <div className="flex flex-col md:flex-row justify-between mb-8 gap-4">
+          <h2 className="text-2xl font-bold">Trending Collections</h2>
+          <div className="flex gap-3 items-center h-12 flex-wrap">
+            <TimeframeSelector 
+              timeframe={timeframe} 
+              onTimeframeChange={setTimeframe} 
+            />
+            <BlockchainDropdown 
+              blockchain={blockchain} 
+              onBlockchainChange={setBlockchain} 
+            />
+            <ViewAllButton />
+          </div>
+        </div>
+
+        <div className="overflow-x-auto">
+          <table className="w-full text-sm min-w-[1200px] xl:min-w-0">
+            <thead className="border-b-[0.3px] border-zinc-500 text-white/60 text-left uppercase">
+              <tr>
+                {[
+                  "#", "Collection", "Floor Price", "Volume", "Top Offer", 
+                  "Floor Id", "Sales", "Holders"
+                ].map((header) => (
+                  <th key={header} className="font-light py-5 px-4">
+                    {header}
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody className="">
+              {trendingCollections.map((collection) => (
+                <CollectionTableRow key={collection.id} {...collection} />
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        <div className="flex justify-center mt-10">
           <ViewAllButton />
         </div>
-      </div>
-
-      {/* Collections Table */}
-      <table className="w-full text-sm">
-        <thead className="border-b border-white/60 text-white/60 text-left uppercase text-sm px-2">
-          <tr>
-            {[
-              "#", "Collection", "Floor Price", "Volume", "Top Offer", 
-              "Floor Id", "Sales", "Holders"
-            ].map((header) => (
-              <th key={header} className="font-light py-5">{header}</th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {trendingCollections.map((collection) => (
-            <CollectionTableRow key={collection.id} {...collection} />
-          ))}
-        </tbody>
-      </table>
-
-      {/* View All Collections Button */}
-      <div className="flex justify-center mt-10">
-        <ViewAllButton />
       </div>
     </div>
   );

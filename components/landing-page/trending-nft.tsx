@@ -86,7 +86,7 @@ const TrendingNFTs: React.FC = () => {
   const [activeTab, setActiveTab] = useState('trending');
 
   return (
-    <div className="bg-black text-white p-6 max-w-8xl mx-auto">
+    <div className="bg-black text-white p-6 max-w-[1419] mx-auto ">
       <div className="flex gap-[1em] mb-8">
         <button 
           className={`px-2 py-1 ${activeTab === 'trending' ? 'text-white font-bold text-[20px] bg-[#1C1D1F] px-4 py-2 rounded-md' : 'text-gray-500 text-[20px]'}`}
@@ -104,7 +104,7 @@ const TrendingNFTs: React.FC = () => {
       
       <h2 className="text-[30px] font-bold mb-6">Trending NFTs</h2>
       
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full">
         {nftData.map((nft) => (
           <NFTCard key={nft.id} {...nft} />
         ))}
