@@ -1,3 +1,4 @@
+import TrendingCollections from '@/components/landing-page/trending-collections';
 import TrendingNft from '@/components/landing-page/trending-nft'
 import Newsletter from '@/components/newsletter';
 
