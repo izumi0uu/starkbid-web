@@ -15,7 +15,7 @@ const Newsletter: React.FC = () => {
     };
 
     return (
-        <div className="bg-purple bg-cover rounded-[3rem] text-white relative overflow-hidden h-auto md:h-[35vh] flex items-center px-6 sm:px-10 lg:px-[10rem] py-10">
+        <div className="mx-auto container bg-purple bg-cover rounded-[3rem] text-white relative overflow-hidden h-auto md:h-[35vh] flex items-center px-6 sm:px-10 lg:px-[10rem] py-10">
             {/* top star */}
             <Image
                 src={stars}
