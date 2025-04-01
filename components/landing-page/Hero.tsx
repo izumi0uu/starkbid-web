@@ -211,7 +211,7 @@ const Hero = () => {
                 </div>
 
                 <div className="flex">
-                  <button className="flex-1 bg-white text-black py-2 sm:py-3 px-4 rounded hover:bg-gray-100 transition-colors font-medium text-sm sm:text-base">
+                  <button className="flex-1 bg-white text-black py-2 sm:py-3 px-4 rounded hover:bg-yellow-100 transition-colors font-medium text-sm sm:text-base">
                     Mint for Free
                   </button>
                 </div>
