@@ -22,7 +22,7 @@ export const nftData: NFTCardProps[] = [
     likes: 564,
     minted: 24,
     timeLeft: "1d 9h left",
-    image: "1.png"
+    image: "1.png",
   },
   {
     id: 2,
@@ -34,7 +34,7 @@ export const nftData: NFTCardProps[] = [
     likes: 564,
     minted: 24,
     timeLeft: "1d 9h left",
-    image: "2.png"
+    image: "2.png",
   },
   {
     id: 3,
@@ -46,7 +46,7 @@ export const nftData: NFTCardProps[] = [
     likes: 24,
     minted: 2,
     timeLeft: "4d 9h left",
-    image: "3.png"
+    image: "3.png",
   },
   {
     id: 4,
@@ -58,7 +58,7 @@ export const nftData: NFTCardProps[] = [
     likes: 564,
     minted: 24,
     timeLeft: "1d 9h left",
-    image: "4.png"
+    image: "4.png",
   },
   {
     id: 5,
@@ -70,7 +70,7 @@ export const nftData: NFTCardProps[] = [
     likes: 564,
     minted: 24,
     timeLeft: "1d 9h left",
-    image: "5.png"
+    image: "5.png",
   },
   {
     id: 6,
@@ -82,7 +82,7 @@ export const nftData: NFTCardProps[] = [
     likes: 564,
     minted: 24,
     timeLeft: "1d 9h left",
-    image: "6.png"
+    image: "6.png",
   },
   {
     id: 7,
@@ -94,7 +94,7 @@ export const nftData: NFTCardProps[] = [
     likes: 564,
     minted: 24,
     timeLeft: "1d 9h left",
-    image: "7.png"
+    image: "7.png",
   },
   {
     id: 8,
@@ -106,6 +106,52 @@ export const nftData: NFTCardProps[] = [
     likes: 564,
     minted: 24,
     timeLeft: "1d 9h left",
+    image: "8.png",
+  },
+];
+
+// sample nft items
+export const nftItems = [
+  {
+    id: 1,
+    title: "The Pink-Blackened Horned Knight",
+    creator: "Jacksonito",
+    verified: true,
+    isLiked: false,
+    currentBid: "0.956 ETH",
+    description:
+      "The pink-blackened horned knight is an embodiment of peace, unity, and strength. Striking look of intricate carvings that tell the stories of ancestors long past. Every ancient story from...",
+    image: "/1.png",
+    minted: 24,
+    timeLeft: "1d 9h left",
+  },
+  {
+    id: 2,
+    title: "Cosmic Wanderer",
+    creator: "ArtificialDreams",
+    verified: true,
+    isLiked: false,
+    currentBid: "1.25 ETH",
+    description:
+      "A traveler of the cosmos, bringing wisdom from distant galaxies. The ethereal glow represents the eternal flame of knowledge that guides lost souls through the darkness of ignorance.",
+    image: "/2.png",
+    minted: 16,
+    timeLeft: "2d 3h left",
+  },
+  {
+    id: 3,
+    title: "Digital Samurai",
+    creator: "CyberSamurai",
+    verified: false,
+    isLiked: false,
+    currentBid: "0.775 ETH",
+    description:
+      "A modern warrior born in the digital realm, fighting for freedom in the metaverse. The neon accents symbolize the bridge between traditional values and future possibilities.",
+    image: "/3.png",
+    minted: 31,
+    timeLeft: "12h left",
+  },
+];
     image: "8.png"
   },
 ];
@@ -237,6 +283,7 @@ export const articleData: ArticleProps[] = [
       image: "8.png"
     },
   ];
+
 
   
   export const trendingCollections = [
