@@ -117,6 +117,7 @@ export const nftItems = [
     title: "The Pink-Blackened Horned Knight",
     creator: "Jacksonito",
     verified: true,
+    isLiked: false,
     currentBid: "0.956 ETH",
     description:
       "The pink-blackened horned knight is an embodiment of peace, unity, and strength. Striking look of intricate carvings that tell the stories of ancestors long past. Every ancient story from...",
@@ -129,6 +130,7 @@ export const nftItems = [
     title: "Cosmic Wanderer",
     creator: "ArtificialDreams",
     verified: true,
+    isLiked: false,
     currentBid: "1.25 ETH",
     description:
       "A traveler of the cosmos, bringing wisdom from distant galaxies. The ethereal glow represents the eternal flame of knowledge that guides lost souls through the darkness of ignorance.",
@@ -141,6 +143,7 @@ export const nftItems = [
     title: "Digital Samurai",
     creator: "CyberSamurai",
     verified: false,
+    isLiked: false,
     currentBid: "0.775 ETH",
     description:
       "A modern warrior born in the digital realm, fighting for freedom in the metaverse. The neon accents symbolize the bridge between traditional values and future possibilities.",

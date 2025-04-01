@@ -1,69 +1,72 @@
 "use client";
 import React, { useState, useRef, useEffect } from "react";
-import { ArrowLeft, ArrowRight, Heart } from "lucide-react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 import { nftItems } from "@/constants/data";
+import { BsHeart, BsHeartFill } from "react-icons/bs";
 
 const Hero = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
-  const [touchStart, setTouchStart] = useState(0);
-  const [touchEnd, setTouchEnd] = useState(0);
+  const [isLiked, setIsLiked] = useState(nftItems?.map((nft) => nft.isLiked));
+
   const carouselRef = useRef(null);
 
   // FIXME: Custom search handlers
-  const handleTouchStart = (e: any) => {
-    setTouchStart(e.targetTouches[0].clientX);
-  };
+  // const handleTouchStart = (e: any) => {
+  //   setTouchStart(e.targetTouches[0].clientX);
+  // };
 
-  const handleTouchMove = (e: any) => {
-    setTouchEnd(e.targetTouches[0].clientX);
-  };
+  // const handleTouchMove = (e: any) => {
+  //   setTouchEnd(e.targetTouches[0].clientX);
+  // };
 
-  const handleTouchEnd = () => {
-    if (touchStart - touchEnd > 50) {
-      // FIXME: Reduced threshold for better mobile experience
-      nextSlide();
-    }
+  // const handleTouchEnd = () => {
+  //   if (touchStart - touchEnd > 50) {
+  //     // FIXME: Reduced threshold for better mobile experience
+  //     nextSlide();
+  //   }
 
-    if (touchStart - touchEnd < -50) {
-      //FIXME: Reduced threshold for better mobile experience
-      prevSlide();
-    }
-  };
+  //   if (touchStart - touchEnd < -50) {
+  //     //FIXME: Reduced threshold for better mobile experience
+  //     prevSlide();
+  //   }
+  // };
 
   //FIXME: Mouse swipe handlers
-  const [mouseDown, setMouseDown] = useState(false);
-  const [startX, setStartX] = useState(0);
-  const [endX, setEndX] = useState(0);
+  // const [mouseDown, setMouseDown] = useState(false);
+  // const [startX, setStartX] = useState(0);
+  // const [endX, setEndX] = useState(0);
 
-  const handleMouseDown = (e: React.MouseEvent) => {
-    setMouseDown(true);
-    setStartX(e.pageX);
-  };
+  // const handleMouseDown = (e: React.MouseEvent) => {
+  //   setMouseDown(true);
+  //   setStartX(e.pageX);
+  // };
 
-  const handleMouseMove = (e: React.MouseEvent) => {
-    if (mouseDown) {
-      setEndX(e.pageX);
-    }
-  };
+  // const handleMouseMove = (e: React.MouseEvent) => {
+  //   if (mouseDown) {
+  //     setEndX(e.pageX);
+  //   }
+  // };
 
-  const handleMouseUp = () => {
-    if (mouseDown) {
-      if (startX - endX > 50) {
-        //FIXME: Reduced threshold for better responsiveness
-        nextSlide();
-      }
-      if (startX - endX < -50) {
-        //FIXME: Reduced threshold for better responsiveness
-        prevSlide();
-      }
-      setMouseDown(false);
-    }
-  };
+  // const handleMouseUp = () => {
+  //   if (mouseDown) {
+  //     if (startX - endX > 50) {
+  //       //FIXME: Reduced threshold for better responsiveness
+  //       nextSlide();
+  //     }
+  //     if (startX - endX < -50) {
+  //       //FIXME: Reduced threshold for better responsiveness
+  //       prevSlide();
+  //     }
+  //     setMouseDown(false);
+  //   }
+  // };
 
-  const handleMouseLeave = () => {
-    setMouseDown(false);
-  };
+  // // const handleMouseLeave = () => {
+  // //   if (mouseDown) {
+  // //     setMouseDown(false);
+  // //   }
+  // // };
 
   const goToSlide = (index: any) => {
     if (isTransitioning) return;
@@ -95,6 +98,12 @@ const Hero = () => {
     return () => clearInterval(interval);
   }, [activeIndex]);
 
+  function toggleIsLiked(index: number) {
+    const updatedLikes = [...isLiked];
+    updatedLikes[index] = !updatedLikes[index];
+    setIsLiked(updatedLikes);
+  }
+
   return (
     <div
       className="mt-4 pb-6 sm:mt-6 md:mt-[22px] relative bg-black overflow-hidden rounded-xl w-full max-w-[1320px] mx-auto"
@@ -103,13 +112,13 @@ const Hero = () => {
       <div
         className="relative w-full h-full"
         ref={carouselRef}
-        onTouchStart={handleTouchStart}
-        onTouchMove={handleTouchMove}
-        onTouchEnd={handleTouchEnd}
-        onMouseDown={handleMouseDown}
-        onMouseMove={handleMouseMove}
-        onMouseUp={handleMouseUp}
-        onMouseLeave={handleMouseLeave}
+        // onTouchStart={handleTouchStart}
+        // onTouchMove={handleTouchMove}
+        // onTouchEnd={handleTouchEnd}
+        // onMouseDown={handleMouseDown}
+        // onMouseMove={handleMouseMove}
+        // onMouseUp={handleMouseUp}
+        // onMouseLeave={handleMouseLeave}
       >
         {/* Slides */}
         <div
@@ -162,7 +171,16 @@ const Hero = () => {
                     </div>
                   </div>
                   <div>
-                    <Heart size={16} className="text-white" />
+                    <button
+                      onClick={() => toggleIsLiked(index)}
+                      className="text-gray-400"
+                    >
+                      {isLiked[index] ? (
+                        <BsHeartFill className="text-ash" size={20} />
+                      ) : (
+                        <BsHeart size={20} />
+                      )}
+                    </button>
                   </div>
                 </div>
 
