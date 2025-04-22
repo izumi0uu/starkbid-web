@@ -68,7 +68,7 @@ const Hero = () => {
   // //   }
   // // };
 
-  const goToSlide = (index: any) => {
+  const goToSlide = (index: React.SetStateAction<number>) => {
     if (isTransitioning) return;
 
     setIsTransitioning(true);
