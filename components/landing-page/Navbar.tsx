@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
 import { MdSearch } from "react-icons/md";
@@ -11,8 +11,6 @@ import { navItems } from "@/constants/navbar";
 const Navbar: React.FC = () => {
   const pathname = usePathname();
   const { isConnected } = useAccount();
-
-
 
   return (
     <nav className="bg-[#101213] text-white flex items-center justify-between px-4 py-2">
