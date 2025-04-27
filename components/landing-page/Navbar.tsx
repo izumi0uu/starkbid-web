@@ -13,9 +13,9 @@ const Navbar: React.FC = () => {
   const { isConnected } = useAccount();
 
   return (
-    <nav className="bg-[#101213] text-white flex items-center justify-between px-4 py-2">
+    <nav className="bg-[#101213] text-white flex items-center justify-between px-4 py-2 min-w-full">
       <div className="flex items-center gap-x-6">
-        <div className="flex items-center gap-x-2">
+        <div className="flex items-center gap-x-2 \">
           <Image
             src="/svgs/logo.svg"
             alt="StarkBid Logo"
@@ -32,16 +32,16 @@ const Navbar: React.FC = () => {
             <input
               type="text"
               placeholder="Search for NFTs, Collections or users"
-              className="w-[19rem] bg-[#1E1E1E] text-white px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+              className="hidden md:block md:w-[10rem] bg-[#1E1E1E] text-white px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
             />
             <MdSearch
               size={20}
-              className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-400"
+              className="hidden md:absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-400"
             />
           </div>
         </div>
 
-        <div className="w-fit flex items-center gap-x-4 ml-12">
+        <div className="w-fit hidden md:flex items-center gap-x-4 ml-12">
           {navItems.map((item) => {
             const isActive = pathname === item.path;
             const IconComponent = isActive ? item.activeIcon : item.icon;
@@ -65,7 +65,7 @@ const Navbar: React.FC = () => {
         </div>
       </div>
 
-      <div className="flex items-center space-x-8">
+      <div className="hidden md:flex items-center space-x-8">
         <div className="flex items-center gap-x-4">
           {isConnected && (
             <div className="w-fit h-fit relative">
