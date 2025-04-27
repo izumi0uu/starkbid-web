@@ -88,7 +88,7 @@ export default function Footer() {
                     {...register("email")}
                     placeholder="Enter your Email address"
                     aria-label="Email subscription"
-                    className="font-semibold text-xs md:text-sm w-[50rem] px-2.5 py-3 bg-[#1A1A1A] border-none text-white placeholder:text-white/70 focus:outline-none focus:ring-1 focus:ring-[#7C3AED] rounded-lg"
+                    className="font-semibold text-xs md:text-sm min-w-[20rem] px-2.5 py-3 bg-[#1A1A1A] border-none text-white placeholder:text-white/70 focus:outline-none focus:ring-1 focus:ring-[#7C3AED] rounded-lg"
                   />
                   {errors.email && (
                     <p className="text-red-500 text-sm mt-1" role="alert">
@@ -131,14 +131,14 @@ export default function Footer() {
             </motion.div>
 
             {/* Right div with red border */}
-            <div className="grid grid-cols-3 md:grid-cols-3 gap-x-3 md:gap-x-5 gap-y-10 xl:gap-x-40">
+            <div className="grid grid-cols-3 md:grid-cols-3 gap-x-3 md:gap-x-2 gap-y-10 xl:gap-x-40">
               {linkKeys.map((category) => (
                 <motion.div
                   key={category}
                   className="space-y-4 md:space-y-5"
                   variants={itemVariants}
                 >
-                  <h3 className="text-white/90 font-bold text-base md:text-xl">
+                  <h3 className="text-white/90 font-bold text-base md:text-base">
                     {category}
                   </h3>
                   <nav className="flex flex-col gap-y-2 text-sm md:text-base md:gap-y-4">

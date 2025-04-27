@@ -72,19 +72,17 @@ export default function CollectionFilters({ onFilterChange }: CollectionFiltersP
         <div className="bg-black text-white w-full pt-8">
             {/* Top navigation */}
             <div className="px-4 py-2">
-                <div className="flex items-center space-x-4">
-                    <button
-                        className={`py-2 text-sm font-medium ${activeTab === "trending" ? "bg-[#1C1D1F]" : "bg-none" } "text-white" : "text-gray-400"} px-4 rounded-md`}
-                        onClick={() => handleTabChange("trending")}
-                    >
-                        Trending
-                    </button>
-                    <button
-                        className={`py-2 text-sm font-medium ${activeTab === "top" ? "bg-[#1C1D1F]" : "bg-none" } "text-white" : "text-gray-400"} px-4 rounded-md`}
-                        onClick={() => handleTabChange("top")}
-                    >
-                        Top
-                    </button>
+                <div className="flex items-center space-x-2">
+                    {trendingOptions.map((option) => (
+                        <button
+                            key={option.value}
+                            className={`py-2 text-sm font-medium ${activeTab === option.value ? "bg-[#1C1D1F]" : "bg-none"
+                                } text-white px-4 rounded-md`}
+                            onClick={() => handleTabChange(option.value)}
+                        >
+                            {option.label}
+                        </button>
+                    ))}
                 </div>
             </div>
 
@@ -145,7 +143,7 @@ export default function CollectionFilters({ onFilterChange }: CollectionFiltersP
                     <div className="flex flex-col md:flex-row items-start md:items-center justify-between">
                         {/* Collection title */}
                         <div className="flex items-center mb-4 md:mb-0">
-                            <h1 className="text-2xl font-bold">Trending Collections</h1>
+                            {trendingOptions.find(option => option.value === activeTab)?.label}
                             <span className="ml-2 text-sm text-gray-400">5,700 Creators</span>
                         </div>
 

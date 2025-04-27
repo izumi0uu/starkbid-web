@@ -49,7 +49,7 @@ export function ConnectButton() {
         <div className="relative">
           <button 
             onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-            className="flex items-center gap-2 bg-[#1C1D1F] text-white px-4 py-2 rounded-md hover:bg-[#2a2b2e] transition-colors"
+            className="flex items-center gap-2 bg-[#1C1D1F] text-white rounded-md hover:bg-[#2a2b2e] transition-colors"
           >
             <Image src="/1.png" alt="profile" width={20} height={23} className="rounded-full" />
             {truncateAddress(address)}
@@ -75,7 +75,7 @@ export function ConnectButton() {
           onClick={() => setIsModalOpen(true)}
           className="bg-white text-black px-4 py-2 rounded-md hover:bg-[#e5e6e7] transition-colors"
         >
-          Connect Wallet
+          Connect
         </button>
       )}
       

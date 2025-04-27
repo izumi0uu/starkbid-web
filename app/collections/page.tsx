@@ -5,13 +5,15 @@ import Newsletter from "@/components/collections/newsletter";
 
 export default function Home() {
   return (
-    <div className="w-full">
+    <div>
       <Navbar />
-      <CollectionsParent />
-      <div className="bg-black pb-8">
-        <Newsletter />
+      <div className="w-full text-white overflow-hidden">
+        <CollectionsParent />
+        <div className="bg-black pb-8">
+          <Newsletter />
+        </div>
+        <Footer />
       </div>
-      <Footer />
     </div>
   );
 }
