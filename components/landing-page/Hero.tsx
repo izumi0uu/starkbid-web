@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useCallback } from "react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { nftItems } from "@/constants/data";
 import { BsHeart, BsHeartFill } from "react-icons/bs";
@@ -68,7 +68,7 @@ const Hero = () => {
   // //   }
   // // };
 
-  const goToSlide = (index: React.SetStateAction<number>) => {
+  const goToSlide = useCallback((index: React.SetStateAction<number>) => {
     if (isTransitioning) return;
 
     setIsTransitioning(true);
@@ -77,13 +77,13 @@ const Hero = () => {
     setTimeout(() => {
       setIsTransitioning(false);
     }, 500);
-  };
-
-  const nextSlide = () => {
+  }, []
+  )
+  const nextSlide = useCallback(() => {
     const newIndex = (activeIndex + 1) % nftItems.length;
     goToSlide(newIndex);
-  };
-
+  }, [activeIndex, goToSlide]
+  )
   const prevSlide = () => {
     const newIndex = (activeIndex - 1 + nftItems.length) % nftItems.length;
     goToSlide(newIndex);
@@ -96,7 +96,7 @@ const Hero = () => {
     }, 5000);
 
     return () => clearInterval(interval);
-  }, [activeIndex]);
+  }, [activeIndex, nextSlide]);
 
   function toggleIsLiked(index: number) {
     const updatedLikes = [...isLiked];
@@ -112,13 +112,13 @@ const Hero = () => {
       <div
         className="relative w-full h-full"
         ref={carouselRef}
-        // onTouchStart={handleTouchStart}
-        // onTouchMove={handleTouchMove}
-        // onTouchEnd={handleTouchEnd}
-        // onMouseDown={handleMouseDown}
-        // onMouseMove={handleMouseMove}
-        // onMouseUp={handleMouseUp}
-        // onMouseLeave={handleMouseLeave}
+      // onTouchStart={handleTouchStart}
+      // onTouchMove={handleTouchMove}
+      // onTouchEnd={handleTouchEnd}
+      // onMouseDown={handleMouseDown}
+      // onMouseMove={handleMouseMove}
+      // onMouseUp={handleMouseUp}
+      // onMouseLeave={handleMouseLeave}
       >
         {/* Slides */}
         <div
@@ -242,11 +242,10 @@ const Hero = () => {
             <button
               key={index}
               onClick={() => goToSlide(index)}
-              className={`h-1 rounded-full transition-all duration-300 ${
-                index === activeIndex
-                  ? "w-20 sm:w-20 bg-white"
-                  : "w-20 bg-gray-600"
-              }`}
+              className={`h-1 rounded-full transition-all duration-300 ${index === activeIndex
+                ? "w-20 sm:w-20 bg-white"
+                : "w-20 bg-gray-600"
+                }`}
             />
           ))}
         </div>

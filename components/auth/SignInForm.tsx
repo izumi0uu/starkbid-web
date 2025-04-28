@@ -26,6 +26,7 @@ const SignInForm: FC<SignInFormProps> = ({ setShowAccountDetected }) => {
     });
     const router = useRouter();
     const onSubmit = (data: SignUpFormData) => {
+        console.log("Sign In data", data)
         setShowAccountDetected(true)
     };
     return (
@@ -91,7 +92,7 @@ const SignInForm: FC<SignInFormProps> = ({ setShowAccountDetected }) => {
                             Sign In
                         </button>
                         <button
-                        type="button"
+                            type="button"
                             onClick={() => {
                                 router.push("/");
                             }}
@@ -101,7 +102,7 @@ const SignInForm: FC<SignInFormProps> = ({ setShowAccountDetected }) => {
                         </button>
 
                         <p className="text-left text-ash text-sm font-normal mt-5 md:text-center">
-                            Don't have an account?{" "}
+                            Don&apos;t have an account?&apos;
                             <span onClick={() => {
                                 router.push("/auth/signup")
                             }} className="text-purple cursor-pointer">Sign Up</span>

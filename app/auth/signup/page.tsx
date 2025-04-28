@@ -23,6 +23,7 @@ const SignUp = () => {
     });
     const router = useRouter();
     const onSubmit = (data: SignUpFormData) => {
+        console.log("sign up data", data)
         router.push("/auth/connect-wallet");
     };
     return (

@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef } from "react";
 
 interface AnimatedModalProps {
     openModal: boolean;
@@ -28,11 +28,11 @@ const ProfileSetUpModal: React.FC<AnimatedModalProps> = ({
 }) => {
     const modalRef = useRef<HTMLDivElement>(null);
 
-    const handleClickOutside = (e: MouseEvent) => {
+    const handleClickOutside = useCallback((e: MouseEvent) => {
         if (modalRef.current && !modalRef.current.contains(e.target as Node)) {
             setOpenModal(false);
         }
-    };
+    }, [setOpenModal])
 
     const router = useRouter();
     useEffect(() => {
@@ -45,7 +45,7 @@ const ProfileSetUpModal: React.FC<AnimatedModalProps> = ({
         return () => {
             document.removeEventListener("mousedown", handleClickOutside);
         };
-    }, [openModal]);
+    }, [openModal, handleClickOutside]);
 
     return (
         <AnimatePresence>

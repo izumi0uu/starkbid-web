@@ -102,6 +102,7 @@ const Step1: FC<Step1Props> = ({ setTabName }) => {
   });
 
   const onSubmit = async (data: Step1FormValues) => {
+    console.log("step 1 data", data)
     const selected = WalletOptions.find((w) => w.title === selectedWallet);
     if (selected) {
       await selected.action();
@@ -114,7 +115,7 @@ const Step1: FC<Step1Props> = ({ setTabName }) => {
     if (isSuccess && address && account) {
       setTabName("step-2");
     }
-  }, [isSuccess, address, account]);
+  }, [isSuccess, address, account,setTabName]);
 
   return (
     <motion.form
@@ -164,9 +165,8 @@ const Step1: FC<Step1Props> = ({ setTabName }) => {
             onClick={() => setSelectedWallet(title)}
           >
             <div
-              className={`"w-full border-2 border-deepGray rounded-md p-4 h-14 md:h-20  cursor-pointer flex items-center justify-center ${
-                selectedWallet === title ? "border-purple" : "border-none"
-              } `}
+              className={`"w-full border-2 border-deepGray rounded-md p-4 h-14 md:h-20  cursor-pointer flex items-center justify-center ${selectedWallet === title ? "border-purple" : "border-none"
+                } `}
             >
               <Image
                 src={icon}
@@ -186,11 +186,10 @@ const Step1: FC<Step1Props> = ({ setTabName }) => {
       <motion.div className="w-full" variants={fadeInUp}>
         <button
           type="submit"
-          className={`w-full text-white p-3 rounded-md ${
-            selectedWallet
+          className={`w-full text-white p-3 rounded-md ${selectedWallet
               ? "bg-purple cursor-pointer"
               : "bg-gray-400 cursor-not-allowed"
-          }`}
+            }`}
           disabled={!selectedWallet}
         >
           Connect Wallet
