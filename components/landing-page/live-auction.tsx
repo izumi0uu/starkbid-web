@@ -26,7 +26,7 @@ const LiveAuction = () => {
               <p className="text-gray-400 text-base">
                 Own rare and limited-edition digital masterpieces.
               </p>
-              <button className="w-fit mt-2 text-green-400 hover:underline">
+              <button className="w-fit mt-2 px-5 py-3 rounded-lg bg-[#1C1D1F] text-green-400 hover:underline">
                 See More →
               </button>
             </div>
@@ -107,7 +107,7 @@ const LiveAuction = () => {
                 </div>
 
                 {/* Timer */}
-                <div className="flex flex-wrap gap-4 p-3 rounded-lg w-fit">
+                <div className="flex flex-wrap gap-4 rounded-lg w-fit">
                   {[
                     { label: "days", value: "2" },
                     { label: "hrs", value: "20" },
