@@ -1,7 +1,6 @@
 "use client";
 import React, { useState, useMemo } from "react";
 import { nftData } from "./data";
-import Newsletter from "../collections/newsletter";
 import NFTCard from "./NFTCard";
 
 const TrendingNFTs = () => {
@@ -10,7 +9,7 @@ const TrendingNFTs = () => {
   const [filter, setFilter] = useState("Trending");
 
   const filteredNFTs = useMemo(() => {
-    let result = nftData.filter((nft) => {
+    const result = nftData.filter((nft) => {
       if (!searchQuery.trim()) return true;
 
       const query = searchQuery.toLowerCase();
