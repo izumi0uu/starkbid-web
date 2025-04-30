@@ -77,7 +77,7 @@ const Hero = () => {
     setTimeout(() => {
       setIsTransitioning(false);
     }, 500);
-  }, []
+  }, [isTransitioning]
   )
   const nextSlide = useCallback(() => {
     const newIndex = (activeIndex + 1) % nftItems.length;
