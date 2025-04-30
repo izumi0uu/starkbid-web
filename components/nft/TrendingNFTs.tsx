@@ -6,7 +6,8 @@ import NFTCard from "./NFTCard";
 const TrendingNFTs = () => {
   const [activeTab, setActiveTab] = useState("trending");
   const [searchQuery, setSearchQuery] = useState("");
-  const [filter, setFilter] = useState("Trending");
+  const [filter, setFilter] = useState("filter");
+  const [trending, setTrending] = useState("Trending");
 
   const filteredNFTs = useMemo(() => {
     const result = nftData.filter((nft) => {
@@ -20,7 +21,7 @@ const TrendingNFTs = () => {
       );
     });
 
-    switch (filter) {
+    switch (trending) {
       case "Newest":
         return [...result].sort((a, b) => b.minted - a.minted);
       case "Oldest":
@@ -44,8 +45,8 @@ const TrendingNFTs = () => {
 
   return (
     <div className="bg-black text-white p-6 max-w-[1419px] mx-auto">
-      <div className="flex flex-col sm:flex-row justify-between items-center mb-6 space-y-4 sm:space-y-0">
-        <div className="flex gap-3 sm:gap-4">
+      <div className="flex flex-col md:flex-col md:items-start md:justify-start sm:flex-row justify-between items-center mb-6 space-y-4 sm:space-y-0">
+        <div className="flex gap-3 sm:gap-4 md:mb-10">
           <button
             className={`px-3 py-1 sm:px-4 sm:py-2 text-base sm:text-lg font-semibold ${
               activeTab === "trending"
@@ -68,25 +69,39 @@ const TrendingNFTs = () => {
           </button>
         </div>
 
-        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 items-center w-full sm:w-auto">
+        <div className=" md:w-full flex flex-col sm:flex-row md:justify-between gap-3 sm:gap-4 items-center w-full sm:w-auto md:mt-6">
           <input
             type="text"
             placeholder="Search by NFTs"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="bg-[#1C1D1F] text-white placeholder-gray-500 text-sm px-3 py-1 sm:px-4 sm:py-2 rounded-md outline-none border border-[#292929] w-full sm:w-48"
+            className="bg-[#1C1D1F] md:w-[60%] text-white placeholder-gray-500 text-sm px-3 py-1 sm:px-4 sm:py-2 rounded-md outline-none border border-[#292929] w-full sm:w-48"
           />
-          <select
-            value={filter}
-            onChange={(e) => setFilter(e.target.value)}
-            className="bg-[#1C1D1F] text-white text-sm px-3 py-1 sm:px-4 sm:py-2 rounded-md outline-none border border-[#292929] w-full sm:w-auto"
-          >
-            <option value="Trending">Trending</option>
-            <option value="Newest">Newest</option>
-            <option value="Oldest">Oldest</option>
-          </select>
+
+          <div className="md:w-[20%] flex flex-row justify-between">
+            <select
+              value={filter}
+              onChange={(e) => setTrending(e.target.value)}
+              className="bg-[#1C1D1F] text-white text-sm px-3 py-1 sm:px-4 sm:py-2 rounded-md outline-none border border-[#292929] w-full sm:w-auto"
+            >
+              <option value="Trending">Trending</option>
+              <option value="Newest">Newest</option>
+              <option value="Oldest">Oldest</option>
+            </select>
+
+            <select
+              value={filter}
+              onChange={(e) => setFilter(e.target.value)}
+              className="bg-[#1C1D1F] text-white text-sm px-3 py-1 sm:px-4 sm:py-2 rounded-md outline-none border border-[#292929] w-full sm:w-auto"
+            >
+              <option value="Trending">Filter</option>
+              <option value="Newest">Date</option>
+              <option value="Oldest">years</option>
+            </select>
+          </div>
         </div>
       </div>
+
       <h2 className="text-2xl font-bold mb-4">
         {activeTab === "trending" ? "Trending NFTs" : "Top NFTs"}{" "}
         <span className="text-gray-400 text-base">

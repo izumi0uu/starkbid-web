@@ -37,10 +37,10 @@ const NFTCard: React.FC<NFTCardProps> = ({
           </div>
           <button
             onClick={() => setIsLiked(!isLiked)}
-            className="text-gray-400 hover:text-red-500 transition-colors"
+            className="text-red-400 hover:text-red-500 transition-colors"
           >
             {isLiked ? (
-              <BsHeartFill className="text-red-500" size={16} />
+              <BsHeartFill className="text-[#ED434C] bg-red-400" size={16} />
             ) : (
               <BsHeart size={16} />
             )}
