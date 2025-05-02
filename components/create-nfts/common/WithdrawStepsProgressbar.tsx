@@ -1,0 +1,81 @@
+"use client";
+
+import { usePathname } from "next/navigation";
+import { useEffect, useRef } from "react";
+import { motion } from "framer-motion";
+
+const ProgressBar = () => {
+  const pathname = usePathname();
+  const stepRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  const steps = [
+    { title: "Choose Blockchain", path: "/create-nfts/step-one", step: 1 },
+    { title: "Create", path: "/create-nfts/step-two", step: 2 },
+    { title: "Add To Collection", path: "/create-nfts/step-three", step: 3 },
+    { title: "Final Review", path: "/create-nfts/step-four", step: 4 },
+  ];
+
+  useEffect(() => {
+    const index = steps.findIndex((step) => pathname.endsWith(step.path));
+    if (index !== -1 && stepRefs.current[index]) {
+      stepRefs.current[index]?.scrollIntoView({
+        behavior: "smooth",
+        inline: "center",
+        block: "nearest",
+      });
+    }
+  }, [pathname]);
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: -10 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.4, ease: "easeOut" }}
+      className="w-full overflow-x-auto remove-scrollbar lg:container lg:px-20"
+    >
+      <div className="flex min-w-[640px] sm:min-w-full items-center mt-10 justify-between px-4 lg:px-0">
+        {steps.map(({ title, path, step }, index) => {
+          const isActive = pathname.endsWith(path);
+
+          return (
+            <motion.div
+              key={step}
+              ref={(el) => {
+                stepRefs.current[index] = el;
+              }}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.05, duration: 0.3 }}
+              className="w-1/4 px-1 flex-shrink-0"
+            >
+              <motion.div
+                className="w-full h-1 rounded-md"
+                animate={{
+                  backgroundColor: isActive ? "#A855F7" : "#1e293b",
+                  scale: isActive ? 1.01 : 1,
+                }}
+                transition={{ duration: 0.3 }}
+              />
+              <motion.p
+                className="text-xs lg:text-sm text-ash font-semibold mt-4"
+                animate={{ opacity: isActive ? 1 : 0.6 }}
+              >
+                Step {step}
+              </motion.p>
+              <motion.p
+                className={`text-sm lg:text-base mt-1 font-semibold`}
+                animate={{
+                  color: isActive ? "#ffffff" : "#94a3b8",
+                }}
+              >
+                {title}
+              </motion.p>
+            </motion.div>
+          );
+        })}
+      </div>
+    </motion.div>
+  );
+};
+
+export default ProgressBar;
