@@ -55,7 +55,6 @@ export default function StepTwo() {
     handleSubmit,
     watch,
     formState: { errors },
-    setValue,
   } = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
