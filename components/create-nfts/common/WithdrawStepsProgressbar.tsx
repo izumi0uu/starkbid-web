@@ -24,7 +24,7 @@ const ProgressBar = () => {
         block: "nearest",
       });
     }
-  }, [pathname]);
+  }, [pathname,steps]);
 
   return (
     <motion.div
@@ -34,8 +34,10 @@ const ProgressBar = () => {
       className="w-full overflow-x-auto remove-scrollbar lg:container lg:px-20"
     >
       <div className="flex min-w-[640px] sm:min-w-full items-center mt-10 justify-between px-4 lg:px-0">
-        {steps.map(({ title, path, step }, index) => {
-          const isActive = pathname.endsWith(path);
+        {steps.map(({ title, step }, index) => {
+          const activeIndex = steps.findIndex((step) => pathname.endsWith(step.path));
+          const isActive = index === activeIndex;
+          const isCompleted = index < activeIndex;
 
           return (
             <motion.div
@@ -51,21 +53,21 @@ const ProgressBar = () => {
               <motion.div
                 className="w-full h-1 rounded-md"
                 animate={{
-                  backgroundColor: isActive ? "#A855F7" : "#1e293b",
+                  backgroundColor: isActive || isCompleted ? "#A855F7" : "#1e293b",
                   scale: isActive ? 1.01 : 1,
                 }}
                 transition={{ duration: 0.3 }}
               />
               <motion.p
                 className="text-xs lg:text-sm text-ash font-semibold mt-4"
-                animate={{ opacity: isActive ? 1 : 0.6 }}
+                animate={{ opacity: isActive || isCompleted ? 1 : 0.6 }}
               >
                 Step {step}
               </motion.p>
               <motion.p
                 className={`text-sm lg:text-base mt-1 font-semibold`}
                 animate={{
-                  color: isActive ? "#ffffff" : "#94a3b8",
+                  color: isActive || isCompleted ? "#ffffff" : "#94a3b8",
                 }}
               >
                 {title}
@@ -73,6 +75,7 @@ const ProgressBar = () => {
             </motion.div>
           );
         })}
+
       </div>
     </motion.div>
   );
