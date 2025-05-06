@@ -3,7 +3,12 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import ConfettiImage from "@/public/svgs/confetti.svg";
 
-export default function TransactionCompletedModal({ isOpen, onClose }) {
+interface TransactionCompletedModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+export default function TransactionCompletedModal({ isOpen, onClose }: TransactionCompletedModalProps) {
   if (!isOpen) return null;
 
   return (

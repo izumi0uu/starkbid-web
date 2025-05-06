@@ -1,7 +1,13 @@
 "use client";
 import { motion } from "framer-motion";
 
-export default function SessionTimeoutModal({ isOpen, onRetry, onClose }) {
+interface SessionTimeoutModalProps {
+  isOpen: boolean;
+  onRetry: () => void;
+  onClose: () => void;
+}
+
+export default function SessionTimeoutModal({ isOpen, onRetry, onClose }: SessionTimeoutModalProps) {
   if (!isOpen) return null;
 
   return (

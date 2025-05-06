@@ -11,19 +11,23 @@ import CreateCollectionModal from "./create-collection-modal";
 import PaymentProcessingModal from "./payment-processing-modal";
 import TransactionFailedModal from "./transaction-failed";
 
+interface Collection {
+  value: string;
+  label: string;
+  avatar: string;
+  items: string;
+}
+
+// Removed unused CollectionData interface
+
 export default function AddToCollection() {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedCollection, setSelectedCollection] = useState<{
-    value: string;
-    label: string;
-    avatar: string;
-    items: string;
-  } | null>(null);
+  const [selectedCollection, setSelectedCollection] = useState<Collection | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isProcessingPayment, setIsProcessingPayment] = useState(false);
   const [isTransactionFailed, setIsTransactionFailed] = useState(false);
 
-  const collections = [
+  const collections: Collection[] = [
     { value: "lazy-boys", label: "Lazy Boys Don't Lie", avatar: LazyBoysAvatar, items: "5,000 items" },
     { value: "ice-fletcher", label: "Ice Fletcher", avatar: IceFletcherAvatar, items: "5,000 items" },
     { value: "utopia-dreams", label: "Utopia Dreams", avatar: UtopiaDreamsAvatar, items: "5,000 items" },
@@ -33,7 +37,7 @@ export default function AddToCollection() {
     setIsOpen(!isOpen);
   };
 
-  const handleOptionClick = (collection) => {
+  const handleOptionClick = (collection: Collection) => {
     setSelectedCollection(collection);
     setIsOpen(false);
   };
@@ -46,10 +50,18 @@ export default function AddToCollection() {
     setIsModalOpen(false);
   };
 
-  const handleCreateCollection = (collectionData) => {
-    // Handle the created collection data
-    console.log(collectionData);
-    // Add the new collection to the collections array
+  const handleCreateCollection = (collectionData: {
+    name: string;
+    number: string;
+    description: string;
+    url: string;
+    coverPhoto: File | null;
+  }) => {
+    if (!collectionData.coverPhoto) {
+      console.error("Cover photo is required.");
+      return;
+    }
+  
     collections.push({
       value: collectionData.url,
       label: collectionData.name,
@@ -83,8 +95,6 @@ export default function AddToCollection() {
     setIsProcessingPayment(true);
     setTimeout(() => {
       setIsProcessingPayment(false);
-      // Simulate a successful transaction after retrying
-      // You can replace this with your actual transaction logic
       console.log("Transaction successful after retry");
     }, 5000);
   };

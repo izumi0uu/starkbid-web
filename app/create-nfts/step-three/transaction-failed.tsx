@@ -1,7 +1,13 @@
 "use client";
 import { motion } from "framer-motion";
 
-export default function TransactionFailedModal({ isOpen, onRetry, onClose }) {
+interface TransactionFailedModalProps {
+  isOpen: boolean;
+  onRetry: () => void;
+  onClose: () => void;
+}
+
+export default function TransactionFailedModal({ isOpen, onRetry, onClose }: TransactionFailedModalProps) {
   if (!isOpen) return null;
 
   return (

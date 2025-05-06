@@ -25,11 +25,11 @@ export default function CreateCollectionModal({
   const [collectionNumber, setCollectionNumber] = useState("");
   const [collectionDescription, setCollectionDescription] = useState("");
   const [collectionURL, setCollectionURL] = useState("");
-  const [mediaFile, setMediaFile] = useState(null);
-  const [mediaPreview, setMediaPreview] = useState(null);
-  const [mediaType, setMediaType] = useState(null);
+  const [mediaFile, setMediaFile] = useState<File | null>(null);
+  const [mediaPreview, setMediaPreview] = useState<string | ArrayBuffer | null>(null);
+  const [mediaType, setMediaType] = useState<string | null>(null);
 
-  const handleMediaUpload = (file) => {
+  const handleMediaUpload = (file: File) => {
     setMediaFile(file);
     setMediaType(file.type);
 
@@ -62,7 +62,7 @@ export default function CreateCollectionModal({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center z-50 p-4 ">
+    <div className="fixed inset-0 flex items-center justify-center z-50 p-4">
       <div
         className="fixed inset-0 bg-black opacity-50"
         onClick={onClose}
@@ -100,7 +100,7 @@ export default function CreateCollectionModal({
         <div className="mb-4">
           <MediaUpload
             mediaFile={mediaFile}
-            mediaPreview={mediaPreview}
+            mediaPreview={typeof mediaPreview === "string" ? mediaPreview : null}
             mediaType={mediaType}
             onUpload={handleMediaUpload}
             onRemove={removeMedia}
