@@ -3,17 +3,18 @@
 import { usePathname } from "next/navigation";
 import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
+import { useMemo } from "react";
 
 const ProgressBar = () => {
   const pathname = usePathname();
   const stepRefs = useRef<(HTMLDivElement | null)[]>([]);
 
-  const steps = [
+  const steps = useMemo(() => [
     { title: "Choose Blockchain", path: "/create-nfts/step-one", step: 1 },
     { title: "Create", path: "/create-nfts/step-two", step: 2 },
     { title: "Add To Collection", path: "/create-nfts/step-three", step: 3 },
     { title: "Final Review", path: "/create-nfts/step-four", step: 4 },
-  ];
+  ], []);
 
   useEffect(() => {
     const index = steps.findIndex((step) => pathname.endsWith(step.path));

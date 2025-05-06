@@ -3,6 +3,8 @@
 import { useState, useRef, type DragEvent, type ChangeEvent } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Upload, ImageIcon, Music, Video } from "lucide-react";
+import Image from "next/image";
+import Uploads from "@/public/svgs/upload.svg";
 
 interface MediaUploadProps {
   mediaFile: File | null;
@@ -59,7 +61,10 @@ export default function MediaUpload({
     if (mediaType.startsWith("image/")) {
       return (
         <div className="relative w-full h-full flex items-center justify-center">
-          <img
+          <Image
+
+          width={300}
+          height={300}
             src={mediaPreview || "/placeholder.svg"}
             alt="NFT Preview"
             className="max-w-full max-h-full object-contain"
@@ -103,7 +108,7 @@ export default function MediaUpload({
     <div className="w-full">
       <div
         className={`border-2 border-dashed rounded-lg h-64 flex flex-col items-center justify-center p-4 transition-colors ${
-          isDragging ? "border-purple-500 bg-purple-500/10" : "border-gray-700"
+          isDragging ? "border-purple-500 bg-purple-500/10" : "border-[#292929]"
         } ${mediaPreview ? "border-opacity-0" : "border-opacity-100"}`}
         onDragOver={handleDragOver}
         onDragLeave={handleDragLeave}
@@ -120,7 +125,14 @@ export default function MediaUpload({
               exit={{ opacity: 0 }}
               className="flex flex-col items-center text-center"
             >
-              <Upload className="w-12 h-12 text-gray-400 mb-4" />
+              <Image
+              src={Uploads}
+              alt="Upload Icon"
+              width={50}
+              height={50}
+              draggable="false"
+              className="mb-2"
+              />
               <h3 className="text-lg font-medium mb-2">Drag and drop media</h3>
               <p className="text-gray-400 text-sm mb-4">Browse Files</p>
               <p className="text-gray-500 text-xs">
