@@ -29,7 +29,7 @@ export default function StepFourPage() {
     },
   };
 
-  const handleEdit = (step: number) => {
+  const handleEdit = (step: string) => {
     router.push(`/create-nfts/step-${step}`);
   };
 
@@ -54,9 +54,9 @@ export default function StepFourPage() {
       <h1 className="text-2xl font-semibold mb-2 mt-6">Final Review</h1>
       <p className="text-gray-400 mb-6">Please ensure every information is correct before proceeding</p>
 
-      <ChooseBlockchainSection data={formData} onEdit={() => handleEdit(1)} />
-      <CreateNFTSection data={formData} onEdit={() => handleEdit(2)} />
-      <AddToCollectionSection data={formData} onEdit={() => handleEdit(3)} />
+      <ChooseBlockchainSection data={formData} onEdit={() => handleEdit('one')} />
+      <CreateNFTSection data={formData} onEdit={() => handleEdit('two')} />
+      <AddToCollectionSection data={formData} onEdit={() => handleEdit('three')} />
 
       <button
         className="w-full mt-8 py-3 bg-[#8C62F2] text-white rounded-lg hover:bg-purple-700"
