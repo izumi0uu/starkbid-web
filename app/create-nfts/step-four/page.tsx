@@ -8,6 +8,7 @@ import ChooseBlockchainSection from '@/components/create-nfts/step-four/ChooseBl
 import CreateNFTSection from '@/components/create-nfts/step-four/CreateNFTSection';
 import AddToCollectionSection from '@/components/create-nfts/step-four/AddToCollectionSection';
 import SubmittingLoader from '@/components/create-nfts/step-four/SubmittingLoader';
+import { motion } from 'framer-motion';
 
 export default function StepFourPage() {
   const router = useRouter();
@@ -20,6 +21,7 @@ export default function StepFourPage() {
     nftName: 'Jack Hardy',
     royalties: '56%',
     previewImage: '/image.png',
+    description: 'Gravity Shakers is a collection of excellent and magnificent artworks from creative designers and artists around the world.',
     collection: {
       id: '1837329290',
       name: 'Gravity Shakers',
@@ -51,19 +53,19 @@ export default function StepFourPage() {
     <div className="px-6 py-8 mx-auto">
       <ProgressBar currentStep={4} totalSteps={0} />
       <BackButton className='mt-6'/>
-      <h1 className="text-2xl font-semibold mb-2 mt-6">Final Review</h1>
-      <p className="text-gray-400 mb-6">Please ensure every information is correct before proceeding</p>
+      <h1 className="text-[40px] font-semibold mb-3 mt-6">Final Review</h1>
+      <p className="text-[#8E9BAE] mb-6">Please ensure every information is correct before proceeding</p>
 
       <ChooseBlockchainSection data={formData} onEdit={() => handleEdit('one')} />
       <CreateNFTSection data={formData} onEdit={() => handleEdit('two')} />
       <AddToCollectionSection data={formData} onEdit={() => handleEdit('three')} />
 
-      <button
+      <motion.button
         className="w-full mt-8 py-3 bg-[#8C62F2] text-white rounded-lg hover:bg-purple-700"
         onClick={handleConfirm}
       >
         Next
-      </button>
+      </motion.button>
 
       {showModal && (
         <ConfirmationModal
