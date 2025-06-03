@@ -179,7 +179,6 @@ const OffersPage = () => {
                             </p>
                         </div>
                     )}
-            \
                     {allOffers.length > 4 && (
                          <div className="mt-6 text-center">
                             <button 

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
-import userAvatar from '../../../public/creator_nft.png'; // Placeholder user avatar
+// import userAvatar from '../../../public/creator_nft.png'; // Placeholder user avatar
 import nftImage from '../../../public/frank_ocean.png'; // Placeholder NFT image
 import ethIcon from '../../../public/profileeth.png'; // Placeholder ETH icon
 
@@ -25,7 +25,7 @@ const PlaceBidModal: React.FC<PlaceBidModalProps> = ({ isOpen, onClose }) => {
         address: '352By...fc76',
         isConnected: true,
         blockchain: 'Ethereum Blockchain',
-        avatar: userAvatar,
+        avatar: ethIcon,
     };
 
     const currentNft = {
@@ -70,19 +70,20 @@ const PlaceBidModal: React.FC<PlaceBidModalProps> = ({ isOpen, onClose }) => {
                 </div>
 
                 {/* User Info */}
-                <div className="bg-[#2A2B2F] rounded-lg p-4 mb-6 flex items-center gap-4">
-                    <Image src={currentUser.avatar} alt="User Avatar" width={50} height={50} className="rounded-full" />
+                <div className="bg-[#29292A] rounded-lg p-4 mb-6 flex items-center gap-4">
+                    <Image src={currentUser.avatar} alt="User Avatar" width={70} height={70} className="rounded-full" />
                     <div>
                         <div className="flex items-center gap-2">
-                             <p className="font-semibold">@{currentUser.username}</p>
-                             {currentUser.isConnected && (
-                                 <span className="text-green-500 text-xs font-medium">Connected</span>
-                             )}
+                            <p className="font-semibold">@{currentUser.username}</p>
                         </div>
                         <p className="text-gray-400 text-sm">{currentUser.address}</p>
                     </div>
-                    <div className="ml-auto text-right">
-                        <Image src={ethIcon} alt="Ethereum Icon" width={20} height={20} className="inline-block mr-1" />
+                    <div className="ml-auto text-right flex flex-col gap-3">
+                        <div>
+                            {currentUser.isConnected && (
+                                <span className="text-green-500 text-xs font-medium text-[#19B360] bg-[#2DCC7026] p-3 rounded-full">Connected</span>
+                            )}
+                        </div>
                         <span className="text-gray-400 text-sm">{currentUser.blockchain}</span>
                     </div>
                 </div>
@@ -143,8 +144,8 @@ const PlaceBidModal: React.FC<PlaceBidModalProps> = ({ isOpen, onClose }) => {
                     <div className="border-t border-[#292929] pt-3 flex justify-between text-white font-semibold text-base">
                         <span>Total Offer Value</span>
                         <div className="text-right">
-                             <p>{bidDetails.totalOfferValueEth}</p>
-                             <p className="text-gray-400 text-sm font-normal">{bidDetails.totalOfferValueUsd}</p>
+                            <p>{bidDetails.totalOfferValueEth}</p>
+                            <p className="text-gray-400 text-sm font-normal">{bidDetails.totalOfferValueUsd}</p>
                         </div>
                     </div>
                 </div>
@@ -153,7 +154,7 @@ const PlaceBidModal: React.FC<PlaceBidModalProps> = ({ isOpen, onClose }) => {
                 <div className="flex flex-col gap-4">
                     {/* Duration Dropdown */}
                     <div className="relative">
-                        <button 
+                        <button
                             className="flex justify-between items-center bg-[#2A2B2F] rounded-lg p-3 w-full text-white font-medium"
                             onClick={() => setIsDropdownOpen(!isDropdownOpen)}
                         >

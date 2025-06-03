@@ -206,7 +206,6 @@ const NftBid = () => {
 
                     <button 
                         className="bg-[#8C62F2] w-full py-3 md:py-4 rounded-xl my-2"
-                        onClick={() => setShowPlaceBidModal(true)} // Open modal on click
                     >
                         Buy Now
                     </button>
@@ -222,34 +221,31 @@ const NftBid = () => {
             {/* Tab Content Section */}
             <div className="w-full lg:w-[50%] px-4 sm:px-6 md:px-[10%] lg:px-10">
                 {/* Tab Navigation */}
-                <div className="flex border-b border-[#292929] mt-6 md:mt-8 overflow-x-auto">
+                <div className="flex bg-[#1C1D1F] mt-6 md:mt-8 overflow-x-auto rounded-lg p-3">
                     <button
                         onClick={() => setActiveTab('description')}
-                        className={`px-3 md:px-4 py-2 md:py-3 text-sm font-medium transition-colors whitespace-nowrap ${
-                            activeTab === 'description'
-                                ? 'text-white border-b-2 border-[#8C62F2]'
-                                : 'text-gray-400 hover:text-white'
-                        }`}
+                        className={`px-4 py-3 text-sm font-medium transition-colors whitespace-nowrap ${activeTab === 'description'
+                            ? 'bg-[#29292A] text-white rounded-lg'
+                            : 'text-gray-400 hover:text-white'
+                            }`}
                     >
                         Description
                     </button>
                     <button
                         onClick={() => setActiveTab('offers')}
-                        className={`px-3 md:px-4 py-2 md:py-3 text-sm font-medium transition-colors whitespace-nowrap ${
-                            activeTab === 'offers'
-                                ? 'text-white border-b-2 border-[#8C62F2]'
-                                : 'text-gray-400 hover:text-white'
-                        }`}
+                        className={`px-4 py-3 text-sm font-medium transition-colors whitespace-nowrap ${activeTab === 'offers'
+                            ? 'bg-[#29292A] text-white rounded-lg'
+                            : 'text-gray-400 hover:text-white'
+                            }`}
                     >
                         Offers/Bids
                     </button>
                     <button
                         onClick={() => setActiveTab('activity')}
-                        className={`px-3 md:px-4 py-2 md:py-3 text-sm font-medium transition-colors whitespace-nowrap ${
-                            activeTab === 'activity'
-                                ? 'text-white border-b-2 border-[#8C62F2]'
-                                : 'text-gray-400 hover:text-white'
-                        }`}
+                        className={`px-4 py-3 text-sm font-medium transition-colors whitespace-nowrap ${activeTab === 'activity'
+                            ? 'bg-[#29292A] text-white rounded-lg'
+                            : 'text-gray-400 hover:text-white'
+                            }`}
                     >
                         Activity
                     </button>
