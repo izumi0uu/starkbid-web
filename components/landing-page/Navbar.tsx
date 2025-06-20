@@ -13,9 +13,9 @@ const Navbar: React.FC = () => {
   const { isConnected } = useAccount();
 
   return (
-    <nav className="text-white flex items-center justify-between px-4 py-2 min-w-full border-b border-b-darkerGray">
+    <nav className="max-w-[1440px] w-full mx-auto text-white flex items-center justify-between px-4 py-2 border-b border-b-darkerGray">
       <div className="flex items-center gap-x-6">
-        <div className="flex items-center gap-x-2 \">
+        <div className="flex items-center gap-x-2">
           <Image
             src="/icons/starkbid-logo.png"
             alt="StarkBid Logo"

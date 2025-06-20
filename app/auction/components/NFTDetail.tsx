@@ -19,11 +19,13 @@ import ActivityPage from "./pages/activity";
 
 // Import the modal component
 import PlaceBidModal from "./PlaceBidModal";
+import { ArrowRight, Globe, Heart, Share2 } from "lucide-react";
 
 const NftBid = () => {
     const [activeTab, setActiveTab] = useState('description');
     const [showShareModal, setShowShareModal] = useState(false);
     const [showPlaceBidModal, setShowPlaceBidModal] = useState(false); // State for Place Bid modal
+    const [isLiked, setIsLiked] = useState(false);
 
     const renderPage = () => {
         switch (activeTab) {
@@ -123,105 +125,124 @@ const NftBid = () => {
             {/* share button modal ends */}
 
             {/* Place Bid Modal */}
-            <PlaceBidModal 
-                isOpen={showPlaceBidModal} 
-                onClose={() => setShowPlaceBidModal(false)} 
+            <PlaceBidModal
+                isOpen={showPlaceBidModal}
+                onClose={() => setShowPlaceBidModal(false)}
             />
 
-            <div className="px-4 sm:px-6 md:px-[10%] gap-4 md:gap-20 pt-6 md:pt-10 flex flex-col lg:flex-row items-start">
-                <div className="w-full lg:basis-[50%] h-[300px] sm:h-[400px] md:h-[500px] lg:h-[638px]">
-                    <Image
-                        src={frank_nft}
-                        alt="frant_ocean_nft"
-                        width={300}
-                        height={600}
-                        className="w-full h-full object-contain"
-                    />
-                </div>
-
-                <div className="w-full lg:basis-[50%] mt-6 lg:mt-0">
-                <div className="flex justify-between basis-[50%]">
-                    <div className="flex items-center gap-2">
-                        <Image src={jacknft} alt="nftplaceholder" width={40} height={40} />
-                        <p>Jacksonito</p>
-                        <Image src={verifiedicon} alt="nftplaceholder" width={20} height={20} />
+            <div className="mt-4">
+                <div className="flex flex-col lg:flex-row gap-8">
+                    {/* Left side - NFT Image */}
+                    <div className="flex-1 max-w-2xl">
+                        <Image
+                            src={frank_nft}
+                            alt="frank_ocean_nft"
+                            width={600}
+                            height={600}
+                            className="w-full h-auto object-contain rounded-lg"
+                        />
                     </div>
 
-                    <div className="flex items-center gap-3">
-                        <Image src={likeicon} alt="likeicon" width={30} height={30} />
-                        <p>56</p>
-                    </div>
-                </div>
+                    {/* Right side - NFT Details */}
+                    <div className="flex-1 max-w-lg space-y-2">
+                        {/* Header */}
+                        <div className="flex items-center justify-between">
+                            <div className="flex items-center gap-3">
+                                <Image src={jacknft} alt="nftplaceholder" width={40} height={40} />
+                                <span className="text-gray-300 text-sm">Jacksonito</span>
+                                <Image src={verifiedicon} alt="nftplaceholder" width={20} height={20} />
+                            </div>
 
-                    <p className="text-white text-2xl md:text-3xl font-bold tracking-wide py-4 md:py-6">OceanFrank#3001</p>
+                            <div className="flex items-center gap-2">
+                                <button
+                                    onClick={() => setIsLiked(!isLiked)}
+                                    className="flex items-center gap-1 text-gray-400 hover:text-white transition-colors"
+                                >
+                                    <Heart className={`w-5 h-5 ${isLiked ? 'fill-red-500 text-red-500' : ''}`} />
+                                    <span className="text-sm">56</span>
+                                </button>
+                            </div>
+                        </div>
 
-                    <div className="flex flex-col sm:flex-row justify-between bg-[#1C1D1F] rounded-lg p-4 gap-4">
-                    <div className="flex flex-col gap-3">
-                        <p className="text-gray-400 text-sm">Current Bid Price</p>
-                            <p className="text-xl md:text-2xl font-semibold">0.023 ETH</p>
-                        <p className="text-gray-400 text-sm">$90</p>
-                    </div>
+                        {/* NFT Title */}
+                        <h1 className="text-2xl md:text-3xl font-bold tracking-wide py-4">OceanFrank#3001</h1>
 
-                    <div className="flex flex-col gap-3">
-                        <p className="text-gray-400 text-sm">Top Offer</p>
-                            <p className="text-xl md:text-2xl font-semibold">1.23 ETH</p>
-                        <p className="text-gray-400 text-sm">$290</p>
-                    </div>
-                </div>
+                        {/* Price Info */}
+                        <div className="flex justify-between items-start bg-deepGray rounded-lg p-4">
+                            <div>
+                                <p className="text-gray-400 text-sm mb-1">Current Bid Price</p>
+                                <p className="text-2xl font-bold">0.056 ETH</p>
+                                <p className="text-gray-400 text-sm">$90</p>
+                            </div>
+                            <div className="text-right">
+                                <p className="text-gray-400 text-sm mb-1">Top Offer</p>
+                                <p className="text-xl font-bold">0.075 ETH</p>
+                                <p className="text-gray-400 text-sm">$105</p>
+                            </div>
+                        </div>
 
-                    <p className="text-sm text-gray-400 flex justify-center py-4 md:py-6"><span>Sales deadline | </span> 1d 9h left</p>
+                        {/* Sales Deadline */}
+                        <div className="text-center py-1">
+                            <p className="text-gray-400 text-sm">Sales deadline | 1d 9h left</p>
+                        </div>
 
-                    <div className="flex flex-col sm:flex-row justify-between items-center border-y py-4 md:py-6 border-[#292929] gap-4">
-                        <div className="flex items-center gap-4 md:gap-6">
-                        <Image src={creator} alt="" width={60} height={60} />
-                        <div>
-                            <p className="text-lg tracking-wider">x0023y...yrte</p>
-                            <p className="text-gray-400 text-sm tracking-wider">Creator</p>
+                        {/* Creator and Owner */}
+                        <div className="flex flex-col sm:flex-row items-center justify-between py-4 border-y border-darkerGray">
+                            <div className="flex items-center gap-4">
+                                <Image src={creator} alt="" width={60} height={60} />
+                                <div>
+                                    <p className="text-lg tracking-wider">x0023y...yrte</p>
+                                    <p className="text-gray-400 text-sm tracking-wider">Creator</p>
+                                </div>
+                            </div>
+
+                            <div className="hidden sm:block">
+                                <ArrowRight className="w-6 h-6 text-gray-400" />
+                            </div>
+
+                            <div className="flex items-center gap-3">
+                                <Image src={owner} alt="" width={60} height={60} />
+                                <div>
+                                    <p className="text-lg tracking-wider">x0023y...yrte</p>
+                                    <p className="text-gray-400 text-sm tracking-wider">New Owner</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Share */}
+                        <div className="flex items-center gap-4 pb-2 border-b border-darkerGray">
+                            <span className="text-gray-400 text-sm">Share</span>
+                            <div className="flex gap-2">
+                                <button className="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center hover:bg-gray-700 transition-colors"
+                                    onClick={() => setShowShareModal(true)}>
+                                    <Share2 className="w-4 h-4" />
+                                </button>
+                                <button className="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center hover:bg-gray-700 transition-colors">
+                                    <Globe className="w-4 h-4" />
+                                </button>
+                            </div>
+                        </div>
+
+                        {/* Action Buttons */}
+                        <div className="space-y-3">
+                            <button className="w-full bg-purple text-white font-semibold py-4 rounded-xl transition-colors">
+                            Buy Now
+                            </button>
+                            <button
+                                className="w-full bg-deepGray text-white font-semibold py-4 rounded-xl"
+                                onClick={() => setShowPlaceBidModal(true)}
+                            >
+                            Place a Bid
+                            </button>
                         </div>
                     </div>
-
-                        <div className="hidden sm:block">
-                        <Image src={right_arrow} alt="rightarrow" width={15} height={15} />
-                    </div>
-
-                        <div className="flex items-center gap-4 md:gap-6">
-                        <Image src={owner} alt="" width={60} height={60} />
-                        <div>
-                            <p className="text-lg tracking-wider">x0023y...yrte</p>
-                            <p className="text-gray-400 text-sm tracking-wider">New Owner</p>
-                        </div>
-                    </div>
-                </div>
-
-                    <div className="flex gap-4 md:gap-8 py-4 md:py-6 border-b border-[#292929]">
-                        <div 
-                            className="flex items-center gap-2 cursor-pointer"
-                            onClick={() => setShowShareModal(true)}
-                        >
-                        <p>Share</p>
-                        <Image src={share} alt="share" width={25} height={25} />
-                    </div>
-                    <Image src={web} alt="web" width={25} height={25} />
-                </div>
-
-                    <button 
-                        className="bg-[#8C62F2] w-full py-3 md:py-4 rounded-xl my-2"
-                    >
-                        Buy Now
-                    </button>
-                    <button 
-                        className="bg-[#1C1D1F] w-full py-3 md:py-4 rounded-xl my-2"
-                        onClick={() => setShowPlaceBidModal(true)} // Open modal on click
-                    >
-                        Place a Bid
-                    </button>
                 </div>
             </div>
 
             {/* Tab Content Section */}
-            <div className="w-full lg:w-[50%] px-4 sm:px-6 md:px-[10%] lg:px-10">
+            <div className="w-full">
                 {/* Tab Navigation */}
-                <div className="flex bg-[#1C1D1F] mt-6 md:mt-8 overflow-x-auto rounded-lg p-3">
+                <div className="w-1/2 flex bg-[#1C1D1F] overflow-x-auto rounded-lg p-3">
                     <button
                         onClick={() => setActiveTab('description')}
                         className={`px-4 py-3 text-sm font-medium transition-colors whitespace-nowrap ${activeTab === 'description'

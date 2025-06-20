@@ -100,7 +100,7 @@ const OffersPage = () => {
     const offersToShow = showAllOffers ? allOffers : allOffers.slice(0, 4);
 
     return (
-        <div className="bg-[#1C1D1F] rounded-lg p-6">
+        <div className="bg-[#1C1D1F] rounded-lg p-6 lg:w-1/2">
             <div className="flex justify-between items-center mb-6 cursor-pointer" onClick={() => setIsOffersOpen(!isOffersOpen)}>
                  <h3 className="text-white text-lg font-semibold">Offers/Bids</h3>
                  <svg
@@ -112,7 +112,7 @@ const OffersPage = () => {
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                     </svg>
             </div>
-            
+
             {isOffersOpen && (
                  <>
                     {allOffers.length > 0 ? (
@@ -121,10 +121,10 @@ const OffersPage = () => {
                                 <div key={offer.id} className="flex items-center justify-between p-4 bg-[#2A2B2F] rounded-lg hover:bg-[#323437] transition-colors">
                                     <div className="flex items-center gap-4">
                                         <div className="w-10 h-10 bg-[#3A3B3F] rounded-full flex items-center justify-center">
-                                            <Image 
-                                                src={offer.avatar} 
-                                                alt={offer.user} 
-                                                width={40} 
+                                            <Image
+                                                src={offer.avatar}
+                                                alt={offer.user}
+                                                width={40}
                                                 height={40}
                                                 className="rounded-full"
                                             />
@@ -139,7 +139,7 @@ const OffersPage = () => {
                                             <p className="text-gray-400 text-sm">{offer.time}</p>
                                         </div>
                                     </div>
-                                    
+
                                     <div className="text-right">
                                         <p className="text-white font-semibold">{offer.amount}</p>
                                         <p className="text-gray-400 text-sm">{offer.usdAmount}</p>
@@ -181,7 +181,7 @@ const OffersPage = () => {
                     )}
                     {allOffers.length > 4 && (
                          <div className="mt-6 text-center">
-                            <button 
+                            <button
                                 onClick={() => setShowAllOffers(!showAllOffers)}
                                 className="text-[#8C62F2] hover:text-[#7A54E8] font-medium text-sm transition-colors"
                             >

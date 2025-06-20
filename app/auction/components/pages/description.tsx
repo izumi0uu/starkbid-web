@@ -64,7 +64,7 @@ const DescriptionPage = () => {
     ];
 
     return (
-        <div className="p-6">
+        <div className="">
             <div className="mb-6">
                 <h3 className="text-white text-lg font-semibold mb-4">About This Asset</h3>
                 <p className="text-lg leading-loose w-[75%] tracking-wider text-gray-400">
@@ -96,7 +96,7 @@ const DescriptionPage = () => {
                 </div>
             </div>
 
-            <div className="bg-[#1C1D1F] rounded-lg p-6">
+            <div className="bg-[#1C1D1F] rounded-lg p-6 lg:w-1/2">
                 <div
                     className="flex justify-between items-center cursor-pointer"
                     onClick={() => setIsBidsOffersOpen(!isBidsOffersOpen)}
@@ -119,10 +119,10 @@ const DescriptionPage = () => {
                             <div key={offer.id} className="flex items-center justify-between p-4 bg-[#2A2B2F] rounded-lg hover:bg-[#323437] transition-colors">
                                 <div className="flex items-center gap-4">
                                     <div className="w-10 h-10 bg-[#3A3B3F] rounded-full flex items-center justify-center">
-                                        <Image 
-                                            src={offer.avatar} 
-                                            alt={offer.user} 
-                                            width={40} 
+                                        <Image
+                                            src={offer.avatar}
+                                            alt={offer.user}
+                                            width={40}
                                             height={40}
                                             className="rounded-full"
                                         />
@@ -137,7 +137,7 @@ const DescriptionPage = () => {
                                         <p className="text-gray-400 text-sm">{offer.time}</p>
                                     </div>
                                 </div>
-                                
+
                                 <div className="text-right">
                                     <p className="text-white font-semibold">{offer.amount}</p>
                                     <p className="text-gray-400 text-sm">{offer.usdAmount}</p>
@@ -182,7 +182,7 @@ const DescriptionPage = () => {
             </div>
 
 
-            <div className="bg-[#1C1D1F] p-6 rounded-lg mt-4">
+            <div className="bg-[#1C1D1F] p-6 rounded-lg mt-4 lg:w-1/2">
                 <div
                     className="flex justify-between items-center cursor-pointer"
                     onClick={() => setIsNftDetailsOpen(!isNftDetailsOpen)}

@@ -1,13 +1,11 @@
-import Notification from "./components/notification";
 import Navbar from "../../components/landing-page/Navbar";
-import NftBid from "./components/nftbid";
+import NftBid from "./components/NFTDetail";
 import Footer from "@/components/landing-page/Footer";
 import NFTCollectionSection from "./components/nft_collection_card_data";
 
 const AuctionPage = () => {
-    return ( 
-        <div>
-            <Notification/>
+    return (
+        <div className="max-w-[1320px] mx-auto">
             <Navbar/>
             <NftBid/>
             <NFTCollectionSection />
@@ -15,5 +13,5 @@ const AuctionPage = () => {
         </div>
      );
 }
- 
+
 export default AuctionPage;

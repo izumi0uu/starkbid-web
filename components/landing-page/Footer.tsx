@@ -51,7 +51,7 @@ export default function Footer() {
   return (
     <footer className="w-full h-fit text-white bg-black">
       <motion.div
-        className="w-full px-4 md:px-6 xl:px-16 py-8 lg:py-10  container mx-auto"
+        className="w-full px-4 md:px-0 py-8 lg:py-10 container mx-auto"
         initial="hidden"
         animate="visible"
         variants={containerVariants}

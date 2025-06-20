@@ -200,11 +200,11 @@ const ActivityPage = () => {
     return (
         <div className="space-y-8">
             {/* Activity Log */}
-            <div className="bg-[#1C1D1F] rounded-lg p-6">
+            <div className="bg-[#1C1D1F] rounded-lg p-6 lg:w-1/2">
                 <div className="flex justify-between items-center mb-4">
                     <h3 className="text-white text-lg font-semibold">Activity Log</h3>
-                    <button 
-                        onClick={() => setShowActivityLog(!showActivityLog)} 
+                    <button
+                        onClick={() => setShowActivityLog(!showActivityLog)}
                         className="text-gray-400 hover:text-white transition-transform duration-200"
                     >
                          <svg
@@ -232,10 +232,10 @@ const ActivityPage = () => {
                                 <div key={activity.id} className="grid grid-cols-3 items-center p-4 bg-[#2A2B2F] rounded-lg hover:bg-[#323437] transition-colors">
                                     {/* User Info */}
                                     <div className="flex items-center gap-3">
-                                        <Image 
-                                            src={activity.userAvatar} 
-                                            alt={activity.user} 
-                                            width={40} 
+                                        <Image
+                                            src={activity.userAvatar}
+                                            alt={activity.user}
+                                            width={40}
                                             height={40}
                                             className="rounded-full"
                                         />
@@ -244,7 +244,7 @@ const ActivityPage = () => {
                                             <p className="text-gray-400 text-sm">{activity.time}</p>
                                         </div>
                                     </div>
-                                    
+
                                     {/* Transaction Type */}
                                     <div className="text-center text-white font-medium">
                                         {activity.type}
@@ -260,10 +260,10 @@ const ActivityPage = () => {
                                 </div>
                             ))}
                         </div>
-                        
+
                         {allActivities.length > 4 && (
                              <div className="mt-6 text-center">
-                                <button 
+                                <button
                                     onClick={() => setShowAllActivity(!showAllActivity)}
                                     className="text-[#8C62F2] hover:text-[#7A54E8] font-medium text-sm transition-colors"
                                 >
@@ -276,11 +276,11 @@ const ActivityPage = () => {
             </div>
 
             {/* Price History Chart */}
-            <div className="bg-[#1C1D1F] rounded-lg p-6">
+            <div className="bg-[#1C1D1F] rounded-lg p-6 lg:w-1/2">
                  <div className="flex justify-between items-center mb-4">
                     <h3 className="text-white text-lg font-semibold">Price History</h3>
-                     <button 
-                        onClick={() => setShowChart(!showChart)} 
+                     <button
+                        onClick={() => setShowChart(!showChart)}
                         className="text-gray-400 hover:text-white transition-transform duration-200"
                      >
                         <svg

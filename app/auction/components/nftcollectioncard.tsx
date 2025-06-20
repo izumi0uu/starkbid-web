@@ -21,7 +21,7 @@ interface NFTCollectionCardProps {
 
 const NFTCollectionCard: React.FC<NFTCollectionCardProps> = ({ data }) => {
   return (
-    <div className="border border-[#292929] rounded-lg overflow-hidden hover:transform hover:scale-105 transition-all duration-300 p-3 my-2">
+    <div className="border border-darkerGray rounded-lg overflow-hidden hover:transform hover:scale-105 transition-all duration-300 p-3 my-2">
       <div className='flex justify-between items-center'>
         <div className='flex items-center gap-2 pb-3'>
           <div className="w-6 h-6 rounded-full overflow-hidden">

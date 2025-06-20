@@ -13,8 +13,8 @@ export default function Home() {
   return (
     <div className="min-h-screen">
       <main className=" flex flex-col gap-20 px-4 sm">
-         <Hero />
-         <TrendingNft/>
+        <Hero />
+        <TrendingNft/>
         <TrendingCollections/>
         <LiveAuction/>
         <YouMayAlsoLike/>

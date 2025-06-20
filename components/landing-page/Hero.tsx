@@ -237,7 +237,7 @@ const Hero = () => {
         </button>
 
         {/* Indicator dots */}
-        <div className="absolute sm:bottom-[-1rem] left-1/2 transform -translate-x-1/2 flex space-x-2 sm:space-x-3 z-[1000]">
+        <div className="absolute sm:-bottom-6 left-1/2 transform -translate-x-1/2 flex space-x-2 sm:space-x-3 z-[1000]">
           {nftItems.map((_, index) => (
             <button
               key={index}
