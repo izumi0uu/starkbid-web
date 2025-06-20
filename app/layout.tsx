@@ -32,7 +32,7 @@ export default function RootLayout({
       >
         <div className="flex flex-col">
           <AnnouncementBanner />
-          <main className="flex-grow bg-black">
+          <main className="flex-grow bg-black px-2 md:px-0">
             <StarknetProvider>
               <WalletProvider>{children}</WalletProvider>
             </StarknetProvider>
