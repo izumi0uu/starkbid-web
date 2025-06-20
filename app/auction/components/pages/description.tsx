@@ -65,23 +65,23 @@ const DescriptionPage = () => {
 
     return (
         <div className="">
-            <div className="mb-6">
+            <div className="mb-6 border-b border-gray-700 pb-6 lg:w-1/2">
                 <h3 className="text-white text-lg font-semibold mb-4">About This Asset</h3>
-                <p className="text-lg leading-loose w-[75%] tracking-wider text-gray-400">
+                <p className="text-lg leading-loose tracking-wider text-gray-400">
                     The pink-blackened horned knight is an embodiment of peace, unity and
                     strength. Striking look of intricate carvings that tell the stories of ancestors
                     long past. Every ancient story from.
                 </p>
             </div>
 
-            <div className="mb-6">
+            <div className="mb-6 lg:w-1/2">
                 <h3 className="text-white text-lg font-semibold mb-4">About This Collection</h3>
                 <div className="flex items-center gap-3 mb-4">
                     <p className="text-gray-400 text-sm">Collection by</p>
                     <Image src={creator} alt="creatornft" width={50} height={50} />
                     <p className="text-white font-medium">x0023y...yrte</p>
                 </div>
-                <p className="text-lg leading-loose w-[75%] tracking-wider text-gray-400">
+                <p className="text-lg leading-loose tracking-wider text-gray-400">
                     The pink-blackened horned knight is an embodiment of peace, unity and
                     strength. Striking look of intricate carvings that tell the stories of ancestors
                     long past. Every ancient story from. The pink-blackened horned knight is an
