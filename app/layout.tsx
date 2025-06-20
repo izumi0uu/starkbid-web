@@ -31,7 +31,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <div className="flex flex-col border border-red">
+        <div className="flex flex-col">
           <section className="bg-purple text-white p-4 flex items-center justify-between">
             <div id="questCalendar" className="inline-flex gap-4">
               <Image
@@ -40,11 +40,11 @@ export default function RootLayout({
                 width={24}
                 height={24}
               />
-              <span className="text-sm lg:text-base font-medium">Next NFT Quest ends 16/05/2025 10am ET</span>
+              <span className="text-xs lg:text-base font-medium">Next NFT Quest ends 16/05/2025 10am ET</span>
             </div>
             <a href="#" target="_blank" id="starkbidSocial" className="group inline-flex items-center gap-2 cursor-pointer">
               <BsDiscord size={24} />
-              <span className="ml-2">Open Discord</span>
+              <span className="text-xs lg:text-base ml-2">Open Discord</span>
               <Image
                 src={"/arrow-up.png"}
                 alt="Long Arrow-up-right Icon"
@@ -54,7 +54,7 @@ export default function RootLayout({
               />
             </a>
           </section>
-          <main className="flex-grow">
+          <main className="flex-grow bg-black">
             <StarknetProvider>
               <WalletProvider>{children}</WalletProvider>
             </StarknetProvider>

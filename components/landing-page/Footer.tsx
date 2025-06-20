@@ -61,17 +61,13 @@ export default function Footer() {
             className="flex flex-col gap-y-2.5 md:max-w-lg"
             variants={itemVariants}
           >
-            <div className="flex items-center gap-3">
-              <Image
-                src="/icons/starkbid-logo.svg"
-                width={32}
-                height={32}
-                alt="StarkBid logo"
-              />
-              <span className="text-2xl md:text-[28px] font-bold text-white">
-                StarkBid
-              </span>
-            </div>
+            <Image
+              src="/icons/starkbid-logo.png"
+              width={100}
+              height={100}
+              className="w-28 h-auto"
+              alt="StarkBid logo"
+            />
             <p className="text-white/90 font-semibold text-xs md:text-base mb-2.5">
               Powering the Future of Digital Auctions on Starknet.
             </p>

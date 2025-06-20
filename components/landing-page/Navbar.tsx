@@ -13,32 +13,30 @@ const Navbar: React.FC = () => {
   const { isConnected } = useAccount();
 
   return (
-    <nav className="text-white flex items-center justify-between px-4 py-2 min-w-full border-b">
+    <nav className="text-white flex items-center justify-between px-4 py-2 min-w-full border-b border-b-darkerGray">
       <div className="flex items-center gap-x-6">
         <div className="flex items-center gap-x-2 \">
           <Image
-            src="/svgs/logo.svg"
+            src="/icons/starkbid-logo.png"
             alt="StarkBid Logo"
-            width={30}
-            height={30}
-            quality={90}
+            width={100}
+            height={40}
           />
-          <p className="text-2xl font-bold">Starkbid</p>
         </div>
 
         {/* Search Bar */}
-        <div className="mx-4">
-          <div className="relative w-fit">
+        <div className="mx-4 max-w-80 flex items-center bg-[#1E1E1E] rounded-lg px-2 py-1">
+          <div className="w-72">
             <input
               type="text"
               placeholder="Search for NFTs, Collections or users"
-              className="hidden md:block md:w-[10rem] bg-[#1E1E1E] text-white px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
-            />
-            <MdSearch
-              size={20}
-              className="hidden md:absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-400"
+              className="hidden md:block w-full bg-[#1E1E1E] text-white px-1 rounded-lg focus:outline-none"
             />
           </div>
+          <MdSearch
+            size={30}
+            className="hidden md:block text-ash bg-darkGray p-1 rounded-lg cursor-pointer hover:bg-gray-700 transition-colors duration-300"
+          />
         </div>
 
         <div className="w-fit hidden md:flex items-center gap-x-4 ml-12">
@@ -50,7 +48,7 @@ const Navbar: React.FC = () => {
               <Link
                 href={item.path}
                 key={item.name}
-                className="p-2 rounded-lg transition-colors duration-300"
+                className="flex gap-1 items-center p-2 rounded-lg transition-colors duration-300"
               >
                 <Image
                   src={IconComponent}
@@ -59,6 +57,9 @@ const Navbar: React.FC = () => {
                   height={24}
                   quality={90}
                 />
+                <span className="text-xs md:text-sm font-medium ml-1 text-ash">
+                  {item.name}
+                </span>
               </Link>
             );
           })}

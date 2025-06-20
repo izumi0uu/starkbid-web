@@ -106,7 +106,7 @@ const Hero = () => {
 
   return (
     <div
-      className="mt-4 pb-6 sm:mt-6 md:mt-[22px] relative bg-black overflow-hidden rounded-xl w-full max-w-[1320px] mx-auto"
+      className="mt-4 pb-6 sm:mt-6 md:mt-[22px] relative overflow-hidden rounded-xl w-full max-w-[1320px] mx-auto"
       style={{ height: "clamp(400px, 50vw, 525px)" }}
     >
       <div

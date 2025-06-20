@@ -54,7 +54,7 @@ export function ConnectButton() {
             <Image src="/1.png" alt="profile" width={20} height={23} className="rounded-full" />
             {truncateAddress(address)}
             <span
-              className={`border-white border-b-2 border-r-2 inline-block w-2 h-2 transform 
+              className={`border-white border-b-2 border-r-2 inline-block w-2 h-2 transform
                 ${isDropdownOpen ? 'rotate-45 mb-1' : '-rotate-45'}`}
             />
           </button>
@@ -73,9 +73,9 @@ export function ConnectButton() {
       ) : (
         <button
           onClick={() => setIsModalOpen(true)}
-          className="bg-white text-black px-4 py-2 rounded-md hover:bg-[#e5e6e7] transition-colors"
+          className="bg-white text-black font-semibold px-4 py-2 rounded-md hover:bg-[#e5e6e7] transition-colors"
         >
-          Connect
+          Connect Wallet
         </button>
       )}
 
@@ -107,7 +107,7 @@ export function ConnectButton() {
                     key={connector.id}
                     onClick={() => handleConnect(connector)}
                     disabled={!isAvailable}
-                    className={`w-full flex items-center gap-4 p-3 rounded-lg  transition-all 
+                    className={`w-full flex items-center gap-4 p-3 rounded-lg  transition-all
                       ${isAvailable
                         ? 'hover:bg-[#191c1d] hover:shadow-md cursor-pointer'
                         : 'opacity-50 cursor-not-allowed'}`}
