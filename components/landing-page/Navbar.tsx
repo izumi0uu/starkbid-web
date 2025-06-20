@@ -13,7 +13,7 @@ const Navbar: React.FC = () => {
   const { isConnected } = useAccount();
 
   return (
-    <nav className="bg-[#101213] text-white flex items-center justify-between px-4 py-2 min-w-full">
+    <nav className="text-white flex items-center justify-between px-4 py-2 min-w-full border-b">
       <div className="flex items-center gap-x-6">
         <div className="flex items-center gap-x-2 \">
           <Image

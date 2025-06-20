@@ -3,6 +3,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import StarknetProvider from "@/providers/starknet-provider";
 import { WalletProvider } from "@/providers/wallet-connect-context";
+import { BsDiscord } from "react-icons/bs";
+import Image from "next/image";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,7 +31,29 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <div className="flex flex-col">
+        <div className="flex flex-col border border-red">
+          <section className="bg-purple text-white p-4 flex items-center justify-between">
+            <div id="questCalendar" className="inline-flex gap-4">
+              <Image
+                src={"/calendar.png"}
+                alt="Calendar Icon"
+                width={24}
+                height={24}
+              />
+              <span className="text-sm lg:text-base font-medium">Next NFT Quest ends 16/05/2025 10am ET</span>
+            </div>
+            <a href="#" target="_blank" id="starkbidSocial" className="group inline-flex items-center gap-2 cursor-pointer">
+              <BsDiscord size={24} />
+              <span className="ml-2">Open Discord</span>
+              <Image
+                src={"/arrow-up.png"}
+                alt="Long Arrow-up-right Icon"
+                width={24}
+                height={24}
+                className="transition-all duration-300 group-hover:rotate-45"
+              />
+            </a>
+          </section>
           <main className="flex-grow">
             <StarknetProvider>
               <WalletProvider>{children}</WalletProvider>
