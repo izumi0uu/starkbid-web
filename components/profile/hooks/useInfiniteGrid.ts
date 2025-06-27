@@ -1,41 +1,46 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
-
-interface UseInfiniteGridParams {
-  loading: boolean;
-  hasMore: boolean;
-  loadMore: () => void;
-  threshold?: number;
-}
+import { useEffect, useRef, useCallback } from 'react';
 
 export const useInfiniteGrid = ({
   loading,
   hasMore,
   loadMore,
   threshold = 200,
-}: UseInfiniteGridParams) => {
-  const [isFetching, setIsFetching] = useState(false);
+}: {
+  loading: boolean;
+  hasMore: boolean;
+  loadMore: () => void;
+  threshold?: number;
+}) => {
+  const observer = useRef<IntersectionObserver | null>(null);
+  const lastItemRef = useRef<HTMLDivElement>(null);
 
-  const handleScroll = useCallback(() => {
-    const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
-    const isNearBottom = scrollTop + clientHeight >= scrollHeight - threshold;
-
-    if (!isNearBottom || loading || !hasMore) return;
-    setIsFetching(true);
-  }, [loading, hasMore, threshold]);
+  const handleObserver = useCallback(
+    (entries: IntersectionObserverEntry[]) => {
+      const [entry] = entries;
+      if (entry.isIntersecting && !loading && hasMore) {
+        loadMore();
+      }
+    },
+    [loading, hasMore, loadMore]
+  );
 
   useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [handleScroll]);
+    if (observer.current) observer.current.disconnect();
 
-  useEffect(() => {
-    if (isFetching && !loading) {
-      loadMore();
-      setIsFetching(false);
-    }
-  }, [isFetching, loading, loadMore]);
+    observer.current = new IntersectionObserver(handleObserver, {
+      root: null,
+      rootMargin: `${threshold}px`,
+      threshold: 0.1,
+    });
 
-  return { isFetching };
+    if (lastItemRef.current) observer.current.observe(lastItemRef.current);
+
+    return () => {
+      if (observer.current) observer.current.disconnect();
+    };
+  }, [handleObserver, threshold]);
+
+  return { lastItemRef };
 };

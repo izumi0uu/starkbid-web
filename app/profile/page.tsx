@@ -1,13 +1,8 @@
 'use client';
 
 import React, { useState } from 'react';
-import ProfileHeader from '@/components/profile/ProfileHeader';
 import ProfileTabs from '@/components/profile/ProfileTabs';
-import OwnedItems from '@/components/profile/OwnedItems';
 import CreatedTab from '@/components/profile/CreatedTab/CreatedTab';
-import ActivityTab from '@/components/profile/Activity/ActivityTab';
-import CollectionsTab from '@/components/profile/Collections/CollectionsTab';
-import OffersBidsTab from '@/components/profile/OffersBidsTab';
 
 const ProfilePage: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'owned items' | 'created' | 'activity' | 'collections' | 'offers/bids'>('owned items');
@@ -38,7 +33,6 @@ const ProfilePage: React.FC = () => {
 
   return (
     <div className="bg-[#101213] min-h-screen">
-        <ProfileHeader profile={userProfile} />
       <div className="mx-auto px-8 py-8">
         
         <ProfileTabs activeTab={activeTab} onTabChange={setActiveTab} />
@@ -46,10 +40,7 @@ const ProfilePage: React.FC = () => {
         <div className="mt-8">
           {activeTab === 'owned items' && (
             <div className="text-gray-400">
-              <OwnedItems 
-                ownerAddress={userProfile.address} 
-                isOwner={isOwner} 
-              />
+              ...
             </div>
           )}
           {activeTab === 'created' && (
@@ -63,26 +54,17 @@ const ProfilePage: React.FC = () => {
           
           {activeTab === 'activity' && (
             <div className="">
-            <ActivityTab 
-              isOwner={isOwner} 
-              userAddress={userProfile.address} 
-            />
+            ...
           </div>
           )}
           {activeTab === 'collections' && (
             <div className="">
-              <CollectionsTab
-                isOwner={isOwner}
-                userAddress={userProfile.address}
-              />
+             ...
             </div>
           )}
           {activeTab === 'offers/bids' && (
             <div className=""> 
-              <OffersBidsTab
-                isOwner={isOwner}
-                userAddress={userProfile.address}
-              />
+              ...
             </div>
           )}
         </div>

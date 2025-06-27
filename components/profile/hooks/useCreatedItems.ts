@@ -9,7 +9,7 @@ const MOCK_NFTS: NFT[] = Array(20).fill(0).map((_, i) => ({
   tokenId: `${i}`,
   name: `NFT ${i + 1}`,
   description: `This is a description for NFT ${i + 1}`,
-  image: `/placeholder-nft.png`,
+  image: `/nft.png`,
   collection: {
     id: `collection-${i % 3}`,
     name: `Collection ${i % 3 + 1}`,
@@ -22,7 +22,7 @@ const MOCK_NFTS: NFT[] = Array(20).fill(0).map((_, i) => ({
   creator: {
     address: '0x9d863ed03...3ba8',
     username: 'Cattie Negtar',
-    avatar: '/profileimage.png',
+    avatar: '/nft3.png',
   },
   stats: {
     viewCount: 100 + i * 20,

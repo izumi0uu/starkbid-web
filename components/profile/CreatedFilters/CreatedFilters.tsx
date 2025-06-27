@@ -15,6 +15,7 @@ interface CreatedFiltersProps {
 const CreatedFilters: React.FC<CreatedFiltersProps> = ({
   filters,
   onFiltersChange,
+  totalCount,
   isOwner,
 }) => {
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -22,48 +23,47 @@ const CreatedFilters: React.FC<CreatedFiltersProps> = ({
   };
 
   return (
-<div className="mb-6">
-  <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-    {/* Search Input - 60% width on medium+ screens */}
-    <div className="w-full md:w-[60%]">
-      <input
-        type="text"
-        placeholder="Search by NFTs"
-        className="w-full bg-[#1C1D1F] border border-[#2D2E32] rounded-lg px-4 py-2 text-white placeholder-[#8E9BAE] focus:outline-none focus:ring-2 focus:ring-purple-500"
-        value={filters.searchTerm}
-        onChange={handleSearchChange}
-      />
-    </div>
+    <div className="mb-8">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4">
+        <div className="w-full md:w-[60%]">
+          <input
+            type="text"
+            placeholder="Search by NFTs"
+            className="w-full bg-[#1C1D1F] border border-[#2D2E32] rounded-lg px-4 py-3 text-white placeholder-[#8E9BAE] focus:outline-none focus:ring-2 focus:ring-purple-500"
+            value={filters.searchTerm}
+            onChange={handleSearchChange}
+          />
+        </div>
 
-    {/* Right Controls: Price & Filter */}
-    <div className="flex gap-3 items-center justify-end w-full md:w-[40%]">
-      <PriceDropdown
-        value={filters.sortBy}
-        onChange={(sortBy) => {
-          if (
-            ["newest", "oldest", "price_low", "price_high", "most_viewed"].includes(sortBy)
-          ) {
-            onFiltersChange({
-              ...filters,
-              sortBy: sortBy as
-                | "newest"
-                | "oldest"
-                | "price_low"
-                | "price_high"
-                | "most_viewed",
-            });
-          }
-        }}
-      />
-      <FilterDropdown
-        filters={filters}
-        onChange={onFiltersChange}
-        isOwner={isOwner}
-      />
+        <div className="flex gap-3 items-center justify-end w-full md:w-[40%]">
+          <PriceDropdown
+            value={filters.sortBy}
+            onChange={(sortBy) => {
+              if (["newest", "oldest", "price_low", "price_high", "most_viewed"].includes(sortBy)) {
+                onFiltersChange({
+                  ...filters,
+                  sortBy: sortBy as "newest" | "oldest" | "price_low" | "price_high" | "most_viewed",
+                });
+              }
+            }}
+          />
+          <FilterDropdown
+            filters={filters}
+            onChange={onFiltersChange}
+            isOwner={isOwner}
+          />
+        </div>
+      </div>
+      
+      <div className="flex items-center justify-between">
+        <p className="text-sm text-[#8E9BAE]">
+          {totalCount} {totalCount === 1 ? 'item' : 'items'}
+        </p>
+        <div className="flex items-center space-x-2">
+          {/* Additional filter chips can go here */}
+        </div>
+      </div>
     </div>
-  </div>
-</div>
-
   );
 };
 
