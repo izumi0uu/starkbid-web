@@ -15,7 +15,6 @@ interface CreatedFiltersProps {
 const CreatedFilters: React.FC<CreatedFiltersProps> = ({
   filters,
   onFiltersChange,
-  totalCount,
   isOwner,
 }) => {
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -55,14 +54,6 @@ const CreatedFilters: React.FC<CreatedFiltersProps> = ({
         </div>
       </div>
       
-      <div className="flex items-center justify-between">
-        <p className="text-sm text-[#8E9BAE]">
-          {totalCount} {totalCount === 1 ? 'item' : 'items'}
-        </p>
-        <div className="flex items-center space-x-2">
-          {/* Additional filter chips can go here */}
-        </div>
-      </div>
     </div>
   );
 };
