@@ -1,0 +1,22 @@
+{
+  "entry": [
+    "app/**/*.{ts,tsx}",
+    "components/**/*.{ts,tsx}",
+    "constants/**/*.{ts,tsx}",
+    "Icons/**/*.{ts,tsx}",
+    "providers/**/*.{ts,tsx}"
+  ],
+  "ignoreDependencies": [
+    "eslint-config-next",
+    "eslint",
+    "postcss-load-config",
+    "chart.js",
+    "react-chartjs-2",
+    "lucide-react",
+    "react-icons",
+    "starknetkit",
+    "@starknet-react/chains",
+    "@starknet-react/core",
+    "starknet"
+  ]
+}
