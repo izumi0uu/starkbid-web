@@ -44,7 +44,7 @@ const NFTCard: React.FC<NFTCardProps> = ({ nft, onClick }) => {
 
     return (
         <div
-            className="bg-transparent border border-[#2D2E32] rounded-xl overflow-hidden transition-all hover:shadow-lg hover:shadow-purple-500/10 hover:-translate-y-1 cursor-pointer p-3"
+            className="bg-transparent border border-[#2D2E32] rounded-xl overflow-hidden transition-all hover:shadow-lg hover:shadow-purple-500/10 hover:-translate-y-1 cursor-pointer p-2"
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
             onClick={handleCardClick}
@@ -74,8 +74,8 @@ const NFTCard: React.FC<NFTCardProps> = ({ nft, onClick }) => {
                 )}
             </div>
 
-            <div className="p-4">
-                <h3 className="text-white font-medium truncate mb-2">{nft.name}</h3>
+            <div className="">
+                <h3 className="text-white font-medium truncate mb-2 mt-1">{nft.name}</h3>
 
                 {/* Current Bid & Price */}
                 <div className="flex justify-between items-center mb-1">
@@ -86,7 +86,7 @@ const NFTCard: React.FC<NFTCardProps> = ({ nft, onClick }) => {
                 {/* Likes & Time Left */}
                 <div className="flex justify-between items-center text-sm text-white">
                     <p>564 likes</p>
-                    <p>1d 9h left</p>
+                    <p>24 minted | 1d 9h left</p>
                 </div>
             </div>
 
