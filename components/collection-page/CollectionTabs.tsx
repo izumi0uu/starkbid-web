@@ -6,7 +6,7 @@ interface CollectionTabsProps {
 }
 
 const CollectionTabs: React.FC<CollectionTabsProps> = ({ activeTab, setActiveTab }) => {
-  const tabs = ['Items', 'Analytics', 'Activity'];
+  const tabs = ['Items', 'About', 'Activity', "Owner"];
 
   return (
     <div className="border-b border-gray-800 mb-6">

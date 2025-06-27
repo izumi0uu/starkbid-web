@@ -2,7 +2,7 @@
 
 
 import React from 'react';
-import { User, Heart } from 'lucide-react';
+import {  Heart } from 'lucide-react';
 import Image from 'next/image';
 
 interface NFTItem {
@@ -50,18 +50,18 @@ const NFTGrid: React.FC = () => {
       {nftItems.map((item) => (
         <div
           key={item.id}
-          className="bg-gray-900 border border-gray-600 rounded-2xl md:w-96 p-3 h-[453px] overflow-hidden shadow-2xl hover:shadow-3xl transition-all duration-300 cursor-pointer hover:scale-105"
+          className="bg-gray-900 border border-gray-600 rounded-2xl md:w-96 p-3  overflow-hidden shadow-2xl hover:shadow-3xl transition-all duration-300 cursor-pointer hover:scale-105"
         >
           {/* Header */}
-          <div className="flex items-center justify-between p-3 border-b border-gray-800">
+          <div className="flex items-center justify-between py-3 border-b border-gray-800">
             <div className="flex items-center space-x-2">
-              <div className="w-5 h-5 bg-blue-500 rounded-full flex items-center justify-center">
-                <User className="w-3 h-3 text-white" />
+              <div className="w-10 h-10 rounded-full flex overflow-hidden items-center justify-center">
+                 <Image src={"/collectionProfile.png"} width={500} height={300} alt='' className='object-contain'/>
               </div>
               <span className="text-white font-medium text-sm">MonkeyMan</span>
               <span className="text-gray-400 text-xs">(もりうさ)</span>
-              <div className="w-3 h-3 bg-purple-500 rounded-full flex items-center justify-center">
-                <span className="text-white text-xs">✓</span>
+              <div className="w-4 h-4 bg-purple-500 rounded-full flex items-center justify-center">
+                 <Image src={"/verificationIcon.png"} width={500} height={300} alt='' className='object-contain'/>
               </div>
             </div>
             <Heart className="w-4 h-4 text-gray-400 hover:text-red-500 cursor-pointer transition-colors" />
@@ -78,7 +78,7 @@ const NFTGrid: React.FC = () => {
           </div>
 
           {/* Card Details */}
-          <div className="p-4">
+          <div className="py-4">
             <h3 className="text-white text-lg font-bold mb-3">{item.name}</h3>
             
             <div className="flex justify-between items-start">
@@ -88,7 +88,7 @@ const NFTGrid: React.FC = () => {
               </div>
               <div className="text-right">
                 <div className="text-gray-400 text-sm">{getRandomLikes()} likes</div>
-                <div className="text-gray-300 text-xs">24 minted | {getRandomTimeLeft()}</div>
+                <div className="text-white text-xs">24 minted | {getRandomTimeLeft()}</div>
               </div>
             </div>
           </div>

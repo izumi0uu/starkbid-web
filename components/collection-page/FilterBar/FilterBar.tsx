@@ -22,11 +22,11 @@ const FilterBar: React.FC<FilterBarProps> = ({
       <div className="hidden md:flex items-center justify-between">
         <div className="flex items-center space-x-4">
           <SearchInput searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
-          <FiltersButton />
+          
         </div>
         <div className="flex items-center space-x-4">
-          <span className="text-gray-400 text-sm">Sort by:</span>
           <SortDropdown sortBy={sortBy} setSortBy={setSortBy} />
+          <FiltersButton />
         </div>
       </div>
 

@@ -2,11 +2,11 @@ import React from 'react';
 
 const CollectionStats: React.FC = () => {
   const stats = [
-    { label: 'Total volume', value: '0.087 ETH', change: null },
-    { label: 'Floor price', value: '0.059 ETH', change: null },
-    { label: 'Best offer', value: '112.2 ETH', change: null },
-    { label: 'Listed', value: '3.3K', change: null },
-    { label: 'Owners', value: '1.25', change: null },
+    { label: 'Floor Price', value: '0.087 ETH', change: null },
+    { label: 'Top Offer', value: '0.099 ETH', change: null },
+    { label: 'Volume', value: '112.2 ETH', change: null },
+    { label: 'Total Assets', value: '3.2K', change: null },
+    { label: 'Owners', value: '125', change: null },
   ];
 
   return (
@@ -23,11 +23,12 @@ const CollectionStats: React.FC = () => {
                 : ''
             }`}
           >
-            <div className="text-lg sm:text-xl lg:text-2xl font-bold text-white mb-1">
-              {stat.value}
-            </div>
-            <div className="text-xs sm:text-sm text-gray-400">
+           
+            <div className="text-xs sm:text-xl text-gray-400 mb-2">
               {stat.label}
+            </div>
+             <div className="text-lg sm:text-xl lg:text-3xl font-bold text-white mb-1">
+              {stat.value}
             </div>
           </div>
         ))}
