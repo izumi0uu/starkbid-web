@@ -1,0 +1,9 @@
+{
+  "entry": [
+    "app/**/*.{ts,tsx}",
+    "components/**/*.{ts,tsx}",
+    "constants/**/*.{ts,tsx}",
+    "Icons/**/*.{ts,tsx}"
+  ],
+  "ignoreDependencies": ["eslint-config-next", "eslint", "postcss-load-config"]
+}
