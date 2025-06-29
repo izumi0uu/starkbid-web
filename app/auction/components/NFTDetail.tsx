@@ -5,12 +5,8 @@ import Image from "next/image";
 import frank_nft from "../../../public/frank_ocean.png";
 import jacknft from "../../../public/jack-icon.png";
 import verifiedicon from "../../../public/verified.png";
-import likeicon from "../../../public/like-icon.png";
 import creator from "../../../public/creator_nft.png"
 import owner from "../../../public/new_owner.png"
-import right_arrow from "../../../public/right-arrow.png"
-import share from "../../../public/share.png"
-import web from "../../../public/web.png"
 
 // Import the page components
 import DescriptionPage from "./pages/description";
