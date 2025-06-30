@@ -15,7 +15,7 @@ const CollectionPage: React.FC = () => {
   const [sortBy, setSortBy] = useState('Recently Listed');
 
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="min-h-screen bg-[#0c0c0c] text-white">
       <Navbar/>
       <CollectionHeader />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

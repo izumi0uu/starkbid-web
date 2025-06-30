@@ -20,9 +20,8 @@ const FilterBar: React.FC<FilterBarProps> = ({
     <div className="mb-6">
       {/* Desktop Layout */}
       <div className="hidden md:flex items-center justify-between">
-        <div className="flex items-center space-x-4">
+        <div className="flex items-center space-x-4 w-[44rem]">
           <SearchInput searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
-          
         </div>
         <div className="flex items-center space-x-4">
           <SortDropdown sortBy={sortBy} setSortBy={setSortBy} />

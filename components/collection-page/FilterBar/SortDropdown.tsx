@@ -9,7 +9,6 @@ interface SortDropdownProps {
 const SortDropdown: React.FC<SortDropdownProps> = ({ sortBy, setSortBy }) => {
   const [isOpen, setIsOpen] = useState(false);
   const sortOptions = [
-    'Recently Listed',
     'Price: Low to High',
     'Price: High to Low',
     'Recently Created',
@@ -20,7 +19,7 @@ const SortDropdown: React.FC<SortDropdownProps> = ({ sortBy, setSortBy }) => {
     <div className="relative">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center space-x-2 px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg text-white hover:bg-gray-700 transition-colors"
+        className="flex items-center space-x-2 px-4 py-2 bg-[#1C1D1F]  rounded-lg text-white hover:bg-gray-700 transition-colors"
       >
         <span>{sortBy}</span>
         <ChevronDown className={`w-4 h-4 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
