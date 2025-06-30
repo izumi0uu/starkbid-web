@@ -1,9 +1,7 @@
 import React from "react";
 import {
-  FaCopy as Copy,
   FaGlobe as Globe,
   FaInstagram as Instagram,
-  FaTwitter as X,
   FaDiscord as Discord,
   FaTelegramPlane as Telegram,
 } from "react-icons/fa";
@@ -52,7 +50,13 @@ const SocialLinks: React.FC = () => {
           className="w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center transition-colors group"
           title="Copy Link"
         >
-          <Copy className="w-4 h-4 sm:w-6 sm:h-6 text-white hover:text-gray-400" />
+          <Image
+            src={"/copy.png"}
+            width={10}
+            height={10}
+            alt=""
+            className="w-6 h-6 text-white brightness-0 invert"
+          />
         </button>
 
         {/* Website/Globe */}
@@ -79,7 +83,13 @@ const SocialLinks: React.FC = () => {
           className="w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center transition-colors group"
           title="X (Twitter)"
         >
-          <X className="w-4 h-4 sm:w-6 sm:h-6 text-white group-hover:text-gray-400" />
+          <Image
+            src={"/X.png"}
+            width={20}
+            height={20}
+            alt=""
+            className="w-6 h-6 text-white brightness-0 invert"
+          />
         </button>
 
         {/* Discord */}
@@ -110,7 +120,7 @@ const SocialLinks: React.FC = () => {
             Cattie Negtar
           </span>
           <div className="w-3 h-3 sm:w-4 sm:h-4 rounded-full flex items-center justify-center flex-shrink-0">
-             <Image src={"/verificationIcon.png"} width={50} height={50} alt="" />
+             <Image src={"/Star2.png"} width={50} height={50} alt="" />
           </div>
         </div>
 

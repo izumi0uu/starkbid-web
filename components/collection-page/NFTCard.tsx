@@ -75,12 +75,12 @@ const NFTCard: React.FC<NFTCardProps> = ({
 
       {/* Info Section */}
       <div className="flex flex-col gap-2 pt-2">
-        <h3 className="text-white font-bold text-base mb-1 leading-tight">
+        <h3 className="text-white text-xl font-bold  mb-1 leading-tight">
           {name}
         </h3>
         <div className="flex justify-between items-center mb-1">
-          <div className="text-xs text-gray-400">Current Bid</div>
-          <div className="text-xs text-gray-400">{likes} likes</div>
+          <div className="text-sm text-[#8E9BAE]">Current Bid</div>
+          <div className="text-xs text-[#8E9BAE]">{likes} likes</div>
         </div>
         <div className="flex justify-between items-center">
           <div className="text-white font-bold text-xl">{price}</div>

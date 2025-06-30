@@ -20,7 +20,7 @@ const CollectionStats: React.FC = () => {
             <div className="text-xs text-gray-400 uppercase mb-1 tracking-wide">
               {stat.label}
             </div>
-            <div className="text-2xl font-bold text-white  mt-3">{stat.value}</div>
+            <div className="text-3xl font-bold text-white  mt-3">{stat.value}</div>
           </div>
         ))}
       </div>
