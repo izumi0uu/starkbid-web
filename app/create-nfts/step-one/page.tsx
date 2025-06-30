@@ -19,6 +19,7 @@ const StepOne = () => {
   ];
 
   const btnDisabled = selectedBlockChain === "";
+  const supportedBlockchains = new Set(["Starknet"]);
 
   return (
     <motion.div
@@ -57,6 +58,7 @@ const StepOne = () => {
           }}
         >
           {blockchains.map(({ title, id, image }) => {
+            const isSupported = supportedBlockchains.has(title);
             const isSelected = title === selectedBlockChain;
             return (
               <motion.div
@@ -66,23 +68,27 @@ const StepOne = () => {
                   hidden: { opacity: 0, y: 15 },
                   visible: { opacity: 1, y: 0 },
                 }}
-                whileHover={{ scale: 1.03 }}
+                whileHover={isSupported ? { scale: 1.03 } : {}}
                 transition={{ type: "spring", stiffness: 100, damping: 15 }}
               >
                 <div
-                  onClick={() => setSelectedBlockChain(title)}
-                  className={`w-full cursor-pointer ${
+                  onClick={
+                    isSupported ? () => setSelectedBlockChain(title) : undefined
+                  }
+                  className={`w-full ${
+                    isSupported ? "cursor-pointer" : "cursor-not-allowed"
+                  } ${
                     isSelected
                       ? "border-purple border-4"
                       : "border-darkerGray border"
-                  } rounded-lg flex items-center justify-center h-24 lg:h-52  transition-shadow duration-300`}
+                  } rounded-lg flex items-center justify-center h-24 lg:h-52 transition-shadow duration-300`}
                 >
                   <Image
                     src={image}
                     alt={title}
                     width={95}
                     height={95}
-                    className="w-12 h-12 lg:w-24 lg:h-24"
+                    className={`w-12 h-12 lg:w-24 lg:h-24 ${!isSupported ? "grayscale" : ""}`}
                   />
                 </div>
                 <p className="text-xs md:text-sm text-white text-center mt-3 lg:text-xl font-bold">
