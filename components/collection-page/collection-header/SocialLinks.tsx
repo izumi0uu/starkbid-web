@@ -7,7 +7,6 @@ import {
   FaDiscord as Discord,
   FaTelegramPlane as Telegram,
 } from "react-icons/fa";
-import { Check } from "lucide-react";
 import Image from "next/image";
 
 const SocialLinks: React.FC = () => {
@@ -110,8 +109,8 @@ const SocialLinks: React.FC = () => {
           <span className="text-white font-medium text-xs sm:text-sm">
             Cattie Negtar
           </span>
-          <div className="w-3 h-3 sm:w-4 sm:h-4 bg-blue-500 rounded-full flex items-center justify-center flex-shrink-0">
-            <Check className="w-1.5 h-1.5 sm:w-2 sm:h-2 text-white" />
+          <div className="w-3 h-3 sm:w-4 sm:h-4 rounded-full flex items-center justify-center flex-shrink-0">
+             <Image src={"/verificationIcon.png"} width={50} height={50} alt="" />
           </div>
         </div>
 

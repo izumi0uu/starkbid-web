@@ -15,7 +15,7 @@ const CollectionTabs: React.FC<CollectionTabsProps> = ({ activeTab, setActiveTab
           <button
             key={tab}
             onClick={() => setActiveTab(tab)}
-            className={`py-4 px-1 border-b-2 font-medium text-xl transition-colors ${
+            className={`py-4 px-2  border-b-2 font-medium text-xl transition-colors ${
               activeTab === tab
                 ? 'border-white text-white'
                 : 'border-transparent text-gray-400 hover:text-gray-300'

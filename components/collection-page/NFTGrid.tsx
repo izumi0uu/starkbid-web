@@ -16,7 +16,7 @@ const NFTGrid: React.FC = () => {
   const nftItems: NFTItem[] = [
     {
       id: "1",
-      name: "MonkeyMart #4870",
+      name: "Monkey Megga Mind",
       price: "0.059 ETH",
       image: "/collection2.png",
       backgroundColor: "bg-blue-400",
@@ -25,7 +25,7 @@ const NFTGrid: React.FC = () => {
     },
     {
       id: "2",
-      name: "MonkeyMart #4871",
+      name: "Monkey On The Moon",
       price: "0.045 ETH",
       image: "/collection3.png",
       backgroundColor: "bg-gray-300",
@@ -33,7 +33,7 @@ const NFTGrid: React.FC = () => {
     },
     {
       id: "3",
-      name: "MonkeyMart #4872",
+      name: "Monkey Mood",
       price: "0.067 ETH",
       image: "/collection4.png",
       backgroundColor: "bg-red-500",
@@ -41,7 +41,7 @@ const NFTGrid: React.FC = () => {
     },
     {
       id: "4",
-      name: "MonkeyMart #4873",
+      name: "Monkey Mode",
       price: "0.052 ETH",
       image: "/collection5.png",
       backgroundColor: "bg-orange-400",
@@ -49,7 +49,7 @@ const NFTGrid: React.FC = () => {
     },
     {
       id: "5",
-      name: "MonkeyMart #4874",
+      name: "Monkey Mode",
       price: "0.078 ETH",
       image: "/collection6.png",
       backgroundColor: "bg-pink-300",
@@ -57,7 +57,7 @@ const NFTGrid: React.FC = () => {
     },
     {
       id: "6",
-      name: "MonkeyMart #4875",
+      name: "Monkey Mode",
       price: "0.041 ETH",
       image: "/collection7.png",
       backgroundColor: "bg-purple-400",
@@ -65,7 +65,7 @@ const NFTGrid: React.FC = () => {
     },
     {
       id: "7",
-      name: "MonkeyMart #4876",
+      name: "Monkey Mode",
       price: "0.063 ETH",
       image: "/collection8.png",
       backgroundColor: "bg-purple-500",
@@ -73,7 +73,7 @@ const NFTGrid: React.FC = () => {
     },
     {
       id: "8",
-      name: "MonkeyMart #4877",
+      name: "Monkey Mode",
       price: "0.055 ETH",
       image: "/collection2.png",
       backgroundColor: "bg-green-400",
@@ -81,7 +81,7 @@ const NFTGrid: React.FC = () => {
     },
     {
       id: "9",
-      name: "MonkeyMart #4878",
+      name: "Monkey Mode",
       price: "0.072 ETH",
       image: "/collection10.png",
       backgroundColor: "bg-cyan-400",
@@ -89,7 +89,7 @@ const NFTGrid: React.FC = () => {
     },
     {
       id: "10",
-      name: "MonkeyMart #4879",
+      name: "Monkey Mode",
       price: "0.048 ETH",
       image: "/collection1.png",
       backgroundColor: "bg-yellow-400",
@@ -97,7 +97,7 @@ const NFTGrid: React.FC = () => {
     },
     {
       id: "11",
-      name: "MonkeyMart #4880",
+      name: "Monkey Mode",
       price: "0.066 ETH",
       image: "/collection12.png",
       backgroundColor: "bg-gray-600",
@@ -105,7 +105,7 @@ const NFTGrid: React.FC = () => {
     },
     {
       id: "12",
-      name: "MonkeyMart #4881",
+      name: "Monkey Mode",
       price: "0.053 ETH",
       image: "/collection13.png",
       backgroundColor: "bg-orange-500",
@@ -113,7 +113,7 @@ const NFTGrid: React.FC = () => {
     },
     {
       id: "13",
-      name: "MonkeyMart #4882",
+      name: "Monkey Mode",
       price: "0.074 ETH",
       image: "/collection14.png",
       backgroundColor: "bg-purple-600",
@@ -121,7 +121,7 @@ const NFTGrid: React.FC = () => {
     },
     {
       id: "14",
-      name: "MonkeyMart #4883",
+      name: "Monkey Mode",
       price: "0.061 ETH",
       image: "/collection15.png",
       backgroundColor: "bg-green-500",
@@ -129,7 +129,7 @@ const NFTGrid: React.FC = () => {
     },
     {
       id: "15",
-      name: "MonkeyMart #4884",
+      name: "Monkey Mode",
       price: "0.049 ETH",
       image: "/collection4.png",
       backgroundColor: "bg-teal-400",
@@ -137,7 +137,7 @@ const NFTGrid: React.FC = () => {
     },
     {
       id: "16",
-      name: "MonkeyMart #4885",
+      name: "Monkey Mode",
       price: "0.058 ETH",
       image: "/collection1.png",
       backgroundColor: "bg-yellow-500",
