@@ -36,12 +36,12 @@ const ProfileFilters: React.FC<ProfileFiltersProps> = ({
 }) => {
   return (
     <div 
-      className={`w-full sm:w-[320px] max-w-full bg-[#18181B] flex flex-col shadow-lg border-l border-[#23232A] transform transition-transform duration-300 ease-in-out ${
+      className={`w-full sm:w-[320px] max-w-full bg-[#101213] flex flex-col shadow-lg transform transition-transform duration-300 ease-in-out ${
         isOpen ? 'translate-x-0' : 'translate-x-full'
       }`}
     >
       {/* Header */}
-      <div className="flex items-center justify-between p-4 border-b border-[#23232A] relative">
+      <div className="flex items-center justify-between p-4 relative">
         <h2 className="text-lg font-semibold text-white">Filters</h2>
         <button
           onClick={onClearFilters}

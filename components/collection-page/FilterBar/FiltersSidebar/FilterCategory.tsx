@@ -10,7 +10,7 @@ interface FilterCategoryProps {
 }
 
 const FilterCategory: React.FC<FilterCategoryProps> = ({ title, isOpen, onToggle, children }) => (
-  <div className="mb-4">
+  <div className="mb-4 border-b border-[#23232A] pb-4">
     <button
       className="flex items-center justify-between w-full text-left text-white font-medium py-2 px-1 focus:outline-none"
       onClick={onToggle}
