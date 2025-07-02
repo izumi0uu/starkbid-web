@@ -4,7 +4,7 @@ import { trendingCollections } from "@/constants/data";
 import { ChevronDownIcon } from "lucide-react";
 import Image from "next/image";
 import React, { useState } from "react";
-import { ViewAllButton } from "../ui/Button";
+import { ViewAllButton } from "../ui/ViewAllButton";
 import Link from 'next/link';
 
 // constants
