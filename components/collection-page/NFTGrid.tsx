@@ -9,10 +9,11 @@ interface NFTItem {
   backgroundColor: string;
   character: string;
   lastSale?: string;
+  likes: number;
+  timeLeft: string;
 }
 
 const NFTGrid: React.FC = () => {
-  // Mock data matching the original structure
   const nftItems: NFTItem[] = [
     {
       id: "1",
@@ -22,6 +23,8 @@ const NFTGrid: React.FC = () => {
       backgroundColor: "bg-blue-400",
       character: "🐵",
       lastSale: "0.059 ETH",
+      likes: 626,
+      timeLeft: "3d 14h left",
     },
     {
       id: "2",
@@ -30,6 +33,8 @@ const NFTGrid: React.FC = () => {
       image: "/collection3.png",
       backgroundColor: "bg-gray-300",
       character: "🐵",
+      likes: 423,
+      timeLeft: "2d 8h left",
     },
     {
       id: "3",
@@ -38,6 +43,8 @@ const NFTGrid: React.FC = () => {
       image: "/collection4.png",
       backgroundColor: "bg-red-500",
       character: "🐵",
+      likes: 789,
+      timeLeft: "4d 22h left",
     },
     {
       id: "4",
@@ -46,6 +53,8 @@ const NFTGrid: React.FC = () => {
       image: "/collection5.png",
       backgroundColor: "bg-orange-400",
       character: "🐵",
+      likes: 341,
+      timeLeft: "1d 6h left",
     },
     {
       id: "5",
@@ -54,6 +63,8 @@ const NFTGrid: React.FC = () => {
       image: "/collection6.png",
       backgroundColor: "bg-pink-300",
       character: "🐵",
+      likes: 892,
+      timeLeft: "5d 17h left",
     },
     {
       id: "6",
@@ -62,6 +73,8 @@ const NFTGrid: React.FC = () => {
       image: "/collection7.png",
       backgroundColor: "bg-purple-400",
       character: "🐵",
+      likes: 256,
+      timeLeft: "2d 11h left",
     },
     {
       id: "7",
@@ -70,6 +83,8 @@ const NFTGrid: React.FC = () => {
       image: "/collection8.png",
       backgroundColor: "bg-purple-500",
       character: "🐵",
+      likes: 567,
+      timeLeft: "3d 19h left",
     },
     {
       id: "8",
@@ -78,6 +93,8 @@ const NFTGrid: React.FC = () => {
       image: "/collection2.png",
       backgroundColor: "bg-green-400",
       character: "🐵",
+      likes: 445,
+      timeLeft: "4d 2h left",
     },
     {
       id: "9",
@@ -86,6 +103,8 @@ const NFTGrid: React.FC = () => {
       image: "/collection10.png",
       backgroundColor: "bg-cyan-400",
       character: "🐵",
+      likes: 712,
+      timeLeft: "1d 15h left",
     },
     {
       id: "10",
@@ -94,6 +113,8 @@ const NFTGrid: React.FC = () => {
       image: "/collection1.png",
       backgroundColor: "bg-yellow-400",
       character: "🐵",
+      likes: 334,
+      timeLeft: "3d 7h left",
     },
     {
       id: "11",
@@ -102,6 +123,8 @@ const NFTGrid: React.FC = () => {
       image: "/collection12.png",
       backgroundColor: "bg-gray-600",
       character: "🐵",
+      likes: 678,
+      timeLeft: "2d 23h left",
     },
     {
       id: "12",
@@ -110,6 +133,8 @@ const NFTGrid: React.FC = () => {
       image: "/collection13.png",
       backgroundColor: "bg-orange-500",
       character: "🐵",
+      likes: 389,
+      timeLeft: "4d 12h left",
     },
     {
       id: "13",
@@ -118,6 +143,8 @@ const NFTGrid: React.FC = () => {
       image: "/collection14.png",
       backgroundColor: "bg-purple-600",
       character: "🐵",
+      likes: 823,
+      timeLeft: "5d 3h left",
     },
     {
       id: "14",
@@ -126,6 +153,8 @@ const NFTGrid: React.FC = () => {
       image: "/collection15.png",
       backgroundColor: "bg-green-500",
       character: "🐵",
+      likes: 456,
+      timeLeft: "1d 18h left",
     },
     {
       id: "15",
@@ -134,6 +163,8 @@ const NFTGrid: React.FC = () => {
       image: "/collection4.png",
       backgroundColor: "bg-teal-400",
       character: "🐵",
+      likes: 234,
+      timeLeft: "3d 9h left",
     },
     {
       id: "16",
@@ -142,15 +173,10 @@ const NFTGrid: React.FC = () => {
       image: "/collection1.png",
       backgroundColor: "bg-yellow-500",
       character: "🐵",
+      likes: 567,
+      timeLeft: "2d 16h left",
     },
   ];
-
-  const getRandomLikes = () => Math.floor(Math.random() * 1000) + 100;
-  const getRandomTimeLeft = () => {
-    const days = Math.floor(Math.random() * 5) + 1;
-    const hours = Math.floor(Math.random() * 24);
-    return `${days}d ${hours}h left`;
-  };
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 lg:grid-rows-3 grid-rows-3 xl:grid-cols-4 gap-x-6 gap-y-10 py-6 min-h-screen">
@@ -160,9 +186,9 @@ const NFTGrid: React.FC = () => {
           name={item.name}
           price={item.price}
           image={item.image}
-          likes={getRandomLikes()}
+          likes={item.likes}
           minted="24"
-          timeLeft={getRandomTimeLeft()}
+          timeLeft={item.timeLeft} 
           creatorName="MonkeyMan (もりうさ)"
           creatorIcon="/collectionProfile.png"
           isVerified={true}
