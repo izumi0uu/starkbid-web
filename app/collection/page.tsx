@@ -1,7 +1,7 @@
 "use client";
 
 import type React from "react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import CollectionHeader from "@/components/collection-page/CollectionHeader";
 import CollectionStats from "@/components/collection-page/CollectionStats";
@@ -24,13 +24,13 @@ const CollectionPage: React.FC<CollectionPageProps> = ({ params }) => {
   const collectionId = params.id;
 
   // Get initial tab from URL params or default to 'Items'
-  const getInitialTab = () => {
+  const getInitialTab = useCallback(() => {
     const urlTab = searchParams.get("tab");
     if (urlTab === "activity") return "Activity";
     if (urlTab === "about") return "About";
     if (urlTab === "owner") return "Owner";
     return "Items";
-  };
+  }, [searchParams]);
 
   const [activeTab, setActiveTab] = useState<string>(getInitialTab());
   const [searchQuery, setSearchQuery] = useState("");
@@ -58,7 +58,7 @@ const CollectionPage: React.FC<CollectionPageProps> = ({ params }) => {
     if (newTab !== activeTab) {
       setActiveTab(newTab);
     }
-  }, [searchParams]);
+  }, [searchParams, getInitialTab, activeTab]);
 
   return (
     <div className="min-h-screen bg-[#0c0c0c] text-white">

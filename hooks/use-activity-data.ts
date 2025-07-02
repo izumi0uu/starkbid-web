@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import type {
   ActivityItem,
   ActivityFilters,
@@ -43,7 +43,7 @@ export function useActivityData({
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [totalItems, setTotalItems] = useState(0);
-  const itemsPerPage = 20;
+  const itemsPerPage = 10;
 
   const [filters, setFilters] = useState<ActivityFilters>({
     transactionTypes: [],
@@ -56,8 +56,11 @@ export function useActivityData({
   const [sortField, setSortField] = useState<SortField>("date");
   const [sortDirection, setSortDirection] = useState<SortDirection>("desc");
 
+  // Use ref to track if this is the initial load
+  const isInitialLoad = useRef(true);
+
   const fetchActivities = useCallback(
-    async (page: number = currentPage) => {
+    async (page: number) => {
       try {
         setLoading(true);
         setError(null);
@@ -121,8 +124,24 @@ export function useActivityData({
         setLoading(false);
       }
     },
-    [collectionId, sortField, sortDirection, filters, itemsPerPage, currentPage]
+    [collectionId, sortField, sortDirection, filters, itemsPerPage]
   );
+
+  // Handle filters/sorting changes (reset to page 1)
+  useEffect(() => {
+    if (isInitialLoad.current) {
+      isInitialLoad.current = false;
+      return; // Skip on initial load
+    }
+
+    fetchActivities(1); // Always start from page 1 when filters/sorting change
+    setCurrentPage(1); // Reset current page
+  }, [sortField, sortDirection, filters, fetchActivities]);
+
+  // Initial load only
+  useEffect(() => {
+    fetchActivities(1);
+  }, [fetchActivities]);
 
   const handleSort = useCallback(
     (field: SortField, direction: SortDirection) => {
@@ -152,10 +171,6 @@ export function useActivityData({
     },
     [itemsPerPage]
   );
-
-  useEffect(() => {
-    fetchActivities(1);
-  }, [fetchActivities]);
 
   return {
     activities,
