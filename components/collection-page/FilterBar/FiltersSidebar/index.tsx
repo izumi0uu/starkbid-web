@@ -3,7 +3,7 @@ import PriceFilter from './PriceFilter';
 import MarketplaceFilter from './MarketplaceFilter';
 import TraitsFilter from './TraitsFilter';
 import FilterCategory from './FilterCategory';
-import React from 'react';
+import React, { useState } from 'react';
 
 export interface FilterState {
   status: 'all' | 'listed' | 'owned_by_you';
@@ -43,6 +43,10 @@ const FiltersSidebar: React.FC<FilterSidebarProps> = ({
   openSections,
   onToggleSection,
 }) => {
+  // Mock loading y contador
+  const [loading] = useState(false); // Cambia a true para simular loading
+  const resultCount = 123; // Mock
+
   return (
     <aside className="w-full sm:w-[320px] max-w-full bg-[#18181B] flex flex-col shadow-lg">
       {/* Header */}
@@ -55,6 +59,14 @@ const FiltersSidebar: React.FC<FilterSidebarProps> = ({
           Clear filters
         </button>
       </div>
+      {/* Contador y loading */}
+      <div className="px-4 pt-2 pb-1 flex items-center gap-2 min-h-[32px]">
+        {loading ? (
+          <span className="w-5 h-5 border-2 border-[#8B5CF6] border-t-transparent rounded-full animate-spin inline-block" />
+        ) : (
+          <span className="text-xs text-gray-400">{resultCount} results</span>
+        )}
+      </div>
       {/* Filtros */}
       <div className="p-4 space-y-6">
         <FilterCategory
@@ -65,6 +77,7 @@ const FiltersSidebar: React.FC<FilterSidebarProps> = ({
           <StatusFilter
             value={filters.status}
             onChange={status => onFiltersChange({ ...filters, status })}
+            onClear={() => onFiltersChange({ ...filters, status: 'all' })}
           />
         </FilterCategory>
         <FilterCategory
@@ -75,6 +88,7 @@ const FiltersSidebar: React.FC<FilterSidebarProps> = ({
           <PriceFilter
             value={filters.priceRange}
             onChange={priceRange => onFiltersChange({ ...filters, priceRange })}
+            onClear={() => onFiltersChange({ ...filters, priceRange: { ...filters.priceRange, min: '', max: '' } })}
           />
         </FilterCategory>
         <FilterCategory
@@ -85,6 +99,7 @@ const FiltersSidebar: React.FC<FilterSidebarProps> = ({
           <MarketplaceFilter
             value={filters.marketplaces}
             onChange={marketplaces => onFiltersChange({ ...filters, marketplaces })}
+            onClear={() => onFiltersChange({ ...filters, marketplaces: [] })}
           />
         </FilterCategory>
         <FilterCategory
@@ -96,6 +111,7 @@ const FiltersSidebar: React.FC<FilterSidebarProps> = ({
             value={filters.traits}
             onChange={traits => onFiltersChange({ ...filters, traits })}
             availableTraits={availableTraits}
+            onClear={() => onFiltersChange({ ...filters, traits: {} })}
           />
         </FilterCategory>
       </div>

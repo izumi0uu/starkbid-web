@@ -10,6 +10,7 @@ interface PriceRange {
 interface PriceFilterProps {
   value: PriceRange;
   onChange: (value: PriceRange) => void;
+  onClear?: () => void;
 }
 
 const currencies = [
@@ -17,7 +18,7 @@ const currencies = [
   // Puedes agregar más monedas aquí
 ];
 
-const PriceFilter: React.FC<PriceFilterProps> = ({ value, onChange }) => {
+const PriceFilter: React.FC<PriceFilterProps> = ({ value, onChange, onClear }) => {
   const [local, setLocal] = useState(value);
   const [changed, setChanged] = useState(false);
 
@@ -53,6 +54,16 @@ const PriceFilter: React.FC<PriceFilterProps> = ({ value, onChange }) => {
           ))}
         </select>
         <ChevronDown size={18} className="-ml-8 text-gray-400 pointer-events-none" />
+        {(local.min || local.max) && (
+          <button
+            className="text-gray-400 hover:text-white p-1 rounded-full border border-[#23232A] ml-2"
+            onClick={() => { setLocal({ ...local, min: '', max: '' }); onChange({ ...local, min: '', max: '' }); if (onClear) onClear(); }}
+            title="Clear price"
+            type="button"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M18 6 6 18M6 6l12 12"/></svg>
+          </button>
+        )}
       </div>
       <div className="flex items-center gap-2 mb-2">
         <input

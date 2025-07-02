@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Check, Search, X } from 'lucide-react';
 import { TraitCategory } from './index';
 
@@ -11,6 +11,12 @@ interface TraitsFilterProps {
 
 const TraitsFilter: React.FC<TraitsFilterProps> = ({ value, onChange, availableTraits, onClear }) => {
   const [search, setSearch] = useState<Record<string, string>>({});
+  const [debouncedSearch, setDebouncedSearch] = useState<Record<string, string>>({});
+
+  useEffect(() => {
+    const handler = setTimeout(() => setDebouncedSearch(search), 300);
+    return () => clearTimeout(handler);
+  }, [search]);
 
   const handleToggle = (category: string, trait: string) => {
     const current = value[category] || [];
@@ -26,14 +32,20 @@ const TraitsFilter: React.FC<TraitsFilterProps> = ({ value, onChange, availableT
   };
 
   const hasAnySelected = Object.values(value).some(arr => arr.length > 0);
+  const hasAnySearch = Object.values(search).some(val => val.length > 0);
+
+  const handleClear = () => {
+    setSearch({});
+    if (onClear) onClear();
+  };
 
   return (
     <div className="space-y-4">
       <div className="flex justify-end mb-2">
-        {hasAnySelected && onClear && (
+        {(hasAnySelected || hasAnySearch) && onClear && (
           <button
             className="text-gray-400 hover:text-white p-1 rounded-full border border-[#23232A]"
-            onClick={onClear}
+            onClick={handleClear}
             title="Clear selected"
             type="button"
           >
@@ -43,7 +55,7 @@ const TraitsFilter: React.FC<TraitsFilterProps> = ({ value, onChange, availableT
       </div>
       {availableTraits.map(cat => {
         const filtered = cat.values.filter(v =>
-          !search[cat.name] || v.value.toLowerCase().includes(search[cat.name].toLowerCase())
+          !debouncedSearch[cat.name] || v.value.toLowerCase().includes(debouncedSearch[cat.name].toLowerCase())
         );
         return (
           <div key={cat.name}>

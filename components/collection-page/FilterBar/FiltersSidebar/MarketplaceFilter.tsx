@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Check, Search, X } from 'lucide-react';
 
 const MARKETPLACES = [
-  { id: 'starkbid', name: 'StarkBid', color: 'bg-[#8B5CF6] border-[#8B5CF6]', icon: '/icons/starkbid.svg' },
-  { id: 'opensea', name: 'OpenSea', color: 'bg-blue-500 border-blue-500', icon: '/icons/opensea.svg' },
-  { id: 'sudoswap', name: 'SudoSwap', color: 'bg-gray-300 border-gray-300', icon: '/icons/sudoswap.svg' },
-  { id: 'ramble', name: 'Ramble', color: 'bg-yellow-400 border-yellow-400', icon: '/icons/ramble.svg' },
+  { id: 'starkbid', name: 'StarkBid', icon: '/icons/starkbid.svg' },
+  { id: 'opensea', name: 'OpenSea', icon: '/icons/opensea.svg' },
+  { id: 'sudoswap', name: 'SudoSwap', icon: '/icons/sudoswap.svg' },
+  { id: 'ramble', name: 'Ramble', icon: '/icons/ramble.svg' },
 ];
 
 interface MarketplaceFilterProps {
@@ -16,13 +16,24 @@ interface MarketplaceFilterProps {
 
 const MarketplaceFilter: React.FC<MarketplaceFilterProps> = ({ value, onChange, onClear }) => {
   const [search, setSearch] = useState('');
-  const filtered = MARKETPLACES.filter(mp => mp.name.toLowerCase().includes(search.toLowerCase()));
+  const [debouncedSearch, setDebouncedSearch] = useState('');
+
+  useEffect(() => {
+    const handler = setTimeout(() => setDebouncedSearch(search), 300);
+    return () => clearTimeout(handler);
+  }, [search]);
+
+  const filtered = MARKETPLACES.filter(mp => mp.name.toLowerCase().includes(debouncedSearch.toLowerCase()));
   const toggle = (id: string) => {
     if (value.includes(id)) {
       onChange(value.filter(v => v !== id));
     } else {
       onChange([...value, id]);
     }
+  };
+  const handleClear = () => {
+    setSearch('');
+    if (onClear) onClear();
   };
   return (
     <div>
@@ -36,10 +47,10 @@ const MarketplaceFilter: React.FC<MarketplaceFilterProps> = ({ value, onChange, 
           />
           <Search size={18} className="absolute right-3 top-3 text-gray-400" />
         </div>
-        {value.length > 0 && onClear && (
+        {(!!search || value.length > 0) && (
           <button
             className="ml-2 text-gray-400 hover:text-white p-1 rounded-full border border-[#23232A]"
-            onClick={onClear}
+            onClick={handleClear}
             title="Clear selected"
             type="button"
           >
@@ -52,7 +63,9 @@ const MarketplaceFilter: React.FC<MarketplaceFilterProps> = ({ value, onChange, 
           <label key={mp.id} className="flex items-center gap-3 cursor-pointer group">
             <span
               className={`w-6 h-6 flex items-center justify-center rounded-[8px] border-2 transition-colors duration-150
-                ${value.includes(mp.id) ? mp.color : 'bg-transparent border-[#23232A] group-hover:border-[#8B5CF6]'}
+                ${value.includes(mp.id)
+                  ? 'bg-[#8B5CF6] border-[#8B5CF6]'
+                  : 'bg-transparent border-[#23232A] group-hover:border-[#8B5CF6]'}
               `}
               onClick={() => toggle(mp.id)}
               tabIndex={0}

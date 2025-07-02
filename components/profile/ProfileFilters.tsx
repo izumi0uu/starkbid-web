@@ -21,6 +21,7 @@ interface ProfileFiltersProps {
   };
   onToggleSection: (section: keyof ProfileFiltersProps['openSections']) => void;
   onClearFilters: () => void;
+  onClose: () => void;
 }
 
 const ProfileFilters: React.FC<ProfileFiltersProps> = ({
@@ -31,21 +32,30 @@ const ProfileFilters: React.FC<ProfileFiltersProps> = ({
   openSections,
   onToggleSection,
   onClearFilters,
+  onClose,
 }) => {
   return (
     <div 
-      className={`w-full sm:w-[320px] max-w-full bg-[#101213] flex flex-col shadow-lg transform transition-transform duration-300 ease-in-out ${
+      className={`w-full sm:w-[320px] max-w-full bg-[#18181B] flex flex-col shadow-lg border-l border-[#23232A] transform transition-transform duration-300 ease-in-out ${
         isOpen ? 'translate-x-0' : 'translate-x-full'
       }`}
     >
       {/* Header */}
-      <div className="flex items-center justify-between px-4 py-2">
+      <div className="flex items-center justify-between p-4 border-b border-[#23232A] relative">
         <h2 className="text-lg font-semibold text-white">Filters</h2>
         <button
           onClick={onClearFilters}
           className="text-[#8B5CF6] text-sm hover:underline hover:text-[#7c3aed] transition-colors"
         >
           Clear filters
+        </button>
+        {/* Botón X solo en mobile */}
+        <button
+          onClick={onClose}
+          className="absolute right-2 top-2 md:hidden text-gray-400 hover:text-white"
+          aria-label="Close sidebar"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M18 6 6 18M6 6l12 12"/></svg>
         </button>
       </div>
       

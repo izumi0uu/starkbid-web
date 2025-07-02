@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import {
@@ -15,6 +15,7 @@ import Image from "next/image";
 import CreatedTab from "./CreatedTab/CreatedTab";
 import ProfileFilters from "./ProfileFilters";
 import { FilterState, TraitCategory } from "../collection-page/FilterBar/FiltersSidebar";
+import { useRouter, useSearchParams } from 'next/navigation';
 
 const tabs = [
   { id: "owned", label: "Owned Items", active: true },
@@ -33,14 +34,63 @@ export default function CollectionTabs({
   userAddress = "", 
   isOwner = false 
 }: CollectionTabsProps) {
+  const router = useRouter();
+  const searchParams = useSearchParams();
   const [activeTab, setActiveTab] = useState("owned");
   const [isFiltersOpen, setIsFiltersOpen] = useState(false);
-  const [filters, setFilters] = useState<FilterState>({
-    status: 'all',
-    priceRange: { min: '', max: '', currency: 'ETH' },
-    marketplaces: [],
-    traits: {},
-  });
+
+  // Utilidad para parsear filtros desde la URL
+  function parseFiltersFromURL(params: URLSearchParams): FilterState {
+    const status = params.get('status') as FilterState['status'] || 'all';
+    const price = params.get('price') || '';
+    const [min, max] = price.split('-');
+    const currency = params.get('currency') || 'ETH';
+    const marketplaces = params.get('marketplace')?.split(',').filter(Boolean) || [];
+    const traitsParam = params.get('traits') || '';
+    const traits: Record<string, string[]> = {};
+    if (traitsParam) {
+      traitsParam.split(';').forEach(pair => {
+        const [cat, vals] = pair.split(':');
+        if (cat && vals) traits[cat] = vals.split(',');
+      });
+    }
+    return {
+      status,
+      priceRange: { min: min || '', max: max || '', currency },
+      marketplaces,
+      traits,
+    };
+  }
+
+  // Utilidad para serializar filtros a la URL
+  function serializeFiltersToURL(filters: FilterState): string {
+    const params = new URLSearchParams();
+    if (filters.status && filters.status !== 'all') params.set('status', filters.status);
+    if (filters.priceRange.min || filters.priceRange.max) params.set('price', `${filters.priceRange.min || ''}-${filters.priceRange.max || ''}`);
+    if (filters.priceRange.currency && filters.priceRange.currency !== 'ETH') params.set('currency', filters.priceRange.currency);
+    if (filters.marketplaces.length > 0) params.set('marketplace', filters.marketplaces.join(','));
+    const traitsArr: string[] = [];
+    Object.entries(filters.traits).forEach(([cat, vals]) => {
+      if (vals.length > 0) traitsArr.push(`${cat}:${vals.join(',')}`);
+    });
+    if (traitsArr.length > 0) params.set('traits', traitsArr.join(';'));
+    return params.toString();
+  }
+
+  // Inicializa filtros desde la URL
+  const [filters, setFilters] = useState<FilterState>(() => parseFiltersFromURL(searchParams));
+
+  // Sincroniza filtros con la URL al cambiar
+  useEffect(() => {
+    const url = serializeFiltersToURL(filters);
+    router.replace(`?${url}`, { scroll: false });
+  }, [filters, router]);
+
+  // Si la URL cambia externamente, actualiza los filtros
+  useEffect(() => {
+    setFilters(parseFiltersFromURL(searchParams));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchParams.toString()]);
 
   const [openSections, setOpenSections] = useState({
     status: true,
@@ -75,6 +125,21 @@ export default function CollectionTabs({
       traits: {},
     });
   };
+
+  // Bloquear scroll del body en mobile cuando el sidebar está abierto
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const isMobile = window.innerWidth < 768;
+      if (isFiltersOpen && isMobile) {
+        document.body.style.overflow = 'hidden';
+      } else {
+        document.body.style.overflow = '';
+      }
+      return () => {
+        document.body.style.overflow = '';
+      };
+    }
+  }, [isFiltersOpen]);
 
   const renderTabContent = () => {
     switch (activeTab) {
@@ -156,8 +221,22 @@ export default function CollectionTabs({
                   </p>
                 </div>
               </div>
-              {/* Sidebar Filtros */}
-              <div className={`relative transition-all duration-300 ${isFiltersOpen ? 'w-[320px] visible opacity-100' : 'w-0 invisible opacity-0'}`} style={{minWidth: isFiltersOpen ? 320 : 0}}>
+              {/* Overlay oscuro (backdrop) */}
+              {isFiltersOpen && (
+                <div
+                  className="fixed inset-0 bg-black/50 z-40 transition-opacity duration-300 md:hidden"
+                  onClick={() => setIsFiltersOpen(false)}
+                />
+              )}
+              <div
+                className={`transition-all duration-300
+                  ${isFiltersOpen ? 'w-[320px] visible opacity-100' : 'w-0 invisible opacity-0'}
+                  md:relative md:z-50
+                  fixed top-0 right-0 h-full z-50 md:static
+                  bg-[#18181B]
+                `}
+                style={{ minWidth: isFiltersOpen ? 320 : 0 }}
+              >
                 <ProfileFilters
                   isOpen={isFiltersOpen}
                   filters={filters}
@@ -166,6 +245,7 @@ export default function CollectionTabs({
                   openSections={openSections}
                   onToggleSection={handleToggleSection}
                   onClearFilters={handleClearFilters}
+                  onClose={() => setIsFiltersOpen(false)}
                 />
               </div>
             </div>
