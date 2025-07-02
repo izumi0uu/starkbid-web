@@ -200,7 +200,7 @@ export function ActivityTable({
             isTablet ? "scrollbar-thin scrollbar-thumb-gray-600" : ""
           }`}
         >
-          <Table className="min-w-full">
+          <Table className="min-w-full bg-true_black">
             <TableHeader>
               <TableRow className="border-light_grey hover:bg-transparent">
                 <TableHead

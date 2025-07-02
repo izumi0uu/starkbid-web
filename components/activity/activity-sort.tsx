@@ -59,7 +59,7 @@ export function ActivitySort({
         <Button
           variant="outline"
           className={cn(
-            "border-light_grey bg-deepGray text-misty_white hover:bg-darkGray hover:text-misty_white hover:border-light_grey data-[state=open]:bg-darkGray data-[state=open]:text-misty_white",
+            "border-light_grey bg-true_black text-misty_white hover:bg-darkGray hover:text-misty_white hover:border-light_grey data-[state=open]:bg-darkGray data-[state=open]:text-misty_white",
             isMobile && "w-full justify-between touch-manipulation h-12",
             isTablet && "touch-manipulation"
           )}
@@ -85,7 +85,7 @@ export function ActivitySort({
             key={`${option.field}-${option.direction}`}
             onClick={() => onSort(option.field, option.direction)}
             className={cn(
-              "text-misty_white hover:bg-darkGray focus:bg-darkGray cursor-pointer",
+              "text-misty_white hover:bg-darkGray hover:text-misty_white focus:bg-darkGray focus:text-misty_white cursor-pointer",
               isMobile && "touch-manipulation py-3"
             )}
           >

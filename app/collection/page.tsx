@@ -7,7 +7,7 @@ import CollectionStats from "@/components/collection-page/CollectionStats";
 import CollectionTabs from "@/components/collection-page/CollectionTabs";
 import FilterBar from "@/components/collection-page/FilterBar/FilterBar";
 import NFTGrid from "@/components/collection-page/NFTGrid";
-// import OwnersTab from "@/components/collection-page/owners/owners-tab";
+import OwnersTab from "@/components/collection-page/owners/owners-tab";
 import ActivityTab from "@/components/activity";
 import Footer from "@/components/landing-page/Footer";
 import Navbar from "@/components/landing-page/Navbar";
@@ -60,8 +60,8 @@ const CollectionPage: React.FC<CollectionPageProps> = ({ params }) => {
             <ActivityTab collectionId={collectionId} isActive={true} />
           </div>
         );
-      // case "Owner":
-      //   return <OwnersTab collectionId={collectionId} />;
+      case "Owner":
+        return <OwnersTab collectionId={collectionId} />;
       default:
         return (
           <>

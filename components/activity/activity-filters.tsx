@@ -137,7 +137,7 @@ export function ActivityFiltersComponent({
         <Button
           variant="outline"
           className={cn(
-            "border-light_grey bg-deepGray text-misty_white hover:bg-darkGray hover:text-misty_white hover:border-light_grey",
+            "border-light_grey bg-true_black text-misty_white hover:bg-darkGray hover:text-misty_white hover:border-light_grey",
             isMobile && "w-full justify-between touch-manipulation h-12",
             isTablet && "touch-manipulation"
           )}
@@ -157,7 +157,7 @@ export function ActivityFiltersComponent({
       <SheetContent
         side={isMobile ? "bottom" : "right"}
         className={cn(
-          "bg-deepGray border-light_grey text-misty_white",
+          "bg-true_black border-light_grey text-misty_white",
           isMobile && "h-[90vh]"
         )}
       >
