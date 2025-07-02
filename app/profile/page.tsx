@@ -4,6 +4,7 @@ import Navbar from "@/components/landing-page/Navbar";
 import CollectionTabs from "@/components/profile/profile-collections";
 
 export default function Page() {
+
   return (
     <div className="min-h-screen flex flex-col bg-[#101213]">
       <Navbar />
