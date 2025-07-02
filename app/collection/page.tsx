@@ -1,16 +1,16 @@
 "use client";
 
 import type React from "react";
-import { useState, useEffect, useCallback } from "react";
-import { useSearchParams, useRouter } from "next/navigation";
+import { useState } from "react";
 import CollectionHeader from "@/components/collection-page/CollectionHeader";
 import CollectionStats from "@/components/collection-page/CollectionStats";
 import CollectionTabs from "@/components/collection-page/CollectionTabs";
 import FilterBar from "@/components/collection-page/FilterBar/FilterBar";
 import NFTGrid from "@/components/collection-page/NFTGrid";
+// import OwnersTab from "@/components/collection-page/owners/owners-tab";
+import ActivityTab from "@/components/activity";
 import Footer from "@/components/landing-page/Footer";
 import Navbar from "@/components/landing-page/Navbar";
-import ActivityTab from "@/components/activity";
 
 interface CollectionPageProps {
   params: {
@@ -19,46 +19,63 @@ interface CollectionPageProps {
 }
 
 const CollectionPage: React.FC<CollectionPageProps> = ({ params }) => {
-  const searchParams = useSearchParams();
-  const router = useRouter();
-  const collectionId = params.id;
-
-  // Get initial tab from URL params or default to 'Items'
-  const getInitialTab = useCallback(() => {
-    const urlTab = searchParams.get("tab");
-    if (urlTab === "activity") return "Activity";
-    if (urlTab === "about") return "About";
-    if (urlTab === "owner") return "Owner";
-    return "Items";
-  }, [searchParams]);
-
-  const [activeTab, setActiveTab] = useState<string>(getInitialTab());
+  const [activeTab, setActiveTab] = useState("Items");
   const [searchQuery, setSearchQuery] = useState("");
   const [sortBy, setSortBy] = useState("Recently Listed");
 
-  // Update URL when tab changes
-  const handleTabChange = (tab: string) => {
-    setActiveTab(tab);
+  const collectionId = params.id;
 
-    // Update URL with search params
-    const params = new URLSearchParams(searchParams.toString());
-    if (tab === "Items") {
-      params.delete("tab"); // Remove tab param for default tab
-    } else {
-      params.set("tab", tab.toLowerCase());
+  const renderTabContent = () => {
+    switch (activeTab) {
+      case "Items":
+        return (
+          <>
+            <FilterBar
+              searchQuery={searchQuery}
+              setSearchQuery={setSearchQuery}
+              sortBy={sortBy}
+              setSortBy={setSortBy}
+            />
+            <NFTGrid />
+          </>
+        );
+      case "About":
+        return (
+          <div className="py-8">
+            <div className="bg-[#181A1B] rounded-xl p-6">
+              <h3 className="text-white text-xl font-semibold mb-4">
+                About This Collection
+              </h3>
+              <p className="text-gray-300">
+                This is a placeholder for the About section. Add collection
+                description, creator information, and other relevant details
+                here.
+              </p>
+            </div>
+          </div>
+        );
+      case "Activity":
+        return (
+          <div className="py-6">
+            <ActivityTab collectionId={collectionId} isActive={true} />
+          </div>
+        );
+      // case "Owner":
+      //   return <OwnersTab collectionId={collectionId} />;
+      default:
+        return (
+          <>
+            <FilterBar
+              searchQuery={searchQuery}
+              setSearchQuery={setSearchQuery}
+              sortBy={sortBy}
+              setSortBy={setSortBy}
+            />
+            <NFTGrid />
+          </>
+        );
     }
-
-    const newUrl = params.toString() ? `?${params.toString()}` : "";
-    router.push(newUrl, { scroll: false });
   };
-
-  // Listen for URL changes (back/forward navigation)
-  useEffect(() => {
-    const newTab = getInitialTab();
-    if (newTab !== activeTab) {
-      setActiveTab(newTab);
-    }
-  }, [searchParams, getInitialTab, activeTab]);
 
   return (
     <div className="min-h-screen bg-[#0c0c0c] text-white">
@@ -69,39 +86,8 @@ const CollectionPage: React.FC<CollectionPageProps> = ({ params }) => {
       </div>
 
       <div className="mx-auto px-4 sm:px-6 lg:px-28">
-        <CollectionTabs activeTab={activeTab} setActiveTab={handleTabChange} />
-        {/* Conditional content based on active tab */}
-        {activeTab === "Items" && (
-          <>
-            <FilterBar
-              searchQuery={searchQuery}
-              setSearchQuery={setSearchQuery}
-              sortBy={sortBy}
-              setSortBy={setSortBy}
-            />
-            <NFTGrid />
-          </>
-        )}
-
-        {activeTab === "Activity" && (
-          <ActivityTab collectionId={collectionId} isActive={true} />
-        )}
-
-        {activeTab === "About" && (
-          <div className="py-8 text-center">
-            <h2 className="text-2xl font-bold text-white mb-4">
-              About This Collection
-            </h2>
-            <p className="text-gray-400">About content coming soon...</p>
-          </div>
-        )}
-
-        {activeTab === "Owner" && (
-          <div className="py-8 text-center">
-            <h2 className="text-2xl font-bold text-white mb-4">Owners</h2>
-            <p className="text-gray-400">Owner information coming soon...</p>
-          </div>
-        )}
+        <CollectionTabs activeTab={activeTab} setActiveTab={setActiveTab} />
+        {renderTabContent()}
       </div>
       <Footer />
     </div>
