@@ -1,21 +1,21 @@
-"use client"
-import React, { useState } from 'react';
-import CollectionHeader from '@/components/collection-page/CollectionHeader';
-import CollectionStats from '@/components/collection-page/CollectionStats';
-import CollectionTabs from '@/components/collection-page/CollectionTabs';
-import FilterBar from '@/components/collection-page/FilterBar/FilterBar';
-import NFTGrid from '@/components/collection-page/NFTGrid';
-import Footer from '@/components/landing-page/Footer';
-import Navbar from '@/components/landing-page/Navbar';
-import { AboutTab } from '@/components/about-tab';
-
+'use client'
+import React, { useState } from 'react'
+import CollectionHeader from '@/components/collection-page/CollectionHeader'
+import CollectionStats from '@/components/collection-page/CollectionStats'
+import CollectionTabs from '@/components/collection-page/CollectionTabs'
+import FilterBar from '@/components/collection-page/FilterBar/FilterBar'
+import NFTGrid from '@/components/collection-page/NFTGrid'
+import OwnersTab from '@/components/collection-page/owners/owners-tab'
+import Footer from '@/components/landing-page/Footer'
+import Navbar from '@/components/landing-page/Navbar'
+import { AboutTab } from '@/components/about-tab'
 
 const CollectionPage: React.FC = () => {
-  const [activeTab, setActiveTab] = useState('Items');
-  const [searchQuery, setSearchQuery] = useState('');
-  const [sortBy, setSortBy] = useState('Recently Listed');
+  const [activeTab, setActiveTab] = useState('Items')
+  const [searchQuery, setSearchQuery] = useState('')
+  const [sortBy, setSortBy] = useState('Recently Listed')
 
- const renderTabs = () => {
+  const renderTabs = () => {
     switch (activeTab) {
       case 'Items':
         return (
@@ -35,23 +35,22 @@ const CollectionPage: React.FC = () => {
         return 'No items found'
     }
   }
-  
+
   return (
     <div className="min-h-screen bg-[#0c0c0c] text-white">
-      <Navbar/>
+      <Navbar />
       <CollectionHeader />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-         <CollectionStats />
+        <CollectionStats />
       </div>
-      
-      <div className=" mx-auto px-4 sm:px-6 lg:px-28">
-        
-        <CollectionTabs activeTab={activeTab} setActiveTab={setActiveTab} />
-        {renderTabs()}
-      </div>
-      <Footer/>
-    </div>
-  );
-};
 
-export default CollectionPage;
+      <div className="mx-auto px-4 sm:px-6 lg:px-28">
+        <CollectionTabs activeTab={activeTab} setActiveTab={setActiveTab} />
+        {renderTabContent()}
+      </div>
+      <Footer />
+    </div>
+  )
+}
+
+export default CollectionPage

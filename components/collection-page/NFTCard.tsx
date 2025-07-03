@@ -75,7 +75,7 @@ const NFTCard: React.FC<NFTCardProps> = ({
 
       {/* Info Section */}
       <div className="flex flex-col gap-2 pt-2">
-        <h3 className="text-white text-xl font-bold  mb-1 leading-tight">
+        <h3 className="text-white text-xl font-bold mb-1 leading-tight">
           {name}
         </h3>
         <div className="flex justify-between items-center mb-1">
