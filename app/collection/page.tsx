@@ -7,6 +7,7 @@ import FilterBar from '@/components/collection-page/FilterBar/FilterBar';
 import NFTGrid from '@/components/collection-page/NFTGrid';
 import Footer from '@/components/landing-page/Footer';
 import Navbar from '@/components/landing-page/Navbar';
+import { AboutTab } from '@/components/about-tab';
 
 
 const CollectionPage: React.FC = () => {
@@ -14,6 +15,27 @@ const CollectionPage: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [sortBy, setSortBy] = useState('Recently Listed');
 
+ const renderTabs = () => {
+    switch (activeTab) {
+      case 'Items':
+        return (
+          <>
+            <FilterBar
+              searchQuery={searchQuery}
+              setSearchQuery={setSearchQuery}
+              sortBy={sortBy}
+              setSortBy={setSortBy}
+            />
+            <NFTGrid />
+          </>
+        )
+      case 'About':
+        return <AboutTab />
+      default:
+        return 'No items found'
+    }
+  }
+  
   return (
     <div className="min-h-screen bg-[#0c0c0c] text-white">
       <Navbar/>
@@ -25,13 +47,7 @@ const CollectionPage: React.FC = () => {
       <div className=" mx-auto px-4 sm:px-6 lg:px-28">
         
         <CollectionTabs activeTab={activeTab} setActiveTab={setActiveTab} />
-        <FilterBar 
-          searchQuery={searchQuery}
-          setSearchQuery={setSearchQuery}
-          sortBy={sortBy}
-          setSortBy={setSortBy}
-        />
-        <NFTGrid />
+        {renderTabs()}
       </div>
       <Footer/>
     </div>
