@@ -12,18 +12,12 @@ import ActivityTab from "@/components/activity";
 import Footer from "@/components/landing-page/Footer";
 import Navbar from "@/components/landing-page/Navbar";
 
-interface CollectionPageProps {
-  params: {
-    id: string;
-  };
-}
-
-const CollectionPage: React.FC<CollectionPageProps> = ({ params }) => {
+function CollectionPage() {
   const [activeTab, setActiveTab] = useState("Items");
   const [searchQuery, setSearchQuery] = useState("");
   const [sortBy, setSortBy] = useState("Recently Listed");
 
-  const collectionId = params.id;
+  const collectionId = "mock-collection-id";
 
   const renderTabContent = () => {
     switch (activeTab) {
@@ -92,6 +86,6 @@ const CollectionPage: React.FC<CollectionPageProps> = ({ params }) => {
       <Footer />
     </div>
   );
-};
+}
 
 export default CollectionPage;
