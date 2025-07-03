@@ -5,7 +5,7 @@ import { ChevronDownIcon } from "lucide-react";
 import Image from "next/image";
 import React, { useState } from "react";
 import { ViewAllButton } from "../ui/ViewAllButton";
-import Link from 'next/link';
+import Link from "next/link";
 
 // constants
 const TIMEFRAMES = ["1h", "6h", "24h", "3d", "7d"];
@@ -14,9 +14,7 @@ const BLOCKCHAINS = ["Ethereum", "Bitcoin", "Solana", "Polygon"];
 // Reusable button styles
 const getTabButtonStyles = (isActive: boolean) => `
   text-[20px] px-4 py-2 rounded-md 
-  ${isActive
-    ? "text-white font-bold bg-[#1C1D1F]"
-    : "text-gray-500"}
+  ${isActive ? "text-white font-bold bg-[#1C1D1F]" : "text-gray-500"}
 `;
 
 const TimeframeSelector: React.FC<{
@@ -27,8 +25,9 @@ const TimeframeSelector: React.FC<{
     {TIMEFRAMES.map((frame) => (
       <button
         key={frame}
-        className={`px-5 py-2 rounded-md ${timeframe === frame ? "bg-[#101213] text-white" : ""
-          }`}
+        className={`px-5 py-2 rounded-md ${
+          timeframe === frame ? "bg-[#101213] text-white" : ""
+        }`}
         onClick={() => onTimeframeChange(frame)}
       >
         {frame}
@@ -113,8 +112,9 @@ const CollectionTableRow: React.FC<(typeof trendingCollections)[0]> = ({
     <td className="px-4 py-4 whitespace-nowrap">{volume}</td>
     <td className="px-4 py-4 whitespace-nowrap">{topOffer}</td>
     <td
-      className={`px-4 py-4 whitespace-nowrap ${change.startsWith("+") ? "text-green-500" : "text-red-500"
-        }`}
+      className={`px-4 py-4 whitespace-nowrap ${
+        change.startsWith("+") ? "text-green-500" : "text-red-500"
+      }`}
     >
       {change}
     </td>
@@ -173,8 +173,14 @@ const TrendingCollections: React.FC = () => {
             <thead className="border-b-[0.3px] border-zinc-500 text-white/60 text-left uppercase">
               <tr>
                 {[
-                  "#", "Collection", "Floor Price", "Volume", "Top Offer",
-                  "Floor Id", "Sales", "Holders"
+                  "#",
+                  "Collection",
+                  "Floor Price",
+                  "Volume",
+                  "Top Offer",
+                  "Floor Id",
+                  "Sales",
+                  "Holders",
                 ].map((header) => (
                   <th key={header} className="font-light py-5 px-4">
                     {header}
