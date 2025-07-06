@@ -4,6 +4,7 @@ import "./globals.css";
 import StarknetProvider from "@/providers/starknet-provider";
 import { WalletProvider } from "@/providers/wallet-connect-context";
 import AnnouncementBanner from "@/components/ui/AnnouncementBanner";
+import { SocketProvider } from "@/components/socket-provider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -34,7 +35,9 @@ export default function RootLayout({
           <AnnouncementBanner />
           <main className="flex-grow bg-black px-2 md:px-0">
             <StarknetProvider>
-              <WalletProvider>{children}</WalletProvider>
+              <WalletProvider>
+                <SocketProvider>{children}</SocketProvider>
+              </WalletProvider>
             </StarknetProvider>
           </main>
         </div>
