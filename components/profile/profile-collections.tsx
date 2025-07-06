@@ -26,15 +26,12 @@ const tabs = [
   { id: "offers", label: "Offers/Bids", active: false },
 ];
 
-interface CollectionTabsProps {
+/* interface CollectionTabsProps {
   userAddress?: string;
   isOwner?: boolean;
-}
+} */
 
-export default function CollectionTabs({ 
-  userAddress = "0x1234567890123456789012345678901234567890", 
-  isOwner = false 
-}: CollectionTabsProps) {
+export default function CollectionTabs() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [activeTab, setActiveTab] = useState("owned");
@@ -86,10 +83,8 @@ export default function CollectionTabs({
 
   useEffect(() => {
     setFilters(parseFiltersFromURL(searchParams));
-    userAddress && console.log('userAddress', userAddress);
-    isOwner && console.log('isOwner', isOwner);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [searchParams.toString(), userAddress, isOwner]);
+  }, [searchParams.toString()]);
 
   const [openSections, setOpenSections] = useState({
     status: true,
