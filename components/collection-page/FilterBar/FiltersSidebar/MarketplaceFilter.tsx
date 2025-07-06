@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Check, Search, X } from 'lucide-react';
+import Image from 'next/image';
 
 const MARKETPLACES = [
   { id: 'starkbid', name: 'StarkBid', icon: '/icons/starkbid.svg' },
@@ -75,7 +76,7 @@ const MarketplaceFilter: React.FC<MarketplaceFilterProps> = ({ value, onChange, 
               {value.includes(mp.id) && <Check size={18} className="text-white" />}
             </span>
             <span className="w-6 h-6 flex items-center justify-center">
-              <img src={mp.icon} alt={mp.name} className="w-6 h-6" />
+              <Image src={mp.icon} alt={mp.name} className="w-6 h-6" />
             </span>
             <span className="text-white text-sm flex-1">{mp.name}</span>
           </label>

@@ -1,9 +1,11 @@
 import React from 'react';
 import { X } from 'lucide-react';
 
+type Status = 'all' | 'listed' | 'owned_by_you';  
+
 interface StatusFilterProps {
-  value: 'all' | 'listed' | 'owned_by_you';
-  onChange: (value: 'all' | 'listed' | 'owned_by_you') => void;
+  value: Status;
+  onChange: (value: Status) => void;
   onClear?: () => void;
 }
 
@@ -24,7 +26,7 @@ const StatusFilter: React.FC<StatusFilterProps> = ({ value, onChange, onClear })
               ? 'bg-[#2E2256] border-[#8B5CF6] text-white'
               : 'bg-[#23232A] border-[#23232A] text-gray-200 hover:border-[#8B5CF6]'}
           `}
-          onClick={() => onChange(opt.value as any)}
+          onClick={() => onChange(opt.value as Status)}
           type="button"
         >
           {opt.label}

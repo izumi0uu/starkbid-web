@@ -32,14 +32,14 @@ interface CollectionTabsProps {
 }
 
 export default function CollectionTabs({ 
-  userAddress = "", 
+  userAddress = "0x1234567890123456789012345678901234567890", 
   isOwner = false 
 }: CollectionTabsProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [activeTab, setActiveTab] = useState("owned");
   const [isFiltersOpen, setIsFiltersOpen] = useState(false);
-  const [showGrid, setShowGrid] = useState(true);
+  const [showGrid] = useState(true);
 
   function parseFiltersFromURL(params: URLSearchParams): FilterState {
     const status = params.get('status') as FilterState['status'] || 'all';
@@ -86,8 +86,10 @@ export default function CollectionTabs({
 
   useEffect(() => {
     setFilters(parseFiltersFromURL(searchParams));
+    userAddress && console.log('userAddress', userAddress);
+    isOwner && console.log('isOwner', isOwner);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [searchParams.toString()]);
+  }, [searchParams.toString(), userAddress, isOwner]);
 
   const [openSections, setOpenSections] = useState({
     status: true,
