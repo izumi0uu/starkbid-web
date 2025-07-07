@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Check, Search, X } from 'lucide-react';
+import { Check, Search } from 'lucide-react';
 import Image from 'next/image';
 
 const MARKETPLACES = [
@@ -12,10 +12,9 @@ const MARKETPLACES = [
 interface MarketplaceFilterProps {
   value: string[];
   onChange: (value: string[]) => void;
-  onClear?: () => void;
 }
 
-const MarketplaceFilter: React.FC<MarketplaceFilterProps> = ({ value, onChange, onClear }) => {
+const MarketplaceFilter: React.FC<MarketplaceFilterProps> = ({ value, onChange }) => {
   const [search, setSearch] = useState('');
   const [debouncedSearch, setDebouncedSearch] = useState('');
 
@@ -32,10 +31,6 @@ const MarketplaceFilter: React.FC<MarketplaceFilterProps> = ({ value, onChange, 
       onChange([...value, id]);
     }
   };
-  const handleClear = () => {
-    setSearch('');
-    if (onClear) onClear();
-  };
   return (
     <div>
       <div className="flex items-center mb-2 gap-2">
@@ -48,16 +43,7 @@ const MarketplaceFilter: React.FC<MarketplaceFilterProps> = ({ value, onChange, 
           />
           <Search size={18} className="absolute right-3 top-3 text-gray-400" />
         </div>
-        {(!!search || value.length > 0) && (
-          <button
-            className="ml-2 text-gray-400 hover:text-white p-1 rounded-full border border-[#23232A]"
-            onClick={handleClear}
-            title="Clear selected"
-            type="button"
-          >
-            <X size={16} />
-          </button>
-        )}
+
       </div>
       <div className="space-y-2">
         {filtered.map(mp => (
@@ -76,7 +62,7 @@ const MarketplaceFilter: React.FC<MarketplaceFilterProps> = ({ value, onChange, 
               {value.includes(mp.id) && <Check size={18} className="text-white" />}
             </span>
             <span className="w-6 h-6 flex items-center justify-center">
-              <Image src={mp.icon} alt={mp.name} className="w-6 h-6" />
+              <Image src={mp.icon} alt={mp.name} width={24} height={24} className="w-6 h-6" />
             </span>
             <span className="text-white text-sm flex-1">{mp.name}</span>
           </label>

@@ -15,7 +15,7 @@ export const mockNFTs: NFT[] = [
     createdAt: new Date('2025-01-01T10:00:00Z'),
     updatedAt: new Date('2025-06-25T12:00:00Z'),
     status: 'sold',
-    traits: { background: 'Blue', style: 'Abstract' },
+    traits: { color: 'Blue', style: 'Abstract', background: 'Light' },
   },
   {
     id: '2',
@@ -31,7 +31,7 @@ export const mockNFTs: NFT[] = [
     createdAt: new Date('2024-12-15T14:30:00Z'),
     updatedAt: new Date('2025-06-26T09:00:00Z'),
     status: 'active',
-    traits: { city: 'Neo-Tokyo', mood: 'Dystopian' },
+    traits: { color: 'Blue', style: 'Abstract', background: 'Dark' },
   },
   {
     id: '3',
@@ -47,7 +47,7 @@ export const mockNFTs: NFT[] = [
     createdAt: new Date('2025-02-20T08:00:00Z'),
     updatedAt: new Date('2025-06-24T15:00:00Z'),
     status: 'sold',
-    traits: { environment: 'Forest', season: 'Spring' },
+    traits: { color: 'Green', style: 'Nature', background: 'Light' },
   },
   {
     id: '4',
@@ -63,7 +63,7 @@ export const mockNFTs: NFT[] = [
     createdAt: new Date('2025-01-25T11:00:00Z'),
     updatedAt: new Date('2025-06-27T10:00:00Z'),
     status: 'active',
-    traits: { gender: 'Female', expression: 'Neutral' },
+    traits: { color: 'Blue', style: 'Portrait', background: 'Light' },
   },
   {
     id: '5',
@@ -79,7 +79,7 @@ export const mockNFTs: NFT[] = [
     createdAt: new Date('2024-11-01T09:00:00Z'),
     updatedAt: new Date('2025-06-23T11:00:00Z'),
     status: 'sold',
-    traits: { shape: 'Circle', color: 'Rainbow' },
+    traits: { color: 'Red', style: 'Abstract', background: 'Dark' },
   },
   {
     id: '6',
@@ -95,7 +95,7 @@ export const mockNFTs: NFT[] = [
     createdAt: new Date('2025-03-10T16:00:00Z'),
     updatedAt: new Date('2025-06-27T08:00:00Z'),
     status: 'active',
-    traits: { theme: 'Space', character: 'Astronaut' },
+    traits: { color: 'Blue', style: 'Sci-Fi', background: 'Dark' },
   },
   {
     id: '7',
@@ -111,7 +111,7 @@ export const mockNFTs: NFT[] = [
     createdAt: new Date('2024-10-20T10:00:00Z'),
     updatedAt: new Date('2025-06-22T14:00:00Z'),
     status: 'sold',
-    traits: { creature: 'Dragon', style: 'Pixel Art' },
+    traits: { color: 'Red', style: 'Pixel Art', background: 'Light' },
   },
   {
     id: '8',
@@ -127,7 +127,7 @@ export const mockNFTs: NFT[] = [
     createdAt: new Date('2025-04-05T13:00:00Z'),
     updatedAt: new Date('2025-06-27T11:00:00Z'),
     status: 'active',
-    traits: { environment: 'Ocean', color: 'Blue' },
+    traits: { color: 'Blue', style: 'Nature', background: 'Light' },
   },
   {
     id: '9',
@@ -143,7 +143,7 @@ export const mockNFTs: NFT[] = [
     createdAt: new Date('2025-01-10T11:00:00Z'),
     updatedAt: new Date('2025-06-21T13:00:00Z'),
     status: 'sold',
-    traits: { landscape: 'Desert', element: 'Water' },
+    traits: { color: 'Yellow', style: 'Nature', background: 'Light' },
   },
   {
     id: '10',
@@ -159,7 +159,7 @@ export const mockNFTs: NFT[] = [
     createdAt: new Date('2024-12-01T09:00:00Z'),
     updatedAt: new Date('2025-06-27T09:30:00Z'),
     status: 'active',
-    traits: { landscape: 'Mountain', weather: 'Snowy' },
+    traits: { color: 'Blue', style: 'Nature', background: 'Dark' },
   },
   {
     id: '11',

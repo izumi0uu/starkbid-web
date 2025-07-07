@@ -1,12 +1,10 @@
 import React from 'react';
-import { X } from 'lucide-react';
 
 type Status = 'all' | 'listed' | 'owned_by_you';  
 
 interface StatusFilterProps {
   value: Status;
   onChange: (value: Status) => void;
-  onClear?: () => void;
 }
 
 const options = [
@@ -15,7 +13,7 @@ const options = [
   { label: 'Owned by you', value: 'owned_by_you' },
 ];
 
-const StatusFilter: React.FC<StatusFilterProps> = ({ value, onChange, onClear }) => (
+const StatusFilter: React.FC<StatusFilterProps> = ({ value, onChange }) => (
   <div className="flex gap-2 items-center">
     <div className="flex gap-2">
       {options.map((opt) => (
@@ -33,16 +31,7 @@ const StatusFilter: React.FC<StatusFilterProps> = ({ value, onChange, onClear })
         </button>
       ))}
     </div>
-    {value !== 'all' && onClear && (
-      <button
-        className="text-gray-400 hover:text-white p-1 rounded-full border border-[#23232A] ml-2"
-        onClick={onClear}
-        title="Clear status"
-        type="button"
-      >
-        <X size={16} />
-      </button>
-    )}
+
   </div>
 );
 

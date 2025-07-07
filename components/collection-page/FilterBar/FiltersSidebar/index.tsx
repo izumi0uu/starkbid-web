@@ -43,23 +43,29 @@ const FiltersSidebar: React.FC<FilterSidebarProps> = ({
   openSections,
   onToggleSection,
 }) => {
-  // Mock loading y contador
-  const [loading] = useState(false); // Cambia a true para simular loading
-  const resultCount = 123; // Mock
+
+  const [loading] = useState(false);
+  const resultCount = 123;
+
+  const isStatusActive = filters.status !== 'all';
+  const isPriceActive = (filters.priceRange.min !== '' || filters.priceRange.max !== '') && filters.priceRange.currency === 'ETH';
+  const isMarketplaceActive = filters.marketplaces.length > 0;
+  const isTraitsActive = Object.values(filters.traits).some(arr => arr.length > 0);
+  const anyActive = isStatusActive || isPriceActive || isMarketplaceActive || isTraitsActive;
 
   return (
     <aside className="w-full sm:w-[320px] max-w-full bg-[#18181B] flex flex-col shadow-lg">
-      {/* Header */}
       <div className="flex items-center justify-between p-4 border-b border-[#23232A]">
         <h2 className="text-lg font-semibold text-white">Filters</h2>
-        <button
-          onClick={onClearFilters}
-          className="text-[#8B5CF6] text-sm hover:underline hover:text-[#7c3aed] transition-colors"
-        >
-          Clear filters
-        </button>
+        {anyActive && (
+          <button
+            onClick={onClearFilters}
+            className="text-[#8B5CF6] text-sm hover:underline hover:text-[#7c3aed] transition-colors"
+          >
+            Clear filters
+          </button>
+        )}
       </div>
-      {/* Contador y loading */}
       <div className="px-4 pt-2 pb-1 flex items-center gap-2 min-h-[32px]">
         {loading ? (
           <span className="w-5 h-5 border-2 border-[#8B5CF6] border-t-transparent rounded-full animate-spin inline-block" />
@@ -67,51 +73,54 @@ const FiltersSidebar: React.FC<FilterSidebarProps> = ({
           <span className="text-xs text-gray-400">{resultCount} results</span>
         )}
       </div>
-      {/* Filtros */}
       <div className="p-4 space-y-6">
         <FilterCategory
           title={<span>Status</span>}
           isOpen={openSections.status}
           onToggle={() => onToggleSection('status')}
+          isActive={isStatusActive}
+          onClear={() => onFiltersChange({ ...filters, status: 'all' })}
         >
           <StatusFilter
             value={filters.status}
             onChange={status => onFiltersChange({ ...filters, status })}
-            onClear={() => onFiltersChange({ ...filters, status: 'all' })}
           />
         </FilterCategory>
         <FilterCategory
           title={<span>Price</span>}
           isOpen={openSections.price}
           onToggle={() => onToggleSection('price')}
+          isActive={isPriceActive}
+          onClear={() => onFiltersChange({ ...filters, priceRange: { ...filters.priceRange, min: '', max: '' } })}
         >
           <PriceFilter
             value={filters.priceRange}
             onChange={priceRange => onFiltersChange({ ...filters, priceRange })}
-            onClear={() => onFiltersChange({ ...filters, priceRange: { ...filters.priceRange, min: '', max: '' } })}
           />
         </FilterCategory>
         <FilterCategory
           title={<span>Market Place</span>}
           isOpen={openSections.marketplace}
           onToggle={() => onToggleSection('marketplace')}
+          isActive={isMarketplaceActive}
+          onClear={() => onFiltersChange({ ...filters, marketplaces: [] })}
         >
           <MarketplaceFilter
             value={filters.marketplaces}
             onChange={marketplaces => onFiltersChange({ ...filters, marketplaces })}
-            onClear={() => onFiltersChange({ ...filters, marketplaces: [] })}
           />
         </FilterCategory>
         <FilterCategory
           title={<span>Properties/Traits</span>}
           isOpen={openSections.traits}
           onToggle={() => onToggleSection('traits')}
+          isActive={isTraitsActive}
+          onClear={() => onFiltersChange({ ...filters, traits: {} })}
         >
           <TraitsFilter
             value={filters.traits}
             onChange={traits => onFiltersChange({ ...filters, traits })}
             availableTraits={availableTraits}
-            onClear={() => onFiltersChange({ ...filters, traits: {} })}
           />
         </FilterCategory>
       </div>

@@ -37,6 +37,8 @@ export default function CollectionTabs() {
   const [activeTab, setActiveTab] = useState("owned");
   const [isFiltersOpen, setIsFiltersOpen] = useState(false);
   const [showGrid] = useState(true);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [sortOption, setSortOption] = useState("price_low");
 
   function parseFiltersFromURL(params: URLSearchParams): FilterState {
     const status = params.get('status') as FilterState['status'] || 'all';
@@ -93,18 +95,24 @@ export default function CollectionTabs() {
     traits: true,
   });
 
-  const availableTraits: TraitCategory[] = [
-    { name: 'Background', values: [
-      { value: 'Blue', count: 12 },
-      { value: 'Red', count: 8 },
-      { value: 'Green', count: 5 },
-    ] },
-    { name: 'Eyes', values: [
-      { value: 'Laser', count: 3 },
-      { value: 'Normal', count: 10 },
-      { value: 'Closed', count: 2 },
-    ] },
-  ];
+  // Extraer traits dinámicamente de los mocks
+  function extractAvailableTraits(nfts: { traits?: Record<string, string> }[]): TraitCategory[] {
+    const traitMap: Record<string, Record<string, number>> = {};
+    nfts.forEach((nft) => {
+      Object.entries(nft.traits || {}).forEach(([category, value]) => {
+        if (!traitMap[category]) traitMap[category] = {};
+        if (!traitMap[category][value]) traitMap[category][value] = 0;
+        traitMap[category][value]++;
+      });
+    });
+    // Convertir a formato TraitCategory[]
+    return Object.entries(traitMap).map(([name, valuesObj]) => ({
+      name,
+      values: Object.entries(valuesObj).map(([value, count]) => ({ value, count: Number(count) }))
+    }));
+  }
+
+  const availableTraits: TraitCategory[] = extractAvailableTraits(mockNFTs);
 
   const handleToggleSection = (section: keyof typeof openSections) => {
     setOpenSections(prev => ({ ...prev, [section]: !prev[section] }));
@@ -149,13 +157,15 @@ export default function CollectionTabs() {
                   <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
                   <Input
                     placeholder="Search by NFTs"
+                    value={searchTerm}
+                    onChange={e => setSearchTerm(e.target.value)}
                     className="pl-10 bg-gray-800/50 border-gray-700 text-white placeholder:text-gray-400 focus:border-purple-500"
                   />
                 </div>
                 <div className="flex items-center gap-3 w-full max-w-[320px]">
                   <div className="flex items-center h-11 px-4 rounded-lg bg-[#18181B] border border-[#23232A] w-full">
                     <span className="text-[#8E9BAE] text-sm font-medium mr-2">Price:</span>
-                    <Select defaultValue="price_low">
+                    <Select defaultValue="price_low" value={sortOption} onValueChange={setSortOption}>
                       <SelectTrigger className="bg-transparent border-none shadow-none px-0 h-11 text-white text-sm font-medium flex items-center focus:ring-0 focus:outline-none">
                         <SelectValue className="text-white" />
                       </SelectTrigger>
@@ -183,11 +193,53 @@ export default function CollectionTabs() {
                 </div>
               </div>
             </div>
-            <div className="flex w-full transition-all duration-300">
+            <div className="flex justify-between w-full transition-all duration-300">
               <div className={`transition-all duration-300 ${isFiltersOpen ? 'w-full md:w-[calc(100%-335px)]' : 'w-full'}`}>
                 {showGrid ? (
                   <NFTGrid
-                    items={mockNFTs}
+                    items={
+                      mockNFTs
+                        .filter(nft =>
+                          nft.name.toLowerCase().includes(searchTerm.toLowerCase())
+                        )
+                        .filter(nft => {
+                          const min = parseFloat(filters.priceRange.min);
+                          const max = parseFloat(filters.priceRange.max);
+                          const price = parseFloat(nft.price.eth);
+                          if (filters.priceRange.min && filters.priceRange.max) {
+                            return price >= min && price <= max;
+                          } else if (filters.priceRange.min) {
+                            return price >= min;
+                          } else if (filters.priceRange.max) {
+                            return price <= max;
+                          }
+                          return true;
+                        })
+                        .filter(nft => {
+                          // Filtrado por traits seleccionados
+                          const selectedTraits = filters.traits;
+                          // Si no hay traits seleccionados, no filtrar
+                          if (!selectedTraits || Object.keys(selectedTraits).length === 0) return true;
+                          // Cada categoría seleccionada debe estar en el NFT y tener al menos uno de los valores seleccionados
+                          return Object.entries(selectedTraits).every(([cat, vals]) => {
+                            if (!vals.length) return true;
+                            const nftTraitValue = nft.traits?.[cat];
+                            return nftTraitValue && vals.includes(nftTraitValue);
+                          });
+                        })
+                        .sort((a, b) => {
+                          if (sortOption === 'price_low') {
+                            return parseFloat(a.price.eth) - parseFloat(b.price.eth);
+                          } else if (sortOption === 'price_high') {
+                            return parseFloat(b.price.eth) - parseFloat(a.price.eth);
+                          } else if (sortOption === 'newest') {
+                            return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
+                          } else if (sortOption === 'oldest') {
+                            return new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime();
+                          }
+                          return 0;
+                        })
+                    }
                     loading={false}
                     error={null}
                     hasMore={false}

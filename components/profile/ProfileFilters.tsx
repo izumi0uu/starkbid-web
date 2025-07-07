@@ -34,22 +34,29 @@ const ProfileFilters: React.FC<ProfileFiltersProps> = ({
   onClearFilters,
   onClose,
 }) => {
+  // Lógica para saber si cada filtro está activo
+  const isStatusActive = filters.status !== 'all';
+  const isPriceActive = filters.priceRange.min !== '' || filters.priceRange.max !== '';
+  const isMarketplaceActive = filters.marketplaces.length > 0;
+  const isTraitsActive = Object.values(filters.traits).some(arr => arr.length > 0);
+  const anyActive = isStatusActive || isPriceActive || isMarketplaceActive || isTraitsActive;
+
   return (
     <div 
       className={`w-full sm:w-[320px] max-w-full bg-[#101213] flex flex-col shadow-lg transform transition-transform duration-300 ease-in-out ${
         isOpen ? 'translate-x-0' : 'translate-x-full'
       }`}
     >
-      {/* Header */}
       <div className="flex items-center justify-between p-4 relative">
         <h2 className="text-lg font-semibold text-white">Filters</h2>
-        <button
-          onClick={onClearFilters}
-          className="text-[#8B5CF6] text-sm hover:underline hover:text-[#7c3aed] transition-colors"
-        >
-          Clear filters
-        </button>
-        {/* Botón X solo en mobile */}
+        {anyActive && (
+          <button
+            onClick={onClearFilters}
+            className="text-[#8B5CF6] text-sm hover:underline hover:text-[#7c3aed] transition-colors"
+          >
+            Clear filters
+          </button>
+        )}
         <button
           onClick={onClose}
           className="absolute right-2 top-2 md:hidden text-gray-400 hover:text-white"
@@ -59,12 +66,13 @@ const ProfileFilters: React.FC<ProfileFiltersProps> = ({
         </button>
       </div>
       
-      {/* Filtros */}
-      <div className="p-4 space-y-6">
+      <div className="p-4 pr-0 space-y-6">
         <FilterCategory
           title={<span>Status</span>}
           isOpen={openSections.status}
           onToggle={() => onToggleSection('status')}
+          isActive={isStatusActive}
+          onClear={() => onFiltersChange({ ...filters, status: 'all' })}
         >
           <StatusFilter
             value={filters.status}
@@ -76,6 +84,8 @@ const ProfileFilters: React.FC<ProfileFiltersProps> = ({
           title={<span>Price</span>}
           isOpen={openSections.price}
           onToggle={() => onToggleSection('price')}
+          isActive={isPriceActive}
+          onClear={() => onFiltersChange({ ...filters, priceRange: { ...filters.priceRange, min: '', max: '', currency: filters.priceRange.currency } })}
         >
           <PriceFilter
             value={filters.priceRange}
@@ -87,6 +97,8 @@ const ProfileFilters: React.FC<ProfileFiltersProps> = ({
           title={<span>Market Place</span>}
           isOpen={openSections.marketplace}
           onToggle={() => onToggleSection('marketplace')}
+          isActive={isMarketplaceActive}
+          onClear={() => onFiltersChange({ ...filters, marketplaces: [] })}
         >
           <MarketplaceFilter
             value={filters.marketplaces}
@@ -98,6 +110,8 @@ const ProfileFilters: React.FC<ProfileFiltersProps> = ({
           title={<span>Properties/Traits</span>}
           isOpen={openSections.traits}
           onToggle={() => onToggleSection('traits')}
+          isActive={isTraitsActive}
+          onClear={() => onFiltersChange({ ...filters, traits: {} })}
         >
           <TraitsFilter
             value={filters.traits}
