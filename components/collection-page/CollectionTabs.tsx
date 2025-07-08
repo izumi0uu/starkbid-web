@@ -9,7 +9,7 @@ const CollectionTabs: React.FC<CollectionTabsProps> = ({ activeTab, setActiveTab
   const tabs = ['Items', 'About', 'Activity', "Owner"];
 
   return (
-    <div className="border-b border-gray-800 mb-6">
+    <div className="border-b border-gray-800">
       <nav className="flex space-x-8">
         {tabs.map((tab) => (
           <button

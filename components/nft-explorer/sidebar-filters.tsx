@@ -42,7 +42,7 @@ const SidebarFilters: React.FC<SidebarFiltersProps> = ({
 
   return (
     <div 
-      className={`w-full sm:w-[320px] max-w-full bg-[#101213] flex flex-col shadow-lg transform transition-transform duration-300 ease-in-out ${
+      className={`w-full sm:w-[320px] max-w-full bg-transparent flex flex-col shadow-lg transform transition-transform duration-300 ease-in-out ${
         isOpen ? 'translate-x-0' : 'translate-x-full'
       }`}
     >

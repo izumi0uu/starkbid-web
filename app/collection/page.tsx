@@ -12,6 +12,8 @@ import ActivityTab from '@/components/activity'
 import Footer from '@/components/landing-page/Footer'
 import Navbar from '@/components/landing-page/Navbar'
 import { AboutTab } from '@/components/about-tab'
+import { collectionMockNFTs } from '@/components/profile/lib/mockData'
+import NftViewer from '@/components/nft-explorer/nft-viewer'
 
 function CollectionPage() {
   const [activeTab, setActiveTab] = useState('Items')
@@ -25,13 +27,7 @@ function CollectionPage() {
       case 'Items':
         return (
           <>
-            <FilterBar
-              searchQuery={searchQuery}
-              setSearchQuery={setSearchQuery}
-              sortBy={sortBy}
-              setSortBy={setSortBy}
-            />
-            <NFTGrid />
+            <NftViewer mockNFTs={collectionMockNFTs} />
           </>
         )
       case 'About':
@@ -47,13 +43,7 @@ function CollectionPage() {
       default:
         return (
           <>
-            <FilterBar
-              searchQuery={searchQuery}
-              setSearchQuery={setSearchQuery}
-              sortBy={sortBy}
-              setSortBy={setSortBy}
-            />
-            <NFTGrid />
+            <NftViewer mockNFTs={collectionMockNFTs} />
           </>
         )
     }

@@ -2,11 +2,15 @@ import React, { useState, useEffect } from 'react'
 import NftFilterBar from './nft-filter-Bar'
 import NftGridTable from './ntf-grid-table'
 import { TraitCategory } from '../collection-page/FilterBar/FiltersSidebar'
-import { mockNFTs } from '../profile/lib/mockData'
 import { FilterState } from '../collection-page/FilterBar/FiltersSidebar'
 import { useRouter, useSearchParams } from 'next/navigation'
+import { NFT } from '../profile/NFTCard/NFTCard.types'
 
-const NftProfileViewer = () => {
+interface NftViewerProps {
+  mockNFTs: NFT[];
+}
+
+const NftViewer = ({ mockNFTs }: NftViewerProps) => {
     const router = useRouter();
     const searchParams = useSearchParams();
     const [isFiltersOpen, setIsFiltersOpen] = useState(false);
@@ -142,4 +146,4 @@ const NftProfileViewer = () => {
   )
 }
 
-export default NftProfileViewer
+export default NftViewer

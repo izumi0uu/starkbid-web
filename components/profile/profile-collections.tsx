@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import NftProfileViewer from "../nft-explorer/nft-profile-viewer";
+import NftViewer from "../nft-explorer/nft-viewer";
+import { profileMockNFTs } from "./lib/mockData";
 
 
 const tabs = [
@@ -29,7 +30,7 @@ export default function CollectionTabs() {
       case "offers":
       default:
         return (
-          <NftProfileViewer />
+          <NftViewer mockNFTs={profileMockNFTs} />
         );
     }
   };

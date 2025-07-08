@@ -51,7 +51,7 @@ const TraitsFilter: React.FC<TraitsFilterProps> = ({ value, onChange, availableT
                 <Search size={14} className="absolute right-2 top-2 text-gray-400" />
               </div>
             </div>
-            <div className="space-y-1 max-h-32 overflow-y-auto">
+            <div className="space-y-1 overflow-y-auto">
               {filtered.map(trait => (
                 <label key={trait.value} className="flex items-center gap-2 cursor-pointer text-xs text-gray-200">
                   <span

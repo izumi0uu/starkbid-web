@@ -65,6 +65,14 @@ const NftGridTable = ({
                           return true;
                         })
                         .filter(nft => {
+                          // Filtro de marketplace múltiple
+                          if (filters.marketplaces && filters.marketplaces.length > 0) {
+                            // El valor en filters.marketplaces es en minúsculas (ej: 'opensea'), el de mock es el nombre (ej: 'OpenSea')
+                            return filters.marketplaces.some(mp => mp.toLowerCase() === nft.collection.marketplace.toLowerCase());
+                          }
+                          return true;
+                        })
+                        .filter(nft => {
                           // Filtrado por traits seleccionados
                           const selectedTraits = filters.traits;
                           // Si no hay traits seleccionados, no filtrar
@@ -130,7 +138,7 @@ const NftGridTable = ({
                   ${isFiltersOpen ? 'w-[320px] visible opacity-100' : 'w-0 invisible opacity-0'}
                   md:relative md:z-50
                   fixed top-0 right-0 h-full z-50 md:static
-                  bg-[#18181B]
+                  bg-transparent
                 `}
                 style={{ minWidth: isFiltersOpen ? 320 : 0 }}
               >
