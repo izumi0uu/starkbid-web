@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { CreatedFiltersState } from '../CreatedFilters/CreatedFilters.types';
 import { NFT } from '../NFTCard/NFTCard.types';
+import { getRandomMarketplace } from '@/lib/utils'; 
 
 const MOCK_NFTS: NFT[] = Array(20).fill(0).map((_, i) => ({
   id: `nft-${i}`,
@@ -13,7 +14,8 @@ const MOCK_NFTS: NFT[] = Array(20).fill(0).map((_, i) => ({
   collection: {
     id: `collection-${i % 3}`,
     name: `Collection ${i % 3 + 1}`,
-    slug: `collection-${i % 3 + 1}`,
+    slug: `collection-${i % 3 + 1}`,  
+    marketplace: getRandomMarketplace(),
   },
   price: {
     eth: (0.01 * (i + 1)).toFixed(3),

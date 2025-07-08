@@ -14,7 +14,6 @@ export interface MintInfo {
       id: string;
       name: string;
       slug: string;
-      marketplace: string;
       isVerified?: boolean;
     };
     price: {

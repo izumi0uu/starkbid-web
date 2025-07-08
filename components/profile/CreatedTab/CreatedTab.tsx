@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import NFTGrid from '../NFTGrid/NFTGrid';
 import CreatedFilters from '../CreatedFilters/CreatedFilters';
 import { CreatedFiltersState } from '../CreatedFilters/CreatedFilters.types'; 
-import { mockNFTs } from '../lib/mockData';
+import { mockNFTs } from '../../../lib/mockData';
 
 interface CreatedTabProps {
   userAddress: string;

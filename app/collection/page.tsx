@@ -5,18 +5,17 @@ import { useState } from 'react'
 import CollectionHeader from '@/components/collection-page/CollectionHeader'
 import CollectionStats from '@/components/collection-page/CollectionStats'
 import CollectionTabs from '@/components/collection-page/CollectionTabs'
-import FilterBar from '@/components/collection-page/FilterBar/FilterBar'
-import NFTGrid from '@/components/collection-page/NFTGrid'
 import OwnersTab from '@/components/collection-page/owners/owners-tab'
 import ActivityTab from '@/components/activity'
 import Footer from '@/components/landing-page/Footer'
 import Navbar from '@/components/landing-page/Navbar'
 import { AboutTab } from '@/components/about-tab'
+import { collectionMockNFTs } from '@/lib/mockData'
+import NftViewer from '@/components/nft-explorer/nft-viewer'
+import { Suspense } from 'react';
 
 function CollectionPage() {
   const [activeTab, setActiveTab] = useState('Items')
-  const [searchQuery, setSearchQuery] = useState('')
-  const [sortBy, setSortBy] = useState('Recently Listed')
 
   const collectionId = 'mock-collection-id'
 
@@ -24,15 +23,9 @@ function CollectionPage() {
     switch (activeTab) {
       case 'Items':
         return (
-          <>
-            <FilterBar
-              searchQuery={searchQuery}
-              setSearchQuery={setSearchQuery}
-              sortBy={sortBy}
-              setSortBy={setSortBy}
-            />
-            <NFTGrid />
-          </>
+          <Suspense fallback={<div>Loading NFTs...</div>}>
+            <NftViewer mockNFTs={collectionMockNFTs} />
+          </Suspense>
         )
       case 'About':
         return <AboutTab />
@@ -46,15 +39,9 @@ function CollectionPage() {
         return <OwnersTab collectionId={collectionId} />
       default:
         return (
-          <>
-            <FilterBar
-              searchQuery={searchQuery}
-              setSearchQuery={setSearchQuery}
-              sortBy={sortBy}
-              setSortBy={setSortBy}
-            />
-            <NFTGrid />
-          </>
+          <Suspense fallback={<div>Loading NFTs...</div>}>
+            <NftViewer mockNFTs={collectionMockNFTs} />
+          </Suspense>
         )
     }
   }
@@ -67,7 +54,7 @@ function CollectionPage() {
         <CollectionStats />
       </div>
 
-      <div className="mx-auto px-4 sm:px-6 lg:px-28">
+      <div className="mx-auto px-4 sm:px-6 lg:px-12">
         <CollectionTabs activeTab={activeTab} setActiveTab={setActiveTab} />
         {renderTabContent()}
       </div>

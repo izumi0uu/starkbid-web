@@ -3,7 +3,7 @@
 import React from 'react';
 import NFTCard from '../NFTCard/NFTCard';
 import { NFTGridProps } from './NFTGrid.types';
-import { useInfiniteGrid } from '../hooks/useInfiniteGrid';
+import { useInfiniteGrid } from '../../profile/hooks/useInfiniteGrid';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const NFTGrid: React.FC<NFTGridProps> = ({
