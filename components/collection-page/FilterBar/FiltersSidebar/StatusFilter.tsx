@@ -15,7 +15,7 @@ const options = [
 
 const StatusFilter: React.FC<StatusFilterProps> = ({ value, onChange }) => (
   <div className="flex gap-2 items-center">
-    <div className="flex gap-2">
+    <div className="flex gap-3">
       {options.map((opt) => (
         <button
           key={opt.value}

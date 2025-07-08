@@ -67,7 +67,7 @@ function CollectionPage() {
         <CollectionStats />
       </div>
 
-      <div className="mx-auto px-4 sm:px-6 lg:px-28">
+      <div className="mx-auto px-4 sm:px-6 lg:px-12">
         <CollectionTabs activeTab={activeTab} setActiveTab={setActiveTab} />
         {renderTabContent()}
       </div>
