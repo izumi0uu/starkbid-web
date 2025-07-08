@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import NftViewer from "../nft-explorer/nft-viewer";
-import { profileMockNFTs } from "./lib/mockData";
+import { profileMockNFTs } from "../../lib/mockData";
 
 
 const tabs = [

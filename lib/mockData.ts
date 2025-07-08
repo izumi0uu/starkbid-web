@@ -1,9 +1,5 @@
-import { NFT } from '../NFTCard/NFTCard.types';
-
-const marketplaces = ['StarkBid', 'OpenSea', 'SudoSwap', 'Ramble'];
-function getRandomMarketplace() {
-  return marketplaces[Math.floor(Math.random() * marketplaces.length)];
-}
+import { NFT } from '../components/profile/NFTCard/NFTCard.types';
+import { getRandomMarketplace } from '@/lib/utils';
 
 export const profileMockNFTs: NFT[] = [
   {
