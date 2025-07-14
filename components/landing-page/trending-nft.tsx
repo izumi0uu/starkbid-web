@@ -1,11 +1,11 @@
 'use client'
 import React, { useState } from 'react';
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
 import { BsHeart, BsHeartFill } from 'react-icons/bs';
 import { MdVerified } from 'react-icons/md';
 import Arrow from '@/public/arrow.png'
 import { NFTCardProps, nftData } from '@/constants/data';
+import Link from 'next/link';
 
 const NFTCard: React.FC<NFTCardProps> = ({
   title,
@@ -20,7 +20,7 @@ const NFTCard: React.FC<NFTCardProps> = ({
 }) => {
   const [isLiked, setIsLiked] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
-  
+
   return (
     <div
       className="flex flex-col rounded-lg overflow-hidden w-full border border-[#292929] transition-colors duration-300 hover:bg-[#292929]"
@@ -84,11 +84,7 @@ const NFTCard: React.FC<NFTCardProps> = ({
 };
 
 const TrendingNFTs: React.FC = () => {
-  const router = useRouter();
   const [activeTab, setActiveTab] = useState('trending');
-  const handleNavigation = () => {
-    router.push('/nfts');
-  };
 
   return (
     <div className="bg-black text-white p-6 max-w-[1419] mx-auto ">
@@ -115,15 +111,14 @@ const TrendingNFTs: React.FC = () => {
         ))}
       </div>
       <div className="flex justify-center mt-10">
-        <button 
-         onClick={()=> handleNavigation}
+        <Link href="/nfts"
         className="bg-deepGray hover:bg-zinc-700 text-white font-medium py-3 px-6 rounded-lg flex items-center gap-2 transition-colors">
           View all NFTs
           <Image
             src={Arrow}
             alt='arrow icon'
           />
-        </button>
+        </Link>
       </div>
     </div>
   );
