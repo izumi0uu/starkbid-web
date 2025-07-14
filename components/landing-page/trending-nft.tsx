@@ -28,7 +28,7 @@ const NFTCard: React.FC<NFTCardProps> = ({
       onMouseLeave={() => setIsHovered(false)}
     >
       <div className="flex justify-between items-center p-3">
-        <div className="flex items-center gap-2">
+        <Link href={'/profile'} className="group flex items-center gap-2">
           <Image
             src={`/${creatorIcon}`}
             alt={creatorName}
@@ -36,9 +36,9 @@ const NFTCard: React.FC<NFTCardProps> = ({
             height={28}
             className="rounded-full"
           />
-          <span className="text-white font-medium">{creatorName}</span>
+          <span className="text-white font-medium group-hover:underline">{creatorName}</span>
           {isVerified && <MdVerified className="text-purple" size={16} />}
-        </div>
+        </Link>
         <button
           onClick={() => setIsLiked(!isLiked)}
           className="text-ash hover:text-red-500 transition-colors"
