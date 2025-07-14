@@ -2,11 +2,6 @@
 'use client'
 import { useState } from "react";
 import Image from "next/image";
-import frank_nft from "../../../public/frank_ocean.png";
-import jacknft from "../../../public/jack-icon.png";
-import verifiedicon from "../../../public/verified.png";
-import creator from "../../../public/creator_nft.png"
-import owner from "../../../public/new_owner.png"
 
 // Import the page components
 import DescriptionPage from "./pages/description";
@@ -55,12 +50,12 @@ const NftBid = () => {
                             <h2 className="text-2xl font-semibold text-white mb-6">Share Asset</h2>
 
                             {/* Profile Avatar */}
-                            <div className="flex justify-center"><Image src={jacknft} alt="" width={60} height={60} /></div>
+                            <div className="flex justify-center"><Image src={"/jack-icon.png"} alt="" width={60} height={60} /></div>
 
                             {/* Username with checkmark */}
                             <div className="flex items-center justify-center gap-2 mb-2">
                                 <span className="text-gray-300 text-sm">Jacksonito</span>
-                                <Image src={verifiedicon} alt="nftplaceholder" width={20} height={20} />
+                                <Image src={"/verified.png"} alt="nftplaceholder" width={20} height={20} />
                             </div>
 
                             {/* Asset Name */}
@@ -131,7 +126,7 @@ const NftBid = () => {
                     {/* Left side - NFT Image */}
                     <div className="flex-1 max-w-2xl">
                         <Image
-                            src={frank_nft}
+                            src={"/frank_ocean.png"}
                             alt="frank_ocean_nft"
                             width={600}
                             height={600}
@@ -144,9 +139,9 @@ const NftBid = () => {
                         {/* Header */}
                         <div className="flex items-center justify-between">
                             <div className="flex items-center gap-3">
-                                <Image src={jacknft} alt="nftplaceholder" width={40} height={40} />
+                                <Image src={"/jack-icon.png"} alt="nftplaceholder" width={40} height={40} />
                                 <span className="text-gray-300 text-sm">Jacksonito</span>
-                                <Image src={verifiedicon} alt="nftplaceholder" width={20} height={20} />
+                                <Image src={"/verified.png"} alt="nftplaceholder" width={20} height={20} />
                             </div>
 
                             <div className="flex items-center gap-2">
@@ -185,7 +180,7 @@ const NftBid = () => {
                         {/* Creator and Owner */}
                         <div className="flex flex-col sm:flex-row items-center justify-between py-4 border-y border-darkerGray">
                             <div className="flex items-center gap-4">
-                                <Image src={creator} alt="" width={60} height={60} />
+                                <Image src={"/creator_nft.png"} alt="" width={60} height={60} />
                                 <div>
                                     <p className="text-lg tracking-wider">x0023y...yrte</p>
                                     <p className="text-gray-400 text-sm tracking-wider">Creator</p>
@@ -197,7 +192,7 @@ const NftBid = () => {
                             </div>
 
                             <div className="flex items-center gap-3">
-                                <Image src={owner} alt="" width={60} height={60} />
+                                <Image src={"/new_owner.png"} alt="" width={60} height={60} />
                                 <div>
                                     <p className="text-lg tracking-wider">x0023y...yrte</p>
                                     <p className="text-gray-400 text-sm tracking-wider">New Owner</p>

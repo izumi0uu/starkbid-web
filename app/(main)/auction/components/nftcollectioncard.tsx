@@ -1,6 +1,5 @@
 import React from 'react';
-import Image, { StaticImageData } from 'next/image';
-import verified_icon from '../../../public/verified.png'
+import Image from 'next/image';
 
 interface NFTCardData {
   id: number;
@@ -11,7 +10,7 @@ interface NFTCardData {
   currentBid: string;
   bidCount: number;
   timeLeft: string;
-  image: StaticImageData;
+  image: string;
   likes: number;
 }
 
@@ -35,7 +34,7 @@ const NFTCollectionCard: React.FC<NFTCollectionCardProps> = ({ data }) => {
           </div>
           <span className="text-gray-400">{data.creator}</span>
           {data.isVerified && (
-            <Image src={verified_icon} alt='verified_icon' width={20} height={20} />
+            <Image src={'/verified.png'} alt='verified_icon' width={20} height={20} />
           )}
         </div>
         {/* Like button overlay */}

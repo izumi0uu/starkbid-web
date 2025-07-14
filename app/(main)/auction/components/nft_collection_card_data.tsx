@@ -18,7 +18,7 @@ const NFTCollectionSection = () => {
       currentBid: "0.556 ETH",
       bidCount: 24,
       timeLeft: "1d 5h left",
-      image: chicken, // Replace with actual image path
+      image: "/chicken.png", // Replace with actual image path
       likes: 56
     },
     {
@@ -30,7 +30,7 @@ const NFTCollectionSection = () => {
       currentBid: "0.556 ETH",
       bidCount: 24,
       timeLeft: "1d 5h left",
-      image: building, // Replace with actual image path
+      image: "/building.png", // Replace with actual image path
       likes: 42
     },
     {
@@ -42,7 +42,7 @@ const NFTCollectionSection = () => {
       currentBid: "0.556 ETH",
       bidCount: 24,
       timeLeft: "1d 5h left",
-      image: hand, // Replace with actual image path
+      image: "/hand.png", // Replace with actual image path
       likes: 73
     },
     {
@@ -54,7 +54,7 @@ const NFTCollectionSection = () => {
       currentBid: "0.556 ETH",
       bidCount: 24,
       timeLeft: "1d 5h left",
-      image: vr, // Replace with actual image path
+      image: "/vr.png", // Replace with actual image path
       likes: 38
     }
   ];

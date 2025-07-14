@@ -1,6 +1,4 @@
-
 import Hero from "@/components/landing-page/Hero";
-
 import TrendingCollections from '@/components/landing-page/trending-collections';
 import TrendingNft from '@/components/landing-page/trending-nft'
 import YouMayAlsoLike from '@/components/landing-page/you-may-also-like'

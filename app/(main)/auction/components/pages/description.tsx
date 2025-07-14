@@ -2,18 +2,11 @@
 import React from 'react';
 import Image from 'next/image';
 import { useState } from 'react';
-import creator from '../../../../public/creator_nft.png'
-import verifiedicon from "../../../../public/verified.png";
-import user1 from '../../../../public/creator_nft.png'; // Using the same creator image for avatars for simplicity
-import user2 from '../../../../public/creator_nft.png';
-import user3 from '../../../../public/creator_nft.png';
-import user4 from '../../../../public/creator_nft.png';
-import { StaticImageData } from 'next/image';
 
 type Offer = {
     id: number;
     user: string;
-    avatar: StaticImageData;
+    avatar: string;
     isVerified: boolean;
     amount: string;
     usdAmount: string;
@@ -28,7 +21,7 @@ const DescriptionPage = () => {
         {
             id: 1,
             user: "0x123...456",
-            avatar: user1,
+            avatar: 'creator_nft.png',
             isVerified: true,
             amount: "1.25 ETH",
             usdAmount: "$3,250",
@@ -37,7 +30,7 @@ const DescriptionPage = () => {
         {
             id: 2,
             user: "0x789...012",
-            avatar: user2,
+            avatar: 'creator_nft.png',
             isVerified: true,
             amount: "1.00 ETH",
             usdAmount: "$2,600",
@@ -46,7 +39,7 @@ const DescriptionPage = () => {
         {
             id: 3,
             user: "0x456...789",
-            avatar: user3,
+            avatar: 'creator_nft.png',
             isVerified: false,
             amount: "0.85 ETH",
             usdAmount: "$2,210",
@@ -55,7 +48,7 @@ const DescriptionPage = () => {
         {
             id: 4,
             user: "0xabc...def",
-            avatar: user4,
+            avatar: 'creator_nft.png',
             isVerified: true,
             amount: "0.75 ETH",
             usdAmount: "$1,950",
@@ -78,7 +71,7 @@ const DescriptionPage = () => {
                 <h3 className="text-white text-lg font-semibold mb-4">About This Collection</h3>
                 <div className="flex items-center gap-3 mb-4">
                     <p className="text-gray-400 text-sm">Collection by</p>
-                    <Image src={creator} alt="creatornft" width={50} height={50} />
+                    <Image src={'/creator_nft.png'} alt="creatornft" width={50} height={50} />
                     <p className="text-white font-medium">x0023y...yrte</p>
                 </div>
                 <p className="text-lg leading-loose tracking-wider text-gray-400">
@@ -131,7 +124,7 @@ const DescriptionPage = () => {
                                         <div className="flex items-center gap-2">
                                             <p className="text-white font-medium">{offer.user}</p>
                                             {offer.isVerified && (
-                                                <Image src={verifiedicon} alt="verified" width={16} height={16} />
+                                                <Image src={'/verified.png'} alt="verified" width={16} height={16} />
                                             )}
                                         </div>
                                         <p className="text-gray-400 text-sm">{offer.time}</p>

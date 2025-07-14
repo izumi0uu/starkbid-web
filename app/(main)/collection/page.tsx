@@ -7,8 +7,6 @@ import CollectionStats from '@/components/collection-page/CollectionStats'
 import CollectionTabs from '@/components/collection-page/CollectionTabs'
 import OwnersTab from '@/components/collection-page/owners/owners-tab'
 import ActivityTab from '@/components/activity'
-import Footer from '@/components/landing-page/Footer'
-import Navbar from '@/components/landing-page/Navbar'
 import { AboutTab } from '@/components/about-tab'
 import { collectionMockNFTs } from '@/lib/mockData'
 import NftViewer from '@/components/nft-explorer/nft-viewer'
@@ -48,7 +46,6 @@ function CollectionPage() {
 
   return (
     <div className="min-h-screen bg-[#0c0c0c] text-white">
-      <Navbar />
       <CollectionHeader />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <CollectionStats />
@@ -58,7 +55,6 @@ function CollectionPage() {
         <CollectionTabs activeTab={activeTab} setActiveTab={setActiveTab} />
         {renderTabContent()}
       </div>
-      <Footer />
     </div>
   )
 }

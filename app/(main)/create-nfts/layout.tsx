@@ -1,6 +1,4 @@
 import React from "react";
-import Navbar from "@/components/landing-page/Navbar";
-import Footer from "@/components/landing-page/Footer";
 import { Nunito_Sans } from "next/font/google";
 import ProgressBar from "@/components/create-nfts/common/WithdrawStepsProgressbar";
 
@@ -21,10 +19,8 @@ export default function RootLayout({
 }) {
   return (
     <div className={`${nunito.className} bg-black text-white container mx-auto`}>
-      <Navbar />
       <ProgressBar />
       <main className="min-h-screen">{children}</main>
-      <Footer />
     </div>
   );
 }
