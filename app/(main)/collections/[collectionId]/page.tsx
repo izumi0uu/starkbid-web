@@ -10,9 +10,13 @@ import { AboutTab } from '@/components/about-tab'
 import { collectionMockNFTs } from '@/lib/mockData'
 import NftViewer from '@/components/nft-explorer/nft-viewer'
 
-export default function CollectionPage({ params }: { params: { collectionId: string } }) {
+type Props = {
+  params: Promise<{ collectionId: string }>
+}
+
+export default async function CollectionPage({ params }: Props) {
   const [activeTab, setActiveTab] = useState('Items')
-  const { collectionId } = params
+  const { collectionId } = await params
 
   const renderTabContent = () => {
     switch (activeTab) {
