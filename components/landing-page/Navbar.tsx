@@ -15,14 +15,14 @@ const Navbar: React.FC = () => {
   return (
     <nav className="max-w-[1440px] w-full mx-auto text-white flex items-center justify-between px-4 py-2 border-b border-b-darkerGray">
       <div className="flex items-center gap-x-6">
-        <div className="flex items-center gap-x-2">
+        <Link href={"/"} className="flex items-center gap-x-2">
           <Image
             src="/icons/starkbid-logo.png"
             alt="StarkBid Logo"
             width={100}
             height={40}
           />
-        </div>
+        </Link>
 
         {/* Search Bar */}
         <div className="mx-4 max-w-80 flex items-center bg-[#1E1E1E] rounded-lg px-2 py-1">

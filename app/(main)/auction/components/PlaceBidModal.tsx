@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 // import userAvatar from '../../../public/creator_nft.png'; // Placeholder user avatar
-import nftImage from '../../../public/frank_ocean.png'; // Placeholder NFT image
-import ethIcon from '../../../public/profileeth.png'; // Placeholder ETH icon
 
 interface PlaceBidModalProps {
     isOpen: boolean;
@@ -25,13 +23,13 @@ const PlaceBidModal: React.FC<PlaceBidModalProps> = ({ isOpen, onClose }) => {
         address: '352By...fc76',
         isConnected: true,
         blockchain: 'Ethereum Blockchain',
-        avatar: ethIcon,
+        avatar: "/profileeth.png",
     };
 
     const currentNft = {
         name: 'OceanFrank#3001',
         blockchain: 'Ethereum',
-        image: nftImage,
+        image: "/frank_ocean.png",
         collection: 'Jacksonito collection',
     };
 
@@ -193,4 +191,4 @@ const PlaceBidModal: React.FC<PlaceBidModalProps> = ({ isOpen, onClose }) => {
     );
 };
 
-export default PlaceBidModal; 
+export default PlaceBidModal;

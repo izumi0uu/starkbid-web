@@ -1,11 +1,11 @@
 'use client'
 import React, { useState } from 'react';
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
 import { BsHeart, BsHeartFill } from 'react-icons/bs';
 import { MdVerified } from 'react-icons/md';
 import Arrow from '@/public/arrow.png'
 import { NFTCardProps, nftData } from '@/constants/data';
+import Link from 'next/link';
 
 const NFTCard: React.FC<NFTCardProps> = ({
   title,
@@ -20,7 +20,7 @@ const NFTCard: React.FC<NFTCardProps> = ({
 }) => {
   const [isLiked, setIsLiked] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
-  
+
   return (
     <div
       className="flex flex-col rounded-lg overflow-hidden w-full border border-[#292929] transition-colors duration-300 hover:bg-[#292929]"
@@ -28,7 +28,7 @@ const NFTCard: React.FC<NFTCardProps> = ({
       onMouseLeave={() => setIsHovered(false)}
     >
       <div className="flex justify-between items-center p-3">
-        <div className="flex items-center gap-2">
+        <Link href={'/profile'} className="group flex items-center gap-2">
           <Image
             src={`/${creatorIcon}`}
             alt={creatorName}
@@ -36,9 +36,9 @@ const NFTCard: React.FC<NFTCardProps> = ({
             height={28}
             className="rounded-full"
           />
-          <span className="text-white font-medium">{creatorName}</span>
+          <span className="text-white font-medium group-hover:underline">{creatorName}</span>
           {isVerified && <MdVerified className="text-purple" size={16} />}
-        </div>
+        </Link>
         <button
           onClick={() => setIsLiked(!isLiked)}
           className="text-ash hover:text-red-500 transition-colors"
@@ -59,9 +59,9 @@ const NFTCard: React.FC<NFTCardProps> = ({
           className={`px-4 transition-all duration-300 ease-in-out ${isHovered ? 'scale-[1.03] ' : ''}`}
         />
         {isHovered && (
-          <button className="absolute bottom-20 left-1/2 transform -translate-x-1/2 border border-soft_grey bg-white text-black px-4 py-2 rounded-md text-sm font-medium z-10 transition-all duration-300 opacity-100 shadow-md hover:bg-gray-100">
+          <Link href={'/auction'} className="absolute bottom-20 left-1/2 transform -translate-x-1/2 border border-soft_grey bg-white text-black px-4 py-2 rounded-md text-sm font-medium z-10 transition-all duration-300 opacity-100 shadow-md hover:bg-gray-100">
             Place a Bid
-          </button>
+          </Link>
         )}
       </div>
 
@@ -84,11 +84,7 @@ const NFTCard: React.FC<NFTCardProps> = ({
 };
 
 const TrendingNFTs: React.FC = () => {
-  const router = useRouter();
   const [activeTab, setActiveTab] = useState('trending');
-  const handleNavigation = () => {
-    router.push('/nfts');
-  };
 
   return (
     <div className="bg-black text-white p-6 max-w-[1419] mx-auto ">
@@ -115,15 +111,14 @@ const TrendingNFTs: React.FC = () => {
         ))}
       </div>
       <div className="flex justify-center mt-10">
-        <button 
-         onClick={()=> handleNavigation}
+        <Link href="/nfts"
         className="bg-deepGray hover:bg-zinc-700 text-white font-medium py-3 px-6 rounded-lg flex items-center gap-2 transition-colors">
           View all NFTs
           <Image
             src={Arrow}
             alt='arrow icon'
           />
-        </button>
+        </Link>
       </div>
     </div>
   );

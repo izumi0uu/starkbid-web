@@ -1,4 +1,3 @@
-// components/pages/ActivityPage.tsx
 import React, { useState } from 'react';
 import {
     Chart as ChartJS,
@@ -11,11 +10,6 @@ import {
 } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
 import Image from 'next/image';
-import user1 from '../../../../public/creator_nft.png'; // Replace with actual avatar paths
-import user2 from '../../../../public/creator_nft.png';
-import user3 from '../../../../public/creator_nft.png';
-import user4 from '../../../../public/creator_nft.png';
-import { StaticImageData } from 'next/image';
 import { TooltipItem } from 'chart.js';
 
 ChartJS.register(
@@ -31,7 +25,7 @@ type Activity = {
     id: number;
     type: 'Sale' | 'Listing' | 'Transfer' | 'Mint' | 'Bid';
     user: string;
-    userAvatar: StaticImageData;
+    userAvatar: string; // Change to string for relative path
     details: string;
     time: string;
     priceEth?: string;
@@ -48,7 +42,7 @@ const ActivityPage = () => {
             id: 1,
             type: 'Sale',
             user: 'x0023y...yrte',
-            userAvatar: user1,
+            userAvatar: '/creator_nft.png',
             details: 'sold to x07056...jure',
             time: '20 minutes ago',
             priceEth: '0.060 ETH',
@@ -58,7 +52,7 @@ const ActivityPage = () => {
             id: 2,
             type: 'Listing',
             user: 'x0023y...yrte',
-            userAvatar: user2,
+            userAvatar: '/creator_nft.png',
             details: 'listed for',
             time: '1 hour ago',
             priceEth: '0.060 ETH',
@@ -68,7 +62,7 @@ const ActivityPage = () => {
             id: 3,
             type: 'Transfer',
             user: 'x0023y...yrte',
-            userAvatar: user3,
+            userAvatar: '/creator_nft.png',
             details: 'transferred to x07056...jure',
             time: '2 days ago',
             priceEth: '0.060 ETH',
@@ -78,7 +72,7 @@ const ActivityPage = () => {
             id: 4,
             type: 'Mint',
             user: 'x0023y...yrte',
-            userAvatar: user4,
+            userAvatar: '/creator_nft.png',
             details: '',
             time: '4 days ago',
             priceEth: '0.060 ETH',
@@ -88,7 +82,7 @@ const ActivityPage = () => {
             id: 5,
             type: 'Bid',
             user: 'x0abc...def',
-            userAvatar: user1,
+            userAvatar: '/creator_nft.png',
             details: 'placed bid',
             time: '1 day ago',
             priceEth: '0.050 ETH',
@@ -98,7 +92,7 @@ const ActivityPage = () => {
             id: 6,
             type: 'Sale',
             user: 'x0123...456',
-            userAvatar: user2,
+            userAvatar: '/creator_nft.png',
             details: 'sold to x0789...012',
             time: '5 days ago',
             priceEth: '0.070 ETH',
@@ -108,7 +102,7 @@ const ActivityPage = () => {
             id: 7,
             type: 'Listing',
             user: 'x0def...789',
-            userAvatar: user3,
+            userAvatar: '/creator_nft.png',
             details: 'listed for',
             time: '1 week ago',
             priceEth: '0.065 ETH',
@@ -118,7 +112,7 @@ const ActivityPage = () => {
             id: 8,
             type: 'Transfer',
             user: 'x0fed...cba',
-            userAvatar: user4,
+            userAvatar: '/creator_nft.png',
             details: 'transferred to x0345...678',
             time: '1 week ago',
             priceEth: '0.060 ETH',

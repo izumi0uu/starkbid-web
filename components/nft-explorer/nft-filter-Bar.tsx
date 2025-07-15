@@ -1,6 +1,5 @@
 import { ChevronLeft, ListFilter, Search } from 'lucide-react'
 import React from 'react'
-import { Input } from '../ui/input'
 import { Select, SelectTrigger, SelectContent, SelectItem, SelectValue } from '../ui/select'
 import { Button } from '../ui/button'
 
@@ -26,28 +25,29 @@ const NftFilterBar = ({
             <div className="flex flex-col sm:flex-row gap-4 items-center justify-between">
                 <div className="relative flex-1 max-w-md">
                     <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
-                    <Input
+                    <input
+                        type="text"
                         placeholder="Search by NFTs"
                         value={searchTerm}
                         onChange={e => setSearchTerm(e.target.value)}
-                        className="pl-10 bg-gray-800/50 border-gray-700 text-white placeholder:text-gray-400 focus:border-purple-500"
+                        className="w-full bg-[#1C1D1F] border border-[#2D2E32] rounded-lg pl-8 pr-4 py-3 text-white placeholder-[#8E9BAE] focus:outline-none focus:ring-2 focus:ring-purple-500"
                     />
                 </div>
                 <div className="flex items-center gap-3 w-full max-w-[320px]">
-                <div className="flex items-center h-11 px-4 rounded-lg bg-[#18181B] border border-[#23232A] w-full">
-                    <span className="text-[#8E9BAE] text-sm font-medium mr-2">Price:</span>
-                    <Select defaultValue="price_low" value={sortOption} onValueChange={setSortOption}>
-                      <SelectTrigger className="bg-transparent border-none shadow-none px-0 h-11 text-white text-sm font-medium flex items-center focus:ring-0 focus:outline-none">
-                        <SelectValue className="text-white" />
-                      </SelectTrigger>
-                      <SelectContent className="bg-[#18181B] border-[#23232A] text-white">
-                        <SelectItem value="price_low">Low to High</SelectItem>
-                        <SelectItem value="price_high">High to Low</SelectItem>
-                        <SelectItem value="newest">Newest</SelectItem>
-                        <SelectItem value="oldest">Oldest</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
+                    <div className="flex items-center h-11 px-4 rounded-lg bg-[#18181B] border border-[#23232A]">
+                        <span className="text-[#8E9BAE] text-sm font-medium mr-2">Price:</span>
+                        <Select defaultValue="price_low" value={sortOption} onValueChange={setSortOption}>
+                            <SelectTrigger className="w-28 bg-transparent border-none shadow-none px-0 h-11 text-white text-sm font-medium flex items-center focus:ring-0 focus:outline-none">
+                                <SelectValue className="text-white" />
+                            </SelectTrigger>
+                            <SelectContent className="bg-[#18181B] border-[#23232A] text-white">
+                                <SelectItem value="price_low">Low to High</SelectItem>
+                                <SelectItem value="price_high">High to Low</SelectItem>
+                                <SelectItem value="newest">Newest</SelectItem>
+                                <SelectItem value="oldest">Oldest</SelectItem>
+                            </SelectContent>
+                        </Select>
+                    </div>
                     <Button
                         variant="outline"
                         size="sm"

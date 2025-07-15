@@ -1,10 +1,6 @@
 // components/NFTCollectionSection.tsx
 import React from 'react';
 import NFTCollectionCard from './nftcollectioncard';
-import chicken from '../../../public/chicken.png'
-import building from '../../../public/building.png'
-import hand from '../../../public/hand.png'
-import vr from '../../../public/vr.png'
 
 const NFTCollectionSection = () => {
   // Sample data - replace with your actual images
@@ -18,7 +14,7 @@ const NFTCollectionSection = () => {
       currentBid: "0.556 ETH",
       bidCount: 24,
       timeLeft: "1d 5h left",
-      image: chicken, // Replace with actual image path
+      image: "/chicken.png", // Replace with actual image path
       likes: 56
     },
     {
@@ -30,7 +26,7 @@ const NFTCollectionSection = () => {
       currentBid: "0.556 ETH",
       bidCount: 24,
       timeLeft: "1d 5h left",
-      image: building, // Replace with actual image path
+      image: "/building.png", // Replace with actual image path
       likes: 42
     },
     {
@@ -42,7 +38,7 @@ const NFTCollectionSection = () => {
       currentBid: "0.556 ETH",
       bidCount: 24,
       timeLeft: "1d 5h left",
-      image: hand, // Replace with actual image path
+      image: "/hand.png", // Replace with actual image path
       likes: 73
     },
     {
@@ -54,7 +50,7 @@ const NFTCollectionSection = () => {
       currentBid: "0.556 ETH",
       bidCount: 24,
       timeLeft: "1d 5h left",
-      image: vr, // Replace with actual image path
+      image: "/vr.png", // Replace with actual image path
       likes: 38
     }
   ];

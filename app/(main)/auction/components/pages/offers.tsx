@@ -1,17 +1,10 @@
-// components/pages/OffersPage.tsx
 import React, { useState } from 'react';
 import Image from 'next/image';
-import verifiedicon from "../../../../public/verified.png";
-import user1 from '../../../../public/creator_nft.png'; // Replace with actual avatar paths
-import user2 from '../../../../public/creator_nft.png';
-import user3 from '../../../../public/creator_nft.png';
-import user4 from '../../../../public/creator_nft.png';
-import { StaticImageData } from 'next/image';
 
 type Offer = {
     id: number;
     user: string;
-    avatar: StaticImageData;
+    avatar: string; // Change to string for filename
     isVerified: boolean;
     amount: string;
     usdAmount: string;
@@ -26,7 +19,7 @@ const OffersPage = () => {
         {
             id: 1,
             user: "0x123...456",
-            avatar: user1,
+            avatar: "creator_nft.png",
             isVerified: true,
             amount: "1.25 ETH",
             usdAmount: "$3,250",
@@ -35,7 +28,7 @@ const OffersPage = () => {
         {
             id: 2,
             user: "0x789...012",
-            avatar: user2,
+            avatar: "creator_nft.png",
             isVerified: true,
             amount: "1.00 ETH",
             usdAmount: "$2,600",
@@ -44,7 +37,7 @@ const OffersPage = () => {
         {
             id: 3,
             user: "0x456...789",
-            avatar: user3,
+            avatar: "creator_nft.png",
             isVerified: false,
             amount: "0.85 ETH",
             usdAmount: "$2,210",
@@ -53,7 +46,7 @@ const OffersPage = () => {
         {
             id: 4,
             user: "0xabc...def",
-            avatar: user4,
+            avatar: "creator_nft.png",
             isVerified: true,
             amount: "0.75 ETH",
             usdAmount: "$1,950",
@@ -62,7 +55,7 @@ const OffersPage = () => {
         {
             id: 5,
             user: "0x111...222",
-            avatar: user1,
+            avatar: "creator_nft.png",
             isVerified: false,
             amount: "0.70 ETH",
             usdAmount: "$1,820",
@@ -71,7 +64,7 @@ const OffersPage = () => {
          {
             id: 6,
             user: "0x333...444",
-            avatar: user2,
+            avatar: "creator_nft.png",
             isVerified: true,
             amount: "0.65 ETH",
             usdAmount: "$1,690",
@@ -80,7 +73,7 @@ const OffersPage = () => {
          {
             id: 7,
             user: "0x555...666",
-            avatar: user3,
+            avatar: "creator_nft.png",
             isVerified: false,
             amount: "0.60 ETH",
             usdAmount: "$1,560",
@@ -89,7 +82,7 @@ const OffersPage = () => {
          {
             id: 8,
             user: "0x777...888",
-            avatar: user4,
+            avatar: "creator_nft.png",
             isVerified: true,
             amount: "0.55 ETH",
             usdAmount: "$1,430",
@@ -122,7 +115,7 @@ const OffersPage = () => {
                                     <div className="flex items-center gap-4">
                                         <div className="w-10 h-10 bg-[#3A3B3F] rounded-full flex items-center justify-center">
                                             <Image
-                                                src={offer.avatar}
+                                                src={`/${offer.avatar}`}
                                                 alt={offer.user}
                                                 width={40}
                                                 height={40}
@@ -133,7 +126,7 @@ const OffersPage = () => {
                                             <div className="flex items-center gap-2">
                                                 <p className="text-white font-medium">{offer.user}</p>
                                                 {offer.isVerified && (
-                                                    <Image src={verifiedicon} alt="verified" width={16} height={16} />
+                                                    <Image src="/verified.png" alt="verified" width={16} height={16} />
                                                 )}
                                             </div>
                                             <p className="text-gray-400 text-sm">{offer.time}</p>
