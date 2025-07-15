@@ -1,7 +1,5 @@
-// components/pages/OffersPage.tsx
 import React, { useState } from 'react';
 import Image from 'next/image';
-import { StaticImageData } from 'next/image';
 
 type Offer = {
     id: number;

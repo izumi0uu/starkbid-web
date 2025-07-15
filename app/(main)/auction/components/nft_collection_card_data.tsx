@@ -1,10 +1,6 @@
 // components/NFTCollectionSection.tsx
 import React from 'react';
 import NFTCollectionCard from './nftcollectioncard';
-import chicken from '../../../public/chicken.png'
-import building from '../../../public/building.png'
-import hand from '../../../public/hand.png'
-import vr from '../../../public/vr.png'
 
 const NFTCollectionSection = () => {
   // Sample data - replace with your actual images

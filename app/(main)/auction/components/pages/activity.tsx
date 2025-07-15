@@ -1,4 +1,3 @@
-// components/pages/ActivityPage.tsx
 import React, { useState } from 'react';
 import {
     Chart as ChartJS,

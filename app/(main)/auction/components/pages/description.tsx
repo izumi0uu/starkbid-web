@@ -1,4 +1,3 @@
-// components/pages/DescriptionPage.tsx
 import React from 'react';
 import Image from 'next/image';
 import { useState } from 'react';
