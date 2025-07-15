@@ -10,11 +10,7 @@ import { AboutTab } from '@/components/about-tab'
 import { collectionMockNFTs } from '@/lib/mockData'
 import NftViewer from '@/components/nft-explorer/nft-viewer'
 
-type CollectionPageProps = {
-  params: { collectionId: string }
-}
-
-const CollectionPage: React.FC<CollectionPageProps> = ({ params }) => {
+export default function CollectionPage({ params }: { params: { collectionId: string } }) {
   const [activeTab, setActiveTab] = useState('Items')
   const { collectionId } = params
 
@@ -58,5 +54,3 @@ const CollectionPage: React.FC<CollectionPageProps> = ({ params }) => {
     </div>
   )
 }
-
-export default CollectionPage
