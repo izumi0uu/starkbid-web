@@ -36,9 +36,9 @@ export default function CollectionTabs() {
   };
 
   return (
-    <div className="w-full max-w-[1440px] mx-auto bg-[#101213] backdrop-blur-sm px-6">
+    <div className="w-full max-w-[1420px] mx-auto bg-[#101213] backdrop-blur-sm px-6">
       <div className="border-b border-white/10">
-        <div className="flex space-x-8 px-6">
+        <div className="flex space-x-8">
           {tabs.map((tab) => (
             <button
               key={tab.id}

@@ -13,7 +13,7 @@ const BLOCKCHAINS = ["Ethereum", "Bitcoin", "Solana", "Polygon"];
 
 // Reusable button styles
 const getTabButtonStyles = (isActive: boolean) => `
-  text-[20px] px-4 py-2 rounded-md 
+  text-[20px] px-4 py-2 rounded-md
   ${isActive ? "text-white font-bold bg-[#1C1D1F]" : "text-gray-500"}
 `;
 
@@ -86,7 +86,7 @@ const CollectionTableRow: React.FC<(typeof trendingCollections)[0]> = ({
   <tr className="hover:bg-zinc-900 transition-colors duration-300">
     <td className="px-4 py-4 text-[#8E9BAE]">{id}</td>
     <td className="px-4 py-4">
-      <div className="flex items-center ">
+      <div className="group flex items-center ">
         <div className="relative mr-3 shrink-0">
           <Image
             src={icon}
@@ -105,7 +105,12 @@ const CollectionTableRow: React.FC<(typeof trendingCollections)[0]> = ({
             />
           </div>
         </div>
-        <span className="whitespace-nowrap">{name}</span>
+        <Link
+          href={`/collections/${encodeURIComponent(name.replace(/\s+/g, "-").toLowerCase())}`}
+          className="whitespace-nowrap group-hover:underline group-hover:cursor-pointer"
+        >
+          {name}
+        </Link>
       </div>
     </td>
     <td className="px-4 py-4 whitespace-nowrap">{floorPrice}</td>
