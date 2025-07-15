@@ -162,12 +162,12 @@ const NftBid = () => {
                         <div className="flex justify-between items-start bg-deepGray rounded-lg p-4">
                             <div>
                                 <p className="text-gray-400 text-sm mb-1">Current Bid Price</p>
-                                <p className="text-2xl font-bold">0.056 ETH</p>
+                                <p className="text-2xl font-bold text-white">0.056 ETH</p>
                                 <p className="text-gray-400 text-sm">$90</p>
                             </div>
                             <div className="text-right">
                                 <p className="text-gray-400 text-sm mb-1">Top Offer</p>
-                                <p className="text-xl font-bold">0.075 ETH</p>
+                                <p className="text-xl font-bold text-white">0.075 ETH</p>
                                 <p className="text-gray-400 text-sm">$105</p>
                             </div>
                         </div>
@@ -203,12 +203,12 @@ const NftBid = () => {
                         {/* Share */}
                         <div className="flex items-center gap-4 pb-2 border-b border-darkerGray">
                             <span className="text-gray-400 text-sm">Share</span>
-                            <div className="flex gap-2">
-                                <button className="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center hover:bg-gray-700 transition-colors"
+                            <div className="flex gap-2 text-white">
+                                <button className="w-8 h-8 bg-gray-500 rounded-full flex items-center justify-center hover:bg-gray-700 transition-colors"
                                     onClick={() => setShowShareModal(true)}>
                                     <Share2 className="w-4 h-4" />
                                 </button>
-                                <button className="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center hover:bg-gray-700 transition-colors">
+                                <button className="w-8 h-8 bg-gray-500 rounded-full flex items-center justify-center hover:bg-gray-700 transition-colors">
                                     <Globe className="w-4 h-4" />
                                 </button>
                             </div>

@@ -59,9 +59,9 @@ const NFTCard: React.FC<NFTCardProps> = ({
           className={`px-4 transition-all duration-300 ease-in-out ${isHovered ? 'scale-[1.03] ' : ''}`}
         />
         {isHovered && (
-          <button className="absolute bottom-20 left-1/2 transform -translate-x-1/2 border border-soft_grey bg-white text-black px-4 py-2 rounded-md text-sm font-medium z-10 transition-all duration-300 opacity-100 shadow-md hover:bg-gray-100">
+          <Link href={'/auction'} className="absolute bottom-20 left-1/2 transform -translate-x-1/2 border border-soft_grey bg-white text-black px-4 py-2 rounded-md text-sm font-medium z-10 transition-all duration-300 opacity-100 shadow-md hover:bg-gray-100">
             Place a Bid
-          </button>
+          </Link>
         )}
       </div>
 
