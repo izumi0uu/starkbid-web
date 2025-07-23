@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, Suspense } from "react";
+import { Suspense } from "react";
 import NftViewer from "../nft-explorer/nft-viewer";
 import { profileMockNFTs } from "../../lib/mockData";
 import Link from "next/link";
