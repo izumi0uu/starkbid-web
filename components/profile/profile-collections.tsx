@@ -55,7 +55,7 @@ export default function CollectionTabs() {
         )}
         {activeTab === "activity" && (
           <Suspense fallback={<div className="p-6">Loading...</div>}>
-            <ActivityTab collectionId={"dummy"} isActive={true} />
+            <ActivityTab collectionId={"mock-collection-id"} isActive={true} />
           </Suspense>
         )}
         {activeTab === "collections" && (
