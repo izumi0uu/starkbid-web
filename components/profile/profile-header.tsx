@@ -9,6 +9,7 @@ import {
   Instagram,
   MessageCircle,
   Send,
+  Edit,
 } from "lucide-react";
 import Image from "next/image";
 
@@ -30,23 +31,28 @@ export default function ProfileHeader() {
                     alt="StarkBid logo"
                   />
                 </Avatar>
-
-                <div className="space-y-2">
-                  <div className="flex items-center gap-2">
-                    <h1 className="text-3xl font-bold text-white">
-                      Cattie Negtar
-                    </h1>
-                    <Image
-                      src="/verified.png"
-                      width={30}
-                      height={30}
-                      className="w-[30px] h-auto"
-                      alt="StarkBid logo"
-                    />
+                <div className="flex items-center gap-4">
+                  <div className="space-y-2">
+                    <div className="flex items-center gap-2">
+                      <h1 className="text-3xl font-bold text-white">
+                        Cattie Negtar
+                      </h1>
+                      <Image
+                        src="/verified.png"
+                        width={30}
+                        height={30}
+                        className="w-[30px] h-auto"
+                        alt="StarkBid logo"
+                      />
+                    </div>
+                    <p className="text-gray-400 font-mono text-sm">
+                      0x9d863ed03...3ba8
+                    </p>
                   </div>
-                  <p className="text-gray-400 font-mono text-sm">
-                    0x9d863ed03...3ba8
-                  </p>
+                  <div className="flex p-4 justify-center items-center hover:bg-white/10 text-white rounded-sm gap-2 border-2 border-darkerGray">
+                    <p className="text-sm font-semibold">Edit Profile</p>
+                    <Edit className="w-[18px] h-[18px]" />
+                  </div>
                 </div>
               </div>
 
@@ -60,42 +66,49 @@ export default function ProfileHeader() {
                   <Button
                     size="icon"
                     variant="ghost"
-                    className="text-white hover:bg-white/10">
+                    className="text-white hover:bg-white/10"
+                  >
                     <Copy className="w-5 h-5" />
                   </Button>
                   <Button
                     size="icon"
                     variant="ghost"
-                    className="text-white hover:bg-white/10">
+                    className="text-white hover:bg-white/10"
+                  >
                     <Globe className="w-5 h-5" />
                   </Button>
                   <Button
                     size="icon"
                     variant="ghost"
-                    className="text-white hover:bg-white/10">
+                    className="text-white hover:bg-white/10"
+                  >
                     <Instagram className="w-5 h-5" />
                   </Button>
                   <Button
                     size="icon"
                     variant="ghost"
-                    className="text-white hover:bg-white/10">
+                    className="text-white hover:bg-white/10"
+                  >
                     <svg
                       className="w-5 h-5"
                       viewBox="0 0 24 24"
-                      fill="currentColor">
+                      fill="currentColor"
+                    >
                       <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
                     </svg>
                   </Button>
                   <Button
                     size="icon"
                     variant="ghost"
-                    className="text-white hover:bg-white/10">
+                    className="text-white hover:bg-white/10"
+                  >
                     <MessageCircle className="w-5 h-5" />
                   </Button>
                   <Button
                     size="icon"
                     variant="ghost"
-                    className="text-white hover:bg-white/10">
+                    className="text-white hover:bg-white/10"
+                  >
                     <Send className="w-5 h-5" />
                   </Button>
                 </div>
